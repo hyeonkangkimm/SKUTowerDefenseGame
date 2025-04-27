@@ -8,9 +8,9 @@ public class CharacterStateMachine : StateMachine
     public CharacterDeathState Death;
 
     public CharacterPursuitState Pursuit;
-    public CharacterAttack01State Attack01;
-    public CharacterAttack02State Attack02;
-    public CharacterAttack03State Attack03;
+    public CharacterNormalAttackState NormalAttack;
+    public CharacterCriticAttackState CriticAttack;
+    public CharacterSkillState Skill;
 
 
     public CharacterStateMachine(Character Character)
@@ -18,9 +18,9 @@ public class CharacterStateMachine : StateMachine
         this.Character = Character;
         Idle = new CharacterIdleState(this);
         Pursuit = new CharacterPursuitState(this);
-        Attack01 = new CharacterAttack01State(this);
-        Attack02 = new CharacterAttack02State(this);
-        Attack03 = new CharacterAttack03State(this);
+        NormalAttack = new CharacterNormalAttackState(this);
+        CriticAttack = new CharacterCriticAttackState(this);
+        Skill = new CharacterSkillState(this);
         Death = new CharacterDeathState(this);
     }
     

@@ -13,22 +13,22 @@ public class CharacterAnimationData
 
 
     [SerializeField] private string idleParameterName = "Idle";
-    [SerializeField] private string walkParameterName = "Walk";
-    [SerializeField] private string attack01ParameterName = "Attack01";
-    [SerializeField] private string attack02ParameterName = "Attack02";
-    [SerializeField] private string attack03ParameterName = "Attack03";
+    [SerializeField] private string pursuitParameterName = "Pursuit";
+    [SerializeField] private string normalParameterName = "NormalAttack";
+    [SerializeField] private string criticParameterName = "CriticAttack";
+    [SerializeField] private string skillParameterName = "Skill";
 
     [SerializeField] private string CurMotionTimeParameterName = "CurMotionTime";
     [SerializeField] private string CurAttackMotionSpeedParameterName = "CurAttackMotionSpeed";
 
 
     public int IdleParameterHash { get; private set; }
-    public int WalkParameterHash { get; private set; }
+    public int PursuitParameterHash { get; private set; }
 
 
-    public int Attack01ParameterHash { get; private set; }
-    public int Attack02ParameterHash { get; private set; }
-    public int Attack03ParameterHash { get; private set; }
+    public int NormalAttackParameterHash { get; private set; }
+    public int CriticAttackParameterHash { get; private set; }
+    public int SkillParameterHash { get; private set; }
 
     public int DeathParameterHash { get; private set; }
     public int HurtParameterHash { get; private set; }
@@ -40,11 +40,11 @@ public class CharacterAnimationData
     public void Initialize()
     {
         IdleParameterHash = Animator.StringToHash(idleParameterName);
-        WalkParameterHash = Animator.StringToHash(walkParameterName);
+        PursuitParameterHash = Animator.StringToHash(pursuitParameterName);
 
-        Attack01ParameterHash = Animator.StringToHash(attack01ParameterName);
-        Attack02ParameterHash = Animator.StringToHash(attack02ParameterName);
-        Attack03ParameterHash = Animator.StringToHash(attack03ParameterName);
+        NormalAttackParameterHash = Animator.StringToHash(normalParameterName);
+        CriticAttackParameterHash = Animator.StringToHash(criticParameterName);
+        SkillParameterHash = Animator.StringToHash(skillParameterName);
 
         DeathParameterHash = Animator.StringToHash(deathParameterName);
         HurtParameterHash = Animator.StringToHash(hurtParameterName);
