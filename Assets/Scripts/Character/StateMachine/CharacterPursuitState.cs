@@ -22,7 +22,7 @@ public class CharacterPursuitState : CharacterBaseState
 
     public override void Enter()
     {
-        StartAnimation(stateMachine.Character.DataAnim.WalkParameterHash);
+        StartAnimation(stateMachine.Character.DataAnim.PursuitParameterHash);
         curTime = -1f;
         base.Enter();
     }
@@ -40,7 +40,7 @@ public class CharacterPursuitState : CharacterBaseState
                     FlipCharacter(stateMachine.Character.Target.position);
                     if (DistanceToTarget(stateMachine.Character.Target) < range)
                     {
-                        stateMachine.ChangeState(stateMachine.Attack01);
+                        stateMachine.ChangeState(stateMachine.NormalAttack);
                     }
                 }
                 break;            
@@ -57,7 +57,7 @@ public class CharacterPursuitState : CharacterBaseState
                         FlipCharacter(stateMachine.Character.Target.position);
                         if (DistanceToTarget(stateMachine.Character.Target) < range)
                         {
-                            stateMachine.ChangeState(stateMachine.Attack01);
+                            stateMachine.ChangeState(stateMachine.NormalAttack);
                         }
                     }
                 }
@@ -87,7 +87,7 @@ public class CharacterPursuitState : CharacterBaseState
     public override void Exit()
     {
         base.Exit();
-        StopAnimation(stateMachine.Character.DataAnim.WalkParameterHash);
+        StopAnimation(stateMachine.Character.DataAnim.PursuitParameterHash);
     }
     public void MoveTowardsTarget(Vector3 target)
     {
