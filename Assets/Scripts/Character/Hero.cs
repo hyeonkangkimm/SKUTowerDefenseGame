@@ -68,7 +68,7 @@ public class Hero : Character
         //StatHandler.baseStat = StatManager.Instance.statHandler.curStat;
         StatHandler.RemoveStatModifier(data.multipleStat);
         StatHandler.AddStatModifier(data.multipleStat);
-        Health.InitHealth(StatHandler.curStat.GetCurHealth());
+        //Health.InitHealth(StatHandler.curStat.GetCurHealth());
         //Target = GameManager.Instance.Monsters[0].transform;
 
     }

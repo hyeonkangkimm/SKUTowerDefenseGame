@@ -8,7 +8,7 @@ public class CharacterDamaged : MonoBehaviour
 {
     public GameObject damageTextPrefab;//<-poolmanager사용하면서 사용안함.
     public Transform damageTextPos;
-    private CharacterController _characterController;
+    private CharacterControllerH _characterController;
     private float yOffset = 0.2f; // 고정된 Y축 오프셋
     private Queue<int> damageQueue = new Queue<int>(); // 데미지 큐
     private bool isProcessing = false; // 현재 데미지 텍스트 처리 중인지 여부
@@ -19,7 +19,7 @@ public class CharacterDamaged : MonoBehaviour
     
     private void Awake()
     {
-        _characterController = GetComponent<CharacterController>();
+        _characterController = GetComponent<CharacterControllerH>();
     }
 
     private void OnEnable()

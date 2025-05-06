@@ -29,56 +29,56 @@ public class CharacterPursuitState : CharacterBaseState
     public override void Update()
     {
         base.Update();
-        NewAgrro();
-        switch (GameManager.Instance.CombatConditionType)
-        {
-            case ECombatConditionType.START:
-                if (stateMachine.Character.Target != null)
-                {
-                    MoveTowardsTarget(stateMachine.Character.Target.position);
+        //NewAgrro();
+        //switch (GameManager.Instance.CombatConditionType)
+        //{
+        //    case ECombatConditionType.START:
+        //        if (stateMachine.Character.Target != null)
+        //        {
+        //            MoveTowardsTarget(stateMachine.Character.Target.position);
 
-                    FlipCharacter(stateMachine.Character.Target.position);
-                    if (DistanceToTarget(stateMachine.Character.Target) < range)
-                    {
-                        stateMachine.ChangeState(stateMachine.NormalAttack);
-                    }
-                }
-                break;            
-            case ECombatConditionType.END:                
-                stateMachine.ChangeState(stateMachine.Idle);            
-                break;
-            case ECombatConditionType.READY:
-                if (stateMachine.Character is Monster)
-                {
-                    if (stateMachine.Character.Target != null)
-                    {
-                        MoveTowardsTarget(stateMachine.Character.Target.position);
+        //            FlipCharacter(stateMachine.Character.Target.position);
+        //            if (DistanceToTarget(stateMachine.Character.Target) < range)
+        //            {
+        //                stateMachine.ChangeState(stateMachine.NormalAttack);
+        //            }
+        //        }
+        //        break;            
+        //    case ECombatConditionType.END:                
+        //        stateMachine.ChangeState(stateMachine.Idle);            
+        //        break;
+        //    case ECombatConditionType.READY:
+        //        if (stateMachine.Character is Monster)
+        //        {
+        //            if (stateMachine.Character.Target != null)
+        //            {
+        //                MoveTowardsTarget(stateMachine.Character.Target.position);
 
-                        FlipCharacter(stateMachine.Character.Target.position);
-                        if (DistanceToTarget(stateMachine.Character.Target) < range)
-                        {
-                            stateMachine.ChangeState(stateMachine.NormalAttack);
-                        }
-                    }
-                }
-                else
-                {
-                    if (stateMachine.Character.EntityType == EEntityType.MONSTER) return;
-                    if (curTime < 0f)
-                    {
-                        curTime = 0f;
-                        startPos = characterTransform.position;
-                    }
-                    MoveTowardsDefalutPos(stateMachine.Character.DefalutPos);
-                    if (characterTransform.position == stateMachine.Character.DefalutPos)
-                    {
-                        //GameManager.Instance.ReadyCount--;
-                        curTime = -1f;
-                        stateMachine.ChangeState(stateMachine.Idle);
-                    }
-                }
-                break;
-        }
+        //                FlipCharacter(stateMachine.Character.Target.position);
+        //                if (DistanceToTarget(stateMachine.Character.Target) < range)
+        //                {
+        //                    stateMachine.ChangeState(stateMachine.NormalAttack);
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (stateMachine.Character.EntityType == EEntityType.MONSTER) return;
+        //            if (curTime < 0f)
+        //            {
+        //                curTime = 0f;
+        //                startPos = characterTransform.position;
+        //            }
+        //            MoveTowardsDefalutPos(stateMachine.Character.DefalutPos);
+        //            if (characterTransform.position == stateMachine.Character.DefalutPos)
+        //            {
+        //                //GameManager.Instance.ReadyCount--;
+        //                curTime = -1f;
+        //                stateMachine.ChangeState(stateMachine.Idle);
+        //            }
+        //        }
+        //        break;
+        //}
     }
     public float DistanceToTarget(Transform Target)
     {

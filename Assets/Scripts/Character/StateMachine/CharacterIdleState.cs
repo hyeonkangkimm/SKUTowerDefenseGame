@@ -13,25 +13,25 @@ public class CharacterIdleState : CharacterBaseState
     public override void Update()
     {
         base.Update();
-        switch (GameManager.Instance.CombatConditionType)
-        {
-            case ECombatConditionType.START:
-                stateMachine.ChangeState(stateMachine.Pursuit);
-                break;
-            case ECombatConditionType.END:
-                if (GameManager.Instance.CheckHeroReady())
-                {
-                    //GameManager.Instance.Stage.MoveMap();
-                    //stateMachine.ChangeState(stateMachine.Pursuit);
-                }
-                break;
-            case ECombatConditionType.READY:
-                if(stateMachine.Character is Monster)
-                {
-                    stateMachine.ChangeState(stateMachine.Pursuit);
-                }
-                break;
-        }
+        //switch (GameManager.Instance.CombatConditionType)
+        //{
+        //    case ECombatConditionType.START:
+        //        stateMachine.ChangeState(stateMachine.Pursuit);
+        //        break;
+        //    case ECombatConditionType.END:
+        //        if (GameManager.Instance.CheckHeroReady())
+        //        {
+        //            //GameManager.Instance.Stage.MoveMap();
+        //            //stateMachine.ChangeState(stateMachine.Pursuit);
+        //        }
+        //        break;
+        //    case ECombatConditionType.READY:
+        //        if(stateMachine.Character is Monster)
+        //        {
+        //            stateMachine.ChangeState(stateMachine.Pursuit);
+        //        }
+        //        break;
+        //}
         //if(stateMachine.Character.Target != null || stateMachine.Character.transform.position != stateMachine.Character.DefalutPos)
         //{
         //    stateMachine.ChangeState(stateMachine.Pursuit);

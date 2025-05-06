@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MonsterDeath : MonoBehaviour
 {
-    private CharacterController _characterController;
+    private CharacterControllerH _characterController;
     private void OnEnable()
     {
-        _characterController = GetComponent<CharacterController>();
+        _characterController = GetComponent<CharacterControllerH>();
         _characterController.OnDeath += Death;
     }
     private void OnDisable()

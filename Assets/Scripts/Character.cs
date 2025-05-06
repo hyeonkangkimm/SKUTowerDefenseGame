@@ -9,11 +9,11 @@ public interface IDamagable
     void TakeDamage(int value,bool critic); 
 }
 
-[RequireComponent(typeof(StatHandler))]
-[RequireComponent(typeof(CharacterDamaged))]
-[RequireComponent(typeof(StatHandler))]
-[RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(HealthSystem))]
+//[RequireComponent(typeof(StatHandler))]
+//[RequireComponent(typeof(CharacterDamaged))]
+//[RequireComponent(typeof(StatHandler))]
+//[RequireComponent(typeof(CharacterController))]
+//[RequireComponent(typeof(HealthSystem))]
 public abstract class Character :MonoBehaviour , IDamagable
 {
     //public CharacterSO Data;
@@ -22,7 +22,7 @@ public abstract class Character :MonoBehaviour , IDamagable
     public Transform Target;
     public CharacterAnimationData DataAnim;
     public CharacterStateMachine StateMachine;
-    public CharacterController Controller;
+    public CharacterControllerH Controller;
     public LayerMask LayerMask;
     public EEntityType EntityType;
     public EEntityType TargetType;
@@ -40,9 +40,9 @@ public abstract class Character :MonoBehaviour , IDamagable
     {        
         DataAnim.Initialize();
         Animator = GetComponentInChildren<Animator>();
-        StatHandler = GetComponent<StatHandler>();
-        Controller = GetComponent<CharacterController>();
-        Health = GetComponent<HealthSystem>();
+        //StatHandler = GetComponent<StatHandler>();
+        Controller = GetComponent<CharacterControllerH>();
+        //Health = GetComponent<HealthSystem>();
         StateMachine = new CharacterStateMachine(this);
         StateMachine.Initialize();
         StateMachine.ChangeState(StateMachine.Idle);
@@ -51,8 +51,8 @@ public abstract class Character :MonoBehaviour , IDamagable
     protected virtual void Start()
     {
         
-        StatHandler.UpdateStatModifier();
-        activeBuffs = new();
+        //StatHandler.UpdateStatModifier();
+        //activeBuffs = new();
     }
     protected virtual void OnEnable()
     {
@@ -61,10 +61,10 @@ public abstract class Character :MonoBehaviour , IDamagable
     }
     public virtual void Update()
     {
-        if(Target == null || !Target.gameObject.activeSelf)
-        {
-            FindTarget();
-        }
+       //if(Target == null || !Target.gameObject.activeSelf)
+       // {
+       //     FindTarget();
+       // }
     }
 
     public void InitStat()
