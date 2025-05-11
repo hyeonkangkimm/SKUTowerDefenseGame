@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework.Interfaces;
@@ -28,7 +29,7 @@ public class NPC : MonoBehaviour, IDamageable
     [Header("AI")]
     private NavMeshAgent agent;
     
-    public float detectDistance;//맵한칸 거리 기준
+    public int detectDistance;//맵한칸 거리 기준
     private AIState aiState;
 
     [Header("Combat")]
@@ -38,8 +39,9 @@ public class NPC : MonoBehaviour, IDamageable
     public float attackDistance;
     public float fieldOfView = 120f;
 
-    private float playerDistance=5f;
-
+    [Header("Target")]
+    public float playerDistance;
+    [SerializeField] private GameObject NearTarget;
     private Animator animator;
     private SkinnedMeshRenderer[] meshRenderers;
 
@@ -58,13 +60,32 @@ public class NPC : MonoBehaviour, IDamageable
 
     void Update()
     {
-        
-        //if (CharacterManager.Instance.Player == null)
-        //    return;
-        //   
-        //playerDistance = Vector3.Distance(transform.position, CharacterManager.Instance.Player.transform.position);
-        animator.SetBool("Moving", aiState != AIState.Idle);
+        if (NearTarget == null)
+        {
+            Hero nearest = null;
+            float minSqr = Mathf.Infinity;
 
+            var nearbyHeroes = CharacterManager.Instance.GetHeroesNear(transform.position, detectDistance);
+
+            foreach (var hero in nearbyHeroes)
+            {
+                float sqrDist = (hero.transform.position - transform.position).sqrMagnitude;
+                if (sqrDist < detectDistance * detectDistance && sqrDist < minSqr)
+                {
+                    minSqr = sqrDist;
+                    nearest = hero;
+                }
+            }
+            if (nearest != null)
+            {
+                NearTarget = nearest.gameObject;   
+            }
+        }
+        else
+        {
+            playerDistance = Vector3.Distance(transform.position, NearTarget.transform.position);
+        }
+        animator.SetBool("Moving", aiState != AIState.Idle);
         switch (aiState)
         {
             case AIState.Idle:
@@ -126,13 +147,7 @@ public class NPC : MonoBehaviour, IDamageable
 
     void AttackingUpdate()
     {
-        if (CharacterManager.Instance.Player == null)
-        {
-            SetState(AIState.Wandering);
-            GoToDestination();
-            return;
-        }
-
+        //거리가 안에 있고 시야에 있으면 공격
         if (playerDistance < attackDistance && IsPlayerInFieldOfView())
         {
             agent.isStopped = true;
@@ -141,7 +156,7 @@ public class NPC : MonoBehaviour, IDamageable
             {
                 lastAttackTime = Time.time;
 
-                var damageTarget = CharacterManager.Instance.Player.GetComponent<IDamageable>();
+                var damageTarget = NearTarget.GetComponent<IDamageable>();
                 if (damageTarget != null)
                 {
                     damageTarget.TakePhysicalDamage(damage);
@@ -153,12 +168,13 @@ public class NPC : MonoBehaviour, IDamageable
         }
         else
         {
-            if (playerDistance < detectDistance)
-            {
-                agent.isStopped = false;
-                agent.SetDestination(CharacterManager.Instance.Player.transform.position);
-            }
-            else
+            //에러주석
+            //if (playerDistance < detectDistance)
+            //{
+            //    agent.isStopped = false;
+            //    agent.SetDestination(NearTarget.transform.position);
+            //}
+            //else
             {
                 SetState(AIState.Wandering);
                 GoToDestination();
@@ -168,8 +184,9 @@ public class NPC : MonoBehaviour, IDamageable
 
     bool IsPlayerInFieldOfView()
     {
-        
-        Vector3 directionToPlayer = CharacterManager.Instance.Player.transform.position - transform.position;
+        if (NearTarget == null)
+            return false;
+        Vector3 directionToPlayer = NearTarget.transform.position - transform.position;
         float angle = Vector3.Angle(transform.forward, directionToPlayer);
         return angle < fieldOfView * 0.5f;
     }
@@ -209,5 +226,13 @@ public class NPC : MonoBehaviour, IDamageable
         {
             renderer.material.color = Color.white;
         }
+    }
+    public void AttackEnd()
+    {
+
+    }
+    public void AttackBegin()
+    {
+
     }
 }

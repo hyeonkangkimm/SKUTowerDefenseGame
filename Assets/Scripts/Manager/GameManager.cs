@@ -18,7 +18,8 @@ public class GameManager : Singleton<GameManager>
     private readonly float minDistance = 0.5f; /* 캐릭터들이 안 겹치게*/  
     public List<Monster> Monsters;
     public int ReadyCount = 0;
-
+    //일시적으로 퍼블릭 나중에 카드랑 연결되게 한 후 privata
+    public GameObject SelectedPrefab;
 
     public ECombatConditionType CombatConditionType = ECombatConditionType.READY;
 
@@ -37,7 +38,10 @@ public class GameManager : Singleton<GameManager>
     }
    
 
- 
+    public GameObject GetSelectedPrefab()
+    {
+        return SelectedPrefab;
+    }
     public void HeroPosUpdate()
     {
         foreach (var character in EntryList)
