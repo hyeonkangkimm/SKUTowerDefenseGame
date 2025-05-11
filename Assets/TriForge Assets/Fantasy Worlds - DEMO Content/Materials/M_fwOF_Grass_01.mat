@@ -8,14 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_fwOF_Grass_01
-  m_Shader: {fileID: 4800000, guid: f63804e25a84a7c44a5df7ae33b3e171, type: 3}
+  m_Shader: {fileID: 10511, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _GLOSSYREFLECTIONS_OFF
-  - _TF_ENABLE_WIND_ON
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - TF_ENABLE_WIND
+  - _GLOSSYREFLECTIONS_OFF
+  - _TF_ENABLE_WIND_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -100,7 +100,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AO: 2.4
     - _BaseColorSaturation: 0.924
+    - _BaseLight: 0.35
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -122,6 +124,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _NormalScale: 0.1
+    - _Occlusion: 7.5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RootMaskStrength: -0.47
@@ -132,6 +135,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _Specular: 0.007
     - _SpecularHighlights: 1
+    - _SquashAmount: 1
     - _SrcBlend: 1
     - _TF_ENABLE_WIND: 1
     - _TransAmbient: 0.15
@@ -150,5 +154,8 @@ Material:
     - _Color: {r: 0.7549274, g: 0.90188676, b: 0.692581, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _RootColor: {r: 0.1254902, g: 0.18823531, b: 0.10196079, a: 1}
+    - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
     - _Vector0: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
