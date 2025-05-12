@@ -37,16 +37,19 @@ public class Tile : MonoBehaviour
         //벽설치, 포탑설치, 캐릭터 설치 대응해야함
         if (currentPlacedObject == null)
         {
-            GameObject prefabToPlace = GameManager.Instance.GetSelectedPrefab();
+            GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool("npc0001");
             if (prefabToPlace != null)
             {
-                GameObject placed = Instantiate(prefabToPlace, transform.position, Quaternion.identity);
-                var placeable = placed.GetComponent<IPlaceable>();
+                prefabToPlace.transform.position = this.transform.position;
+
+                var placeable = prefabToPlace.GetComponent<IPlaceable>();
                 if (placeable != null)
                     placeable.OnPlaced(this.transform.position);
 
-                currentPlacedObject = placed;
+                currentPlacedObject = prefabToPlace;
             }
+            if (prefabToPlace == null)
+                Debug.Log("로딩안됨");
         }
     }
 }

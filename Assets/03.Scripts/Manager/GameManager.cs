@@ -19,7 +19,7 @@ public class GameManager : Singleton<GameManager>
     public List<Monster> Monsters;
     public int ReadyCount = 0;
     //일시적으로 퍼블릭 나중에 카드랑 연결되게 한 후 privata
-    public GameObject SelectedPrefab;
+    [SerializeField]private GameObject SelectedPrefab;
 
     public ECombatConditionType CombatConditionType = ECombatConditionType.READY;
 
@@ -38,71 +38,15 @@ public class GameManager : Singleton<GameManager>
     }
    
 
-    public GameObject GetSelectedPrefab()
+    //card클래스의 정보를 받아와서 prefab생성
+    public void UseHeroCard()
     {
-        return SelectedPrefab;
-    }
-    public void HeroPosUpdate()
-    {
-        foreach (var character in EntryList)
-        {
-            foreach(var otherCharacter in EntryList)
-            {
-                if (character == otherCharacter) continue;
 
-                float distance = Vector3.Distance(character.transform.position, otherCharacter.transform.position);
-                if (distance < minDistance)
-                {
-                    Vector3 direction = (character.transform.position - otherCharacter.transform.position).normalized;
-                    character.transform.position += direction * (minDistance - distance) / 2;
-                    otherCharacter.transform.position -= direction * (minDistance - distance) / 2;
-                }
-            }
-        }
-        
     }
   
 
    
 
-   
-  
-    public bool CheckHeroReady()
-    {
-        //if (!player.gameObject.activeSelf) return false;
-        foreach(Character hero in EntryList)
-        {
-            if (!hero.gameObject.activeSelf) continue;
-            IState state = hero.StateMachine.currentState;
-            if(!(state is CharacterIdleState))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public List<Hero> GetHeroEntry()
-    {
-        return EntryList.OfType<Hero>().ToList(); 
-    }
-
-    
-    
-    public IEnumerator ChangeEntryCoroutine()
-    {
-        isReady = false;
-       
-        CombatConditionType = ECombatConditionType.READY;
-        for (int i = 1; i < EntryList.Count; i++)
-        {
-            EntryList[i].gameObject.SetActive(false);
-        }
-        EntryList.RemoveAll(x => x.GetType() == typeof(Hero));
-        
-        isReady = true;
-        yield return new WaitUntil(CheckHeroReady);
-    }    
 
     
 

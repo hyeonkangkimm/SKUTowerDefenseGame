@@ -6,7 +6,6 @@
     public override void Enter()
     {
         StartAnimation(stateMachine.Character.DataAnim.DeathParameterHash);
-        CharacterManager.Instance.Unregister(stateMachine.Character);
         base.Enter();
     }
     public override void Update()

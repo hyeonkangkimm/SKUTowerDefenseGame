@@ -1,9 +1,26 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using UnityEditor.AddressableAssets.Build.Layout;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+
+public class AddressableMapData
+{
+    public List<AddressableMap> list = new List<AddressableMap>();
+
+    public void AddRange(List<AddressableMap> list)
+    {
+        this.list.AddRange(list);
+    }
+
+    public void Add(AddressableMap data)
+    {
+        list.Add(data);
+    }
+}
 
 [Serializable]
 public class AddressableMap
@@ -13,64 +30,106 @@ public class AddressableMap
     public string path;
 }
 
-public class AddressableMapData
-{
-    public List<AddressableMap> list = new List<AddressableMap>();
-
-    public void Add(AddressableMap data) => list.Add(data);
-    public void AddRange(List<AddressableMap> items) => list.AddRange(items);
-}
 
 public class ResourceManagerH : Singleton<ResourceManagerH>
 {
-    private readonly Dictionary<EAddressableType, Dictionary<string, string>> addressableMap = new();
-    public bool IsInit { get; private set; } = false;
+    [NonSerialized] public bool isInit = false;
 
-    public async Task InitAsync()
+    private Dictionary<EAddressableType, Dictionary<string, AddressableMap>> addressableMap = new Dictionary<EAddressableType, Dictionary<string, AddressableMap>>();
+
+    private readonly string[] localPath =
     {
-        await Addressables.InitializeAsync().Task;
-        await LoadAddressableMap();
-        IsInit = true;
+        "Prefab/",
+        "Data/",
+        "Audio/"
+    };
+
+    public async void Init()
+    {
+        await LoadAddressable();
     }
 
-    private async Task LoadAddressableMap()
+    public async Task LoadAddressable()
     {
-        var handle = Addressables.LoadAssetsAsync<TextAsset>("AddressableMap", null);
+        var init = await Addressables.InitializeAsync().Task;
+        var handle = Addressables.DownloadDependenciesAsync("InitDownload"); // InitDownload label 다운로드
+        //UILoading.instance.SetProgress(handle, "리소스 로딩 중...");
+        //StartCoroutine(SetProgress(handle));
         await handle.Task;
-
-        foreach (var textAsset in handle.Result)
+        switch (handle.Status)
         {
-            var data = JsonUtility.FromJson<AddressableMapData>(textAsset.text);
-            foreach (var map in data.list)
-            {
-                var key = map.key.ToLower();
-                if (!addressableMap.TryGetValue(map.addressableType, out var dict))
-                {
-                    dict = new();
-                    addressableMap[map.addressableType] = dict;
-                }
-                dict[key] = map.path;
-            }
+            case AsyncOperationStatus.None:
+                break;
+            case AsyncOperationStatus.Succeeded:
+                //Debug.Log("다운로드 성공!");
+                break;
+            case AsyncOperationStatus.Failed:
+                //Debug.Log("다운로드 실패 : " + handle.OperationException.Message);
+                Debug.LogError(handle.OperationException.ToString());
+                break;
+            default:
+                break;
         }
+        Addressables.Release(handle);
+        InitAddressableMap();
     }
 
-    public string GetPath(string key, EAddressableType type)
+    private async void InitAddressableMap()
     {
-        key = key.ToLower();
-        if (addressableMap.TryGetValue(type, out var dict) && dict.TryGetValue(key, out var path))
-            return path;
+        // Label : AddressableMap인 에셋들을 로드 > .json 파일들을 불러와서 AddressableMap 형태로 dict에 저장
+        await Addressables.LoadAssetsAsync<TextAsset>("AddressableMap", (text) =>
+        {
+            var map = JsonUtility.FromJson<AddressableMapData>(text.text);
+            var key = EAddressableType.PREFAB;
+            Dictionary<string, AddressableMap> mapDic = new Dictionary<string, AddressableMap>();
+            foreach (var data in map.list) // MapData > Dict<Map> 형태로 매핑
+            {
+                key = data.addressableType;
+                if (!mapDic.ContainsKey(data.key)) // data.key = rcode
+                    mapDic.Add(data.key, data);
+            }
+            if (!addressableMap.ContainsKey(key)) addressableMap.Add(key, mapDic);
 
-        Debug.LogError($"[ResourceManager] Missing key: {key} for type: {type}");
-        return string.Empty;
+        }).Task;
+        isInit = true;
     }
 
-    public async Task<GameObject> InstantiateAsync(string key, EAddressableType type, Transform parent = null)
+    public string GetPath(string key, EAddressableType addressableType)
     {
-        var path = GetPath(key, type);
-        if (string.IsNullOrEmpty(path)) return null;
+        var map = addressableMap[addressableType][key.ToLower()];
+        return map.path;
+    }
 
-        var handle = Addressables.InstantiateAsync(path, parent);
-        await handle.Task;
-        return handle.Result;
+    public async Task<T> GetResource<T>(string key, EAddressableType addressableType)
+    {
+        try
+        {
+            var path = GetPath(key, addressableType);
+            return await LoadAssetAsync<T>(path);
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning(e.Message);
+        }
+        return default;
+    }
+
+    private async Task<T> LoadAssetAsync<T>(string path)
+    {
+        try
+        {
+            if (path.Contains(".prefab") && typeof(T) != typeof(GameObject))
+            {
+                var obj = await Addressables.LoadAssetAsync<GameObject>(path).Task;
+                return obj.GetComponent<T>();
+            }
+            else
+                return await Addressables.LoadAssetAsync<T>(path).Task;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
+        return default;
     }
 }

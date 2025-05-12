@@ -16,10 +16,10 @@ public class CharacterControllerH : Controller
     public event Action<int> OnHeal;
     //public event Action OnAttackSpeedChange;
 
-   [NonSerialized] public bool isHit;
-   [NonSerialized] public bool isHeal;
-   [NonSerialized] public bool isDead;
-   [NonSerialized] public bool isChanneling;
+    public bool isHit;
+    public bool isHeal;
+    public bool isDead;
+    public bool isChanneling;
 
 [NonSerialized] public bool isEnemy;
 
@@ -59,7 +59,7 @@ public class CharacterControllerH : Controller
         character.StateMachine.ChangeState(character.StateMachine.Death);
         yield return deadAnimLength;
         //if (character.EntityType == EEntityType.MONSTER) 
-            gameObject.SetActive(false);
+        gameObject.SetActive(false);
         //animator.enabled = false;
     }
     public void OnEnable()
@@ -77,7 +77,9 @@ public class CharacterControllerH : Controller
     #region Action CallBack
     public void CallDeath()
     {
-        OnDeath?.Invoke();    
+        OnDeath?.Invoke();
+        CharacterManager.Instance.Unregister(character);
+        StartCoroutine(PlayDeathAnimationAndIdleCoroutine());
     }
     public void CallOnDamage(int Damage,bool critic)
     {
@@ -91,7 +93,7 @@ public class CharacterControllerH : Controller
     {
         if (!isAttacking & !isDead)
         {
-            ChooseAttackType();
+            //ChooseAttackType();
             OnAttack?.Invoke();
         }
     }
@@ -105,12 +107,12 @@ public class CharacterControllerH : Controller
     //}
     #endregion
     [ContextMenu("Walk")]
-    public void Fight()
+    public void CMFight()
     {
          character.StateMachine.ChangeState(character.StateMachine.Pursuit);
     }
     [ContextMenu("Attack")]
-    public void Attack()
+    public void CMAttack()
     {
         character.StateMachine.ChangeState(character.StateMachine.NormalAttack);
     }
@@ -137,6 +139,7 @@ public class CharacterControllerH : Controller
         if (other.CompareTag("Monster"))
         {
             Debug.Log("몬스터 감지됨: " + other.name);
+
             this.character.StateMachine.ChangeState(character.StateMachine.NormalAttack);
         }
     }

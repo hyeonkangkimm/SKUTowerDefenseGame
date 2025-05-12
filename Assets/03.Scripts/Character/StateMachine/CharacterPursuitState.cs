@@ -8,7 +8,7 @@ public class CharacterPursuitState : CharacterBaseState
 {
     private float speedModifier;
     private float range;
-    private float curTime = -1f;
+    //private float curTime = -1f;
     private Transform characterTransform;
     private Vector3 startPos;
     private Vector3 currentPosition;
@@ -23,7 +23,7 @@ public class CharacterPursuitState : CharacterBaseState
     public override void Enter()
     {
         StartAnimation(stateMachine.Character.DataAnim.PursuitParameterHash);
-        curTime = -1f;
+        //curTime = -1f;
         base.Enter();
     }
     public override void Update()

@@ -14,7 +14,7 @@ public interface IDamageable
 //[RequireComponent(typeof(StatHandler))]
 //[RequireComponent(typeof(CharacterController))]
 //[RequireComponent(typeof(HealthSystem))]
-public abstract class Character :MonoBehaviour , IDamageable
+public abstract class Character :MonoBehaviour , IDamageable, IPlaceable
 {
     //public CharacterSO Data;
 
@@ -89,6 +89,12 @@ public abstract class Character :MonoBehaviour , IDamageable
 
         StatHandler.RemoveStatModifier(buffStat);
         activeBuffs.Remove(buffStat);
+    }
+
+    public void OnPlaced(Vector3 position)
+    {
+         this.transform.position = position;
+         this.transform.rotation = Quaternion.identity;
     }
 }
 
