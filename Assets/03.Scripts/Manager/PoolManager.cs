@@ -1,29 +1,28 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.Pool;
 
-[System.Serializable]
+using System.Collections.Generic;
+using System;
+using UnityEngine;
+using System.Collections;
+using System.Threading.Tasks;
+using UnityEngine.Pool;
+[Serializable]
 public class Pool
-{    
+{
     public string rcode; // key value by rcode
     public int size; // initial size
-    //public Transform parentTransform; // parent object
+    private Transform parentTransform; // parent object
     public GameObject prefab;
 }
 public class PoolManager : Singleton<PoolManager>
-{       
+{
     [Header("# Pool Info")]
     [SerializeField] private List<Pool> pools = new List<Pool>();
-    
     private Dictionary<string, List<GameObject>> poolDictionary;
     [NonSerialized] public bool IsInit;
 
     protected override void Awake()
     {
-        base.Awake();        
+        base.Awake();
         StartCoroutine(InitCoroutine());
     }
 
@@ -46,12 +45,12 @@ public class PoolManager : Singleton<PoolManager>
         // pools에 있는 모든 오브젝트를 탐색하고 정해놓은 size만큼 프리팹을 미리 만들어 놓음
         foreach (Pool pool in pools)
         {
-            //Debug.Log(pool.rcode);
+            Debug.Log(pool.rcode);
             List<GameObject> list = new List<GameObject>();
             poolDictionary.Add(pool.rcode, list);
-            
+            pool.prefab = await ResourceManagerH.Instance.GetResource<GameObject>(pool.rcode, EAddressableType.PREFAB);
             AddPoolObject(pool);
-            //var path = ResourceManagerH.Instance.GetPath(pool.rcode, EAddressableType.PREFAB);
+            //var path = ResourceManager.Instance.GetPath(pool.rcode, EAddressableType.PREFAB);
             //pool.prefab = await Addressables.InstantiateAsync(path, parent: pool.parentTransform).Task;
             //yield return TaskAsIEnumerator(AddPoolObject(pool));
         }
@@ -62,13 +61,13 @@ public class PoolManager : Singleton<PoolManager>
     {
         #region NonIntro
         // TODO : 배포 시 삭제
-        //if (!ResourceManager.Instance.isInit)
-        //{
-        //    ResourceManager.Instance.Init();
-        //    yield return new WaitUntil(() => ResourceManager.Instance.isInit);
-        //}
+        if (!ResourceManagerH.Instance.isInit)
+        {
+            ResourceManagerH.Instance.Init();
+            yield return new WaitUntil(() => ResourceManagerH.Instance.isInit);
+        }
         #endregion
-        yield return TaskAsIEnumerator(InitAsync()); 
+        yield return TaskAsIEnumerator(InitAsync());
     }
 
     //private IEnumerator InitCoroutine()
@@ -87,10 +86,10 @@ public class PoolManager : Singleton<PoolManager>
     //}
 
     private void AddPoolObject(Pool pool) // 프리팹 생성
-    {        
+    {
         for (int i = 0; i < pool.size; i++)
         {
-            GameObject poolObj = Instantiate(pool.prefab);        
+            GameObject poolObj = Instantiate(pool.prefab);
             poolObj.name = pool.rcode;
             poolObj.SetActive(false);
             poolDictionary[pool.rcode].Add(poolObj);
@@ -129,7 +128,7 @@ public class PoolManager : Singleton<PoolManager>
     }
 
     // 이미 생성된 오브젝트 풀에서 프리팹을 가져옴
-    public T SpawnFromPool<T>(string rcode) where T : MonoBehaviour 
+    public T SpawnFromPool<T>(string rcode) where T : MonoBehaviour
     {
         if (!poolDictionary.ContainsKey(rcode))
         {
