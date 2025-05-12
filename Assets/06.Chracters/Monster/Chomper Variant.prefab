@@ -148,7 +148,7 @@ MonoBehaviour:
   detectDistance: 3
   damage: 1
   attackRate: 1
-  attackDistance: 1
+  attackDistance: 2
   fieldOfView: 120
   playerDistance: 0
   NearTarget: {fileID: 0}

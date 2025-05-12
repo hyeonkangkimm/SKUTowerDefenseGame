@@ -34,6 +34,7 @@ public class Tile : MonoBehaviour
 
     void OnMouseDown()
     {
+        //벽설치, 포탑설치, 캐릭터 설치 대응해야함
         if (currentPlacedObject == null)
         {
             GameObject prefabToPlace = GameManager.Instance.GetSelectedPrefab();

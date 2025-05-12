@@ -4,10 +4,7 @@ using System.Collections.Generic;
 using NUnit.Framework.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
-public interface IDamageable
-{
-    void TakePhysicalDamage(int damage);
-}
+
 public enum AIState
 {
     Idle,
@@ -60,6 +57,9 @@ public class NPC : MonoBehaviour, IDamageable
 
     void Update()
     {
+        //NearTarget이 죽었을 때 타겟 해제, if문 안에서 앞 조건식 먼저 계산한후 false면 if문을 나가기 때문에 뒤에 NullReferenceException오류가 안난다
+        if (NearTarget != null &&!NearTarget.activeInHierarchy)
+            NearTarget = null;
         if (NearTarget == null)
         {
             Character nearest = null;
@@ -146,7 +146,7 @@ public class NPC : MonoBehaviour, IDamageable
     }
 
     void AttackingUpdate()
-    {
+    {  
         //거리가 안에 있고 시야에 있으면 공격
         if (playerDistance < attackDistance && IsPlayerInFieldOfView())
         {
@@ -155,16 +155,18 @@ public class NPC : MonoBehaviour, IDamageable
             if (Time.time - lastAttackTime > attackRate)
             {
                 lastAttackTime = Time.time;
+                //애니메이션에서 Event함수로 조절함
+                //var damageTarget = NearTarget.GetComponent<IDamageable>();
+                //if (damageTarget != null)
+                //{
+                //    damageTarget.TakeDamage(damage);
+                //}
 
-                var damageTarget = NearTarget.GetComponent<IDamageable>();
-                if (damageTarget != null)
-                {
-                    damageTarget.TakePhysicalDamage(damage);
-                }
 
                 animator.speed = 1;
                 animator.SetTrigger("Attack");
             }
+
         }
         else
         {
@@ -227,12 +229,25 @@ public class NPC : MonoBehaviour, IDamageable
             renderer.material.color = Color.white;
         }
     }
+    /// <summary>
+    /// 공격 Anim끝나는 지점
+    /// </summary>
     public void AttackEnd()
     {
 
     }
+    /// <summary>
+    /// 공격Anim시작지점
+    /// </summary>
     public void AttackBegin()
     {
+        IDamageable character = NearTarget.GetComponent<IDamageable>();
+        character.TakeDamage(damage);
+       
+    }
 
+    public void TakeDamage(int value, bool critic = false)
+    {
+        throw new NotImplementedException();
     }
 }

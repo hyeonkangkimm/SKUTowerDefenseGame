@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Character
+  m_EditorClassIdentifier: 
+  m_GroupName: Character
+  m_Data:
+    m_SerializedData: []
+  m_GUID: f3f0b82c5d1be2e458c9e77362938b4b
+  m_SerializeEntries:
+  - m_GUID: 45fd0f16c4c19ce46b9fb59c797e09af
+    m_Address: Assets/02.Prefabs/Character/CharlottePB.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InitDownload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 286487f9d71b837489f1be407c865b02
+    m_Address: Assets/Addressables/MapData/AddressableMap.json
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - AddressableMap
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: db91e1fc2b1f65a499ed8e2127a143d1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9c2e4eca385db024884f4a9aa055feb4, type: 2}
+    - {fileID: 11400000, guid: ad06c20de35e0de44b2e9d68e94002f7, type: 2}

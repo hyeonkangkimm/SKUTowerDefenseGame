@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 public class CharacterControllerH : Controller
 {
-    public SpriteRenderer spriteRenderer;
+    public Renderer Renderer;
     protected Color originalColor;
     [NonSerialized] public Character character;
     public Collider DetectCollider;
@@ -26,12 +26,12 @@ public class CharacterControllerH : Controller
     protected override void Awake() 
     {
         base.Awake();
-        //healthSystem = GetComponent<HealthSystem>();
+        healthSystem = GetComponent<HealthSystem>();
         DetectRenderer.enabled = false;
         character = GetComponent<Character>();
-        //isDead = false;
-        //spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        //originalColor = spriteRenderer.color;
+        isDead = false;
+        Renderer = GetComponentInChildren<Renderer>();
+        originalColor = Renderer.material.color;
     }
     protected override void Update() 
     {
@@ -49,9 +49,9 @@ public class CharacterControllerH : Controller
         //isHit = false;
         #endregion
         #region 경직off
-        spriteRenderer.color = Color.red;
+        Renderer.material.color = Color.red;
         yield return hurtAnimLength;
-        spriteRenderer.color = originalColor;
+        Renderer.material.color = originalColor;
         #endregion
     }
     public override IEnumerator PlayDeathAnimationAndIdleCoroutine()
@@ -77,8 +77,7 @@ public class CharacterControllerH : Controller
     #region Action CallBack
     public void CallDeath()
     {
-        OnDeath?.Invoke();
-        DeathAnim();        
+        OnDeath?.Invoke();    
     }
     public void CallOnDamage(int Damage,bool critic)
     {

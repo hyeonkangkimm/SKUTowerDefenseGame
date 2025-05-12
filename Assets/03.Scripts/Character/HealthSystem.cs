@@ -27,7 +27,6 @@ public class HealthSystem : MonoBehaviour
     }
     public void Update()
     {
-        
         DetectChangeMaxHealth(character.StatHandler.curStat.GetCurHealth());
         ShowCurrentHpRate();
     }

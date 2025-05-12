@@ -51,7 +51,7 @@ public class PoolManager : Singleton<PoolManager>
             poolDictionary.Add(pool.rcode, list);
             
             AddPoolObject(pool);
-            //var path = ResourceManager.Instance.GetPath(pool.rcode, EAddressableType.PREFAB);
+            //var path = ResourceManagerH.Instance.GetPath(pool.rcode, EAddressableType.PREFAB);
             //pool.prefab = await Addressables.InstantiateAsync(path, parent: pool.parentTransform).Task;
             //yield return TaskAsIEnumerator(AddPoolObject(pool));
         }

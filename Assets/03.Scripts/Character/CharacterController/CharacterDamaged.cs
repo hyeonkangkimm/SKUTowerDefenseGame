@@ -39,7 +39,6 @@ public class CharacterDamaged : MonoBehaviour
 
     void ChangeHealth(int damage, bool isCritic)
     {
-        BigInteger bigDamage = new BigInteger(damage);  // int를 BigInteger로 변환
         if (_characterController.healthSystem.TakeDamage(damage))
         {
             _characterController.isDead = true;
@@ -49,11 +48,11 @@ public class CharacterDamaged : MonoBehaviour
 
     private void EnqueueDamage(int damage,bool isCritic)
     {
-        BigInteger bigDamage = new BigInteger(damage);  // int를 BigInteger로 변환
         damageQueue.Enqueue(damage);
             damageCoroutine = StartCoroutine(ProcessDamageQueue(isCritic));
         if (!isProcessing)
         {
+
         }
     }
 

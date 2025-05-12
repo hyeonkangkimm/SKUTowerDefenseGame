@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
-public interface IDamagable
+public interface IDamageable
 {
-    public void TakeDamage(int value,bool critic); 
+    public void TakeDamage(int value,bool critic=false); 
 }
 
 //[RequireComponent(typeof(StatHandler))]
@@ -14,7 +14,7 @@ public interface IDamagable
 //[RequireComponent(typeof(StatHandler))]
 //[RequireComponent(typeof(CharacterController))]
 //[RequireComponent(typeof(HealthSystem))]
-public abstract class Character :MonoBehaviour , IDamagable
+public abstract class Character :MonoBehaviour , IDamageable
 {
     //public CharacterSO Data;
 
