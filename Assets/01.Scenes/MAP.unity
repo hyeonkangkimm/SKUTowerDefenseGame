@@ -171,7 +171,7 @@ Terrain:
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
+  m_DetailObjectDistance: 150
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -179,7 +179,7 @@ Terrain:
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
-  m_DrawInstanced: 0
+  m_DrawInstanced: 1
   m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_IgnoreQualitySettings: 0
@@ -227,6 +227,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -293,6 +305,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (54)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34
@@ -351,6 +367,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -413,6 +441,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -478,6 +518,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -550,7 +594,7 @@ Transform:
   m_GameObject: {fileID: 126198735}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.85, y: 0, z: 21.9}
+  m_LocalPosition: {x: 29.72, y: 0, z: 10.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -582,6 +626,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (51)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -636,6 +684,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -712,6 +772,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18
@@ -775,6 +839,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -854,7 +930,7 @@ Transform:
   m_GameObject: {fileID: 420595752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0001, z: 0}
+  m_LocalPosition: {x: 0, y: 0.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1047,7 +1123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &431166237
 Transform:
   m_ObjectHideFlags: 0
@@ -1088,6 +1164,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1146,6 +1226,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileZ (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2213129251585314265, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 5343927672273912786, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.96
@@ -1212,6 +1308,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1285,6 +1385,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18
@@ -1347,6 +1451,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (37)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26
@@ -1400,6 +1508,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -1471,6 +1591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22
@@ -1528,6 +1652,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30
@@ -1584,6 +1712,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1652,6 +1784,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (46)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18
@@ -1708,6 +1844,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1771,6 +1911,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30
@@ -1824,6 +1968,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -1900,6 +2056,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34
@@ -1956,6 +2116,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2014,6 +2178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26
@@ -2071,6 +2239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (43)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30
@@ -2124,6 +2296,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -2189,6 +2373,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2262,6 +2450,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26
@@ -2319,6 +2511,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (53)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30
@@ -2375,6 +2571,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2436,7 +2636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1139694192
 Transform:
   m_ObjectHideFlags: 0
@@ -2468,6 +2668,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (38)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2525,6 +2729,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2587,6 +2795,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2655,6 +2867,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26
@@ -2712,6 +2928,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22
@@ -2768,6 +2988,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2827,6 +3051,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -2968,8 +3204,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278440672}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40098563, y: -0.58209574, z: 0.39753133, w: 0.58510166}
-  m_LocalPosition: {x: 38.042526, y: 16.80487, z: 42.566124}
+  m_LocalRotation: {x: 0.23271735, y: -0.6741556, z: 0.23795116, w: 0.6593452}
+  m_LocalPosition: {x: 45.720306, y: 12.902954, z: 40.616085}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3139,6 +3375,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -3204,6 +3452,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3272,6 +3524,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30
@@ -3328,6 +3584,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (45)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3511,6 +3771,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18
@@ -3598,6 +3862,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3736,6 +4004,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileZ (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2213129251585314265, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 5343927672273912786, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
       propertyPath: m_LocalPosition.x
       value: 33.92
@@ -3803,6 +4087,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22
@@ -3856,6 +4144,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -3922,6 +4222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30
@@ -3975,6 +4279,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -4056,6 +4372,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (49)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34
@@ -4112,6 +4432,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4185,6 +4509,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (52)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26
@@ -4257,6 +4585,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileZ (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2213129251585314265, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 5343927672273912786, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.9
@@ -4319,6 +4663,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (48)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30
@@ -4372,6 +4720,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -4437,6 +4797,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (50)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4505,6 +4869,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18
@@ -4561,6 +4929,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4639,7 +5011,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1139694192}
   - {fileID: 431166237}
@@ -4892,6 +5264,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileZ
       objectReference: {fileID: 0}
+    - target: {fileID: 2213129251585314265, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 5343927672273912786, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.85
@@ -4959,6 +5347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
       value: 34
@@ -5015,6 +5407,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (41)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5075,15 +5471,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7957743432865164098, guid: 48d07b543e5b4b648809ff5de0048d96, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 30.49
       objectReference: {fileID: 0}
     - target: {fileID: 7957743432865164098, guid: 48d07b543e5b4b648809ff5de0048d96, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 4.22
       objectReference: {fileID: 0}
     - target: {fileID: 7957743432865164098, guid: 48d07b543e5b4b648809ff5de0048d96, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 7957743432865164098, guid: 48d07b543e5b4b648809ff5de0048d96, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5130,14 +5526,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tile (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2213129251585314265, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4340186034774011570, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 5343927672273912786, guid: 606eb2fdea0a127469ae23393974a860, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.04
@@ -5243,6 +5651,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Charlotte
       objectReference: {fileID: 0}
+    - target: {fileID: 5099317933434983375, guid: 6d51581dfa8064447945efb2726cc747, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231089874503755095, guid: 6d51581dfa8064447945efb2726cc747, type: 3}
+      propertyPath: data.multipleStat.Atk
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231089874503755095, guid: 6d51581dfa8064447945efb2726cc747, type: 3}
+      propertyPath: data.gradeStatModifier.Atk
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6231089874503755095, guid: 6d51581dfa8064447945efb2726cc747, type: 3}
+      propertyPath: data.gradeStatModifier.StatChangeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490431867898608889, guid: 6d51581dfa8064447945efb2726cc747, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5256,6 +5684,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 431166237}
     m_Modifications:
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 290715270636518391, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f6c4a87a89f99442be423eaaf32dee5, type: 2}
     - target: {fileID: 3521321546517066730, guid: ea09b8921d143ec48a2789091495dfe1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.09
@@ -5316,6 +5756,10 @@ PrefabInstance:
     - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_Name
       value: Plate (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438856957931073833, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6464894098010119242, guid: 4017789a0d3384e4fa48e35ab1417d52, type: 3}
       propertyPath: m_LocalPosition.x

@@ -59,6 +59,10 @@ MonoBehaviour:
   Renderer: {fileID: 3953077179727827280}
   DetectCollider: {fileID: 658964368629908627}
   DetectRenderer: {fileID: 8223194443423881346}
+  isHit: 0
+  isHeal: 0
+  isDead: 0
+  isChanneling: 0
 --- !u!114 &6231089874503755095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1888,9 +1892,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9dca336021d6a164b9dc630ecc4263b4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2054011862662550693}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9dca336021d6a164b9dc630ecc4263b4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2010486712992253477}
     - targetCorrespondingSourceObject: {fileID: 3507920342887693529, guid: 9dca336021d6a164b9dc630ecc4263b4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6139686542892896714}
@@ -14231,25 +14232,6 @@ MonoBehaviour:
   editorViewMorphBits: 15
   editorViewRigidBodies: 0
   editorViewMorphNameType: 0
---- !u!320 &2010486712992253477
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6601317453785890161}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: fb831b3bdff6a544abaa6d200bd07ba0, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: -252738323286210243, guid: fb831b3bdff6a544abaa6d200bd07ba0, type: 2}
-    value: {fileID: 447944643413540273}
-  m_ExposedReferences:
-    m_References: []
 --- !u!1 &6659148775139480179 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 808381194660598355, guid: 9dca336021d6a164b9dc630ecc4263b4, type: 3}
