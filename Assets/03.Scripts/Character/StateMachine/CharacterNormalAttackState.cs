@@ -13,7 +13,7 @@ public class CharacterNormalAttackState : CharacterCombatState
     }
     public override void Update()
     {
-        stateMachine.Character.Controller.CallAttack();
+        //stateMachine.Character.Controller.CallAttack();
 
         base.Update();
     }

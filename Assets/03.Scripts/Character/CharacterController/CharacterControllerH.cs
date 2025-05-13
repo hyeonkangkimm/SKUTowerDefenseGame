@@ -121,6 +121,10 @@ public class CharacterControllerH : Controller
         
 
     }
+    public void AttackEvent()
+    {
+
+    }
     private void OnMouseEnter()
     {
         DetectRenderer.enabled = true;

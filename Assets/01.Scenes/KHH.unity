@@ -20626,9 +20626,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
-  spriteRenderer: {fileID: 0}
+  Renderer: {fileID: 0}
   DetectCollider: {fileID: 0}
   DetectRenderer: {fileID: 0}
+  isHit: 0
+  isHeal: 0
+  isDead: 0
+  isChanneling: 0
 --- !u!4 &1441298311
 Transform:
   m_ObjectHideFlags: 0
@@ -23997,9 +24001,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
-  spriteRenderer: {fileID: 0}
+  Renderer: {fileID: 0}
   DetectCollider: {fileID: 0}
   DetectRenderer: {fileID: 0}
+  isHit: 0
+  isHeal: 0
+  isDead: 0
+  isChanneling: 0
 --- !u!4 &1681206127
 Transform:
   m_ObjectHideFlags: 0
