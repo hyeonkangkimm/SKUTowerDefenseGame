@@ -5,17 +5,18 @@ using System.Collections;
 
 public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public GameObject cardModelPrefab;
+    public GameObject cardModelPrefab;   // 3D 모델 소환용 프리팹
     public float manaCost = 2f;
     public float cooldownDuration = 3f;
 
-    [SerializeField] private ManaUUI manaUI;
+    [SerializeField] private ManaUUI manaUI;          // 마나 관리 스크립트
+    [SerializeField] private RectTransform manaBG;    // 드래그 취소 허용 영역 (manaBG 이미지의 RectTransform)
 
     private RectTransform dragObject;
     private Canvas canvas;
     private Camera mainCamera;
 
-    private Vector3 originalPosition;
+    private Vector2 originalPosition;
     private bool isCooldown = false;
     private bool isDragging = false;
     private Image cardImage;
@@ -26,18 +27,9 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvas = GetComponentInParent<Canvas>();
         mainCamera = Camera.main;
 
-        originalPosition = dragObject.position;
+        originalPosition = dragObject.anchoredPosition;
         cardImage = GetComponent<Image>();
         cardImage.fillAmount = 1f;
-    }
-
-    void Update()
-    {
-        // 우클릭 취소는 여기서 감지!
-        if (isDragging && Input.GetMouseButtonDown(1))
-        {
-            CancelDrag();
-        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -49,14 +41,34 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void OnDrag(PointerEventData eventData)
     {
         if (isCooldown || !isDragging) return;
-        dragObject.position = Input.mousePosition;
+
+        Vector2 localPoint;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvas.transform as RectTransform,
+            eventData.position,
+            canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera,
+            out localPoint
+        );
+
+        dragObject.anchoredPosition = localPoint;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         if (isCooldown || !isDragging)
         {
-            dragObject.position = originalPosition;
+            ResetPosition();
+            return;
+        }
+
+        // 마우스가 manaBG 영역 안에 있으면 드래그 취소
+        if (RectTransformUtility.RectangleContainsScreenPoint(
+            manaBG,
+            Input.mousePosition,
+            canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera))
+        {
+            Debug.Log("manaBG 영역 내 → 드래그 취소");
+            CancelDrag();
             return;
         }
 
@@ -71,23 +83,27 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
             else
             {
-                Debug.Log("Not enough mana!");
+                Debug.Log("마나 부족!");
             }
         }
         else
         {
-            Debug.Log("드래그가 지면에 닿지 않음");
+            Debug.Log("필드에 놓지 않음");
         }
 
-        dragObject.position = originalPosition;
+        ResetPosition();
         isDragging = false;
     }
 
     private void CancelDrag()
     {
-        Debug.Log("우클릭으로 드래그 취소");
-        dragObject.position = originalPosition;
+        ResetPosition();
         isDragging = false;
+    }
+
+    private void ResetPosition()
+    {
+        dragObject.anchoredPosition = originalPosition;
     }
 
     private Vector3 GetMouseWorldPosition()

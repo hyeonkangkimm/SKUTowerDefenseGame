@@ -1590,6 +1590,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 978512241}
     - target: {fileID: 5411386171561469205, guid: 4517985f5a3758c428ac7a1f5cb60f06, type: 3}
+      propertyPath: manaBarBG
+      value: 
+      objectReference: {fileID: 2140835521}
+    - target: {fileID: 5411386171561469205, guid: 4517985f5a3758c428ac7a1f5cb60f06, type: 3}
       propertyPath: cardModelPrefab
       value: 
       objectReference: {fileID: 9157911292676662898, guid: 45fd0f16c4c19ce46b9fb59c797e09af, type: 3}
