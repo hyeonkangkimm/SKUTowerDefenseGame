@@ -15,7 +15,7 @@ public class Tile : MonoBehaviour
     private Renderer rend;
     private Color originalColor;
     public GameObject currentPlacedObject;
-
+    private CharacterControllerH SummonPrefabControl;
     void Start()
     {
         rend = GetComponent<Renderer>();
@@ -25,6 +25,7 @@ public class Tile : MonoBehaviour
     void OnMouseEnter()
     {
         rend.material.color = Color.yellow;
+        GameManager.Instance.CurrentTIle = this;
     }
 
     void OnMouseExit()
@@ -32,14 +33,16 @@ public class Tile : MonoBehaviour
         rend.material.color = originalColor;
     }
 
-    void OnMouseDown()
+    public void PlaceCharacter(string rcode)
     {
         //벽설치, 포탑설치, 캐릭터 설치 대응해야함
         if (currentPlacedObject == null)
         {
-            GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool("npc0001");
+            GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
             if (prefabToPlace != null)
             {
+                SummonPrefabControl = prefabToPlace.GetComponent<CharacterControllerH>();
+                OnSummonCharacter(SummonPrefabControl);
                 prefabToPlace.transform.position = this.transform.position;
 
                 var placeable = prefabToPlace.GetComponent<IPlaceable>();
@@ -47,9 +50,19 @@ public class Tile : MonoBehaviour
                     placeable.OnPlaced(this.transform.position);
 
                 currentPlacedObject = prefabToPlace;
+
             }
             if (prefabToPlace == null)
                 Debug.Log("로딩안됨");
         }
+    }
+    void OnSummonCharacter(CharacterControllerH controller)
+    {
+        controller.OnDeath += OnSummonCharacterDie;
+    }
+    void OnSummonCharacterDie()
+    {
+        currentPlacedObject = null;
+        SummonPrefabControl.OnDeath -= OnSummonCharacterDie;
     }
 }

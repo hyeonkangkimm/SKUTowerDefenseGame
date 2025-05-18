@@ -5,6 +5,9 @@ using System.Collections;
 
 public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    [Header("rcode만추가하면됨")]
+    public string CardModelRcode;
+    private Image cardImage;
     public GameObject cardModelPrefab;   // 3D 모델 소환용 프리팹
     public float manaCost = 2f;
     public float cooldownDuration = 3f;
@@ -19,7 +22,6 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Vector2 originalPosition;
     private bool isCooldown = false;
     private bool isDragging = false;
-    private Image cardImage;
 
     void Start()
     {
@@ -78,7 +80,8 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             if (manaUI != null && manaUI.UseMana(manaCost))
             {
-                Instantiate(cardModelPrefab, worldPosition, Quaternion.identity);
+                GameManager.Instance.CurrentTIle.PlaceCharacter(CardModelRcode);
+                //Instantiate(cardModelPrefab, worldPosition, Quaternion.identity);
                 StartCoroutine(StartCooldown());
             }
             else
