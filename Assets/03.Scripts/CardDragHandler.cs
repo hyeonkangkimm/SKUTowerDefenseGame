@@ -1,24 +1,24 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections;
 
 public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public GameObject cardModelPrefab; // ¼ÒÈ¯ÇÒ 3D ¸ğµ¨
+    public GameObject cardModelPrefab;
     public float manaCost = 2f;
-    public float cooldownDuration = 3f; // ÄğÅ¸ÀÓ ½Ã°£
+    public float cooldownDuration = 3f;
 
-    [SerializeField]
-    private ManaUUI manaUI;
+    [SerializeField] private ManaUUI manaUI;
 
     private RectTransform dragObject;
     private Canvas canvas;
     private Camera mainCamera;
 
-    private Vector3 originalPosition;  // Ä«µåÀÇ ¿ø·¡ À§Ä¡
+    private Vector3 originalPosition;
     private bool isCooldown = false;
-    private Image cardImage; // Ä«µå ÀÌ¹ÌÁö ÄÄÆ÷³ÍÆ® (fillAmount ÄğÅ¸ÀÓ Ç¥½Ã¿ë)
+    private bool isDragging = false;
+    private Image cardImage;
 
     void Start()
     {
@@ -28,24 +28,33 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         originalPosition = dragObject.position;
         cardImage = GetComponent<Image>();
-        cardImage.fillAmount = 1f;  // ÄğÅ¸ÀÓ ½ÃÀÛ Àü¿£ ²Ë Âù »óÅÂ
+        cardImage.fillAmount = 1f;
+    }
+
+    void Update()
+    {
+        // ìš°í´ë¦­ ì·¨ì†ŒëŠ” ì—¬ê¸°ì„œ ê°ì§€!
+        if (isDragging && Input.GetMouseButtonDown(1))
+        {
+            CancelDrag();
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (isCooldown) return; // ÄğÅ¸ÀÓ ÁßÀÌ¸é µå·¡±× ¸ø ÇÏ°Ô ¸·±â
-        dragObject.position = Input.mousePosition;
+        if (isCooldown) return;
+        isDragging = true;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (isCooldown) return;
+        if (isCooldown || !isDragging) return;
         dragObject.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (isCooldown)
+        if (isCooldown || !isDragging)
         {
             dragObject.position = originalPosition;
             return;
@@ -67,11 +76,18 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
         else
         {
-            Debug.Log("µå·¡±×°¡ Áö¸é¿¡ ´êÁö ¾ÊÀ½");
+            Debug.Log("ë“œë˜ê·¸ê°€ ì§€ë©´ì— ë‹¿ì§€ ì•ŠìŒ");
         }
 
-        // Ä«µå UI À§Ä¡ ¹«Á¶°Ç ¿ø·¡ ÀÚ¸®·Î µÇµ¹¸²
         dragObject.position = originalPosition;
+        isDragging = false;
+    }
+
+    private void CancelDrag()
+    {
+        Debug.Log("ìš°í´ë¦­ìœ¼ë¡œ ë“œë˜ê·¸ ì·¨ì†Œ");
+        dragObject.position = originalPosition;
+        isDragging = false;
     }
 
     private Vector3 GetMouseWorldPosition()
@@ -90,18 +106,17 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private IEnumerator StartCooldown()
     {
         isCooldown = true;
-
         float elapsed = 0f;
-        cardImage.fillAmount = 0f;  // ÄğÅ¸ÀÓ ½ÃÀÛ ½Ã ºó »óÅÂ·Î ÃÊ±âÈ­
+        cardImage.fillAmount = 0f;
 
         while (elapsed < cooldownDuration)
         {
             elapsed += Time.deltaTime;
-            cardImage.fillAmount = elapsed / cooldownDuration;  // Á¡Á¡ Ã¤¿ì±â
+            cardImage.fillAmount = elapsed / cooldownDuration;
             yield return null;
         }
 
-        cardImage.fillAmount = 1f;  // ÄğÅ¸ÀÓ ¿Ï·á ÈÄ ²Ë Ã¤¿ì±â
+        cardImage.fillAmount = 1f;
         isCooldown = false;
     }
 }
