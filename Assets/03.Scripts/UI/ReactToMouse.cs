@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ReactToMouse : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class ReactToMouse : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Vector3 originalScale;
     public float hoverScale = 1.2f;
-    [SerializeField] private GameObject buildingUI;
+    [SerializeField] private GameObject target;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +28,8 @@ public class ReactToMouse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         transform.localScale = originalScale;
     }
-    public void OnPointerClick(PointerEventData eventData)
+    public void SetUIOn()
     {
-        if (buildingUI != null)
-        {
-            buildingUI.SetActive(true); // 클릭하면 켜기
-        }
+        target.SetActive(true);
     }
 }
