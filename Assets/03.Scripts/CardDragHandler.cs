@@ -126,16 +126,34 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         isCooldown = true;
         float elapsed = 0f;
-        cardImage.fillAmount = 0f;
+
+        // 자신 포함 하위 모든 Image 컴포넌트 가져오기
+        Image[] allImages = GetComponentsInChildren<Image>();
+
+        foreach (var img in allImages)
+        {
+            img.fillAmount = 0f;
+        }
 
         while (elapsed < cooldownDuration)
         {
             elapsed += Time.deltaTime;
-            cardImage.fillAmount = elapsed / cooldownDuration;
+            float fillValue = elapsed / cooldownDuration;
+
+            // 모든 이미지 fillAmount 동기화
+            foreach (var img in allImages)
+            {
+                img.fillAmount = fillValue;
+            }
+
             yield return null;
         }
 
-        cardImage.fillAmount = 1f;
+        foreach (var img in allImages)
+        {
+            img.fillAmount = 1f;
+        }
+
         isCooldown = false;
     }
 }
