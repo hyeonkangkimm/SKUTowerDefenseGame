@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-public class GameManager : Singleton<GameManager>
+public class GameFlowManagerUII : Singleton<GameFlowManagerUII>
 {
     public static bool isInit;
     public bool isReady;

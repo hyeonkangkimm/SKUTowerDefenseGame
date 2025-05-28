@@ -25,7 +25,7 @@ public class Tile : MonoBehaviour
     void OnMouseEnter()
     {
         rend.material.color = Color.yellow;
-        GameManager.Instance.CurrentTIle = this;
+        GameFlowManagerUII.Instance.CurrentTIle = this;
     }
 
     void OnMouseExit()

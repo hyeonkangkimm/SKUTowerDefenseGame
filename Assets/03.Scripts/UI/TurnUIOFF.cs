@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TurnUIOFF : MonoBehaviour
 {
+    [SerializeField] private GameObject target;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,11 +15,14 @@ public class TurnUIOFF : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseUI();
+        }
     }
     public void CloseUI()
     {
-        gameObject.SetActive(false); // ¹è°æ + Ã¢ ¸ðµÎ ²¨Áü
+        target.SetActive(false);
     }
 
 }

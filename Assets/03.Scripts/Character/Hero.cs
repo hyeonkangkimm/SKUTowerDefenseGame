@@ -83,7 +83,7 @@ public class Hero : Character
     public override void FindTarget()
     {
         targetList.Clear();
-        foreach (Character monster in GameManager.Instance.Monsters)
+        foreach (Character monster in GameFlowManagerUII.Instance.Monsters)
         {
             if (monster != null && monster.isActiveAndEnabled)
             {
