@@ -25,7 +25,7 @@ public class Monster : Character
     public override void FindTarget()
     {
         targetList.Clear();
-        foreach (Character hero in GameManager.Instance.EntryList)
+        foreach (Character hero in GameFlowManagerUII.Instance.EntryList)
         {
             if(hero != null&&!hero.Controller.isDead)
             {
@@ -51,8 +51,8 @@ public class Monster : Character
     {
         if (collision.gameObject.CompareTag("GameController"))
         {
-            if (GameManager.Instance.CombatConditionType == ECombatConditionType.READY)
-                GameManager.Instance.CombatConditionType = ECombatConditionType.START;
+            if (GameFlowManagerUII.Instance.CombatConditionType == ECombatConditionType.READY)
+                GameFlowManagerUII.Instance.CombatConditionType = ECombatConditionType.START;
         }
     }
 }

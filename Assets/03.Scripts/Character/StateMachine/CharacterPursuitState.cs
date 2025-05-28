@@ -29,7 +29,7 @@ public class CharacterPursuitState : CharacterBaseState
     public override void Update()
     {
         base.Update();
-        switch (GameManager.Instance.CombatConditionType)
+        switch (GameFlowManagerUII.Instance.CombatConditionType)
         {
             case ECombatConditionType.START:
                 if (stateMachine.Character.Target != null)
