@@ -49,4 +49,27 @@ public class ResourceManager : MonoBehaviour
         }
         return amount;
     }
+
+    public bool HaveEnoughMoney(int price)
+    {
+        if (price <= money)
+        {
+            money -= price;
+            return true;
+        }
+        else return false;
+    }
+    public bool HaveEnoughResource(int woodAmount,int stoneAmount,int ironAmount)
+    {
+        if (woodAmount <= wood && stoneAmount <= stone && ironAmount <= iron) {
+            wood -= woodAmount;
+            stone -= stoneAmount;
+            iron -= ironAmount;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
