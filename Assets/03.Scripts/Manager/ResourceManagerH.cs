@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using UnityEditor.AddressableAssets.Build.Layout;
 using UnityEngine;
@@ -64,7 +65,7 @@ public class ResourceManagerH : Singleton<ResourceManagerH>
                 //Debug.Log("다운로드 성공!");
                 break;
             case AsyncOperationStatus.Failed:
-                //Debug.Log("다운로드 실패 : " + handle.OperationException.Message);
+                Debug.Log("다운로드 실패 : " + handle.OperationException.Message);
                 Debug.LogError(handle.OperationException.ToString());
                 break;
             default:
@@ -96,7 +97,9 @@ public class ResourceManagerH : Singleton<ResourceManagerH>
 
     public string GetPath(string key, EAddressableType addressableType)
     {
+
         var map = addressableMap[addressableType][key.ToLower()];
+
         return map.path;
     }
 
@@ -104,7 +107,7 @@ public class ResourceManagerH : Singleton<ResourceManagerH>
     {
         try
         {
-            var path = GetPath(key, addressableType);
+            var path = GetPath(key, addressableType);  
             return await LoadAssetAsync<T>(path);
         }
         catch (Exception e)

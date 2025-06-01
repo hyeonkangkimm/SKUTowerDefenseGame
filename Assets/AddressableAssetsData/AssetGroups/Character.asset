@@ -29,6 +29,33 @@ MonoBehaviour:
     m_SerializedLabels:
     - AddressableMap
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 227d6d3add328f04f8a845040b481522
+    m_Address: Assets/MusicSource/BGM00002.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InitDownload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 605cc4c509919ce46b4d30d75ba10845
+    m_Address: Assets/MusicSource/SFX0001.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0a41158345d02264c8d7fc7aab4c1a3c
+    m_Address: Assets/MusicSource/BGM0001.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - InitDownload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 123f9fcfb4a5e1f429f28b7eb03dc423
+    m_Address: Assets/MusicSource/BGM0004.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4117d187d37d86f4fb79f9c1eef4d6c1
+    m_Address: Assets/MusicSource/BGM0003.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: db91e1fc2b1f65a499ed8e2127a143d1, type: 2}
   m_SchemaSet:

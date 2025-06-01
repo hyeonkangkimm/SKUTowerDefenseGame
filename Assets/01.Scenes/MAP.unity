@@ -3859,6 +3859,7 @@ GameObject:
   - component: {fileID: 1450717860}
   - component: {fileID: 1450717864}
   - component: {fileID: 1450717865}
+  - component: {fileID: 1450717866}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -3940,7 +3941,29 @@ MonoBehaviour:
   pools:
   - rcode: npc0001
     size: 5
-    prefab: {fileID: 9157911292676662898, guid: 45fd0f16c4c19ce46b9fb59c797e09af, type: 3}
+    prefab: {fileID: 0}
+--- !u!114 &1450717866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450717859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bfbf05f428da2b4589de5e70edf30dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 550c4764e13d4b143adf0b790695c932, type: 2}
+  bgmAudioMixer: {fileID: -1330338322725844708, guid: 550c4764e13d4b143adf0b790695c932, type: 2}
+  sfxAudioMixer: {fileID: 2339954579892581081, guid: 550c4764e13d4b143adf0b790695c932, type: 2}
+  bgmClip: {fileID: 0}
+  bgmSource: {fileID: 0}
+  bgmVolume: 0
+  sfxClips: {fileID: 0}
+  sfxSource: []
+  sfxVolume: 0
+  channels: 3
 --- !u!21 &1460751738
 Material:
   serializedVersion: 8

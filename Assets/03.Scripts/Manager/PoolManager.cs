@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine.Pool;
+using UnityEditor.VersionControl;
 [Serializable]
 public class Pool
 {
@@ -26,7 +27,7 @@ public class PoolManager : Singleton<PoolManager>
         StartCoroutine(InitCoroutine());
     }
 
-    public static IEnumerator TaskAsIEnumerator(Task task)
+    public static IEnumerator TaskAsIEnumerator(System.Threading.Tasks.Task task)
     {
         while (!task.IsCompleted)
         {
@@ -39,16 +40,16 @@ public class PoolManager : Singleton<PoolManager>
         }
     }
 
-    private async Task InitAsync()
+    private async System.Threading.Tasks.Task InitAsync()
     {
         poolDictionary = new Dictionary<string, List<GameObject>>();
         // pools에 있는 모든 오브젝트를 탐색하고 정해놓은 size만큼 프리팹을 미리 만들어 놓음
         foreach (Pool pool in pools)
         {
-            Debug.Log(pool.rcode);
+            //Debug.Log(pool.rcode);
             List<GameObject> list = new List<GameObject>();
             poolDictionary.Add(pool.rcode, list);
-            pool.prefab = await ResourceManagerH.Instance.GetResource<GameObject>(pool.rcode, EAddressableType.PREFAB);
+            pool.prefab = LoadManager.Instance.GetHeroPrefab(pool.rcode);
             AddPoolObject(pool);
             //var path = ResourceManager.Instance.GetPath(pool.rcode, EAddressableType.PREFAB);
             //pool.prefab = await Addressables.InstantiateAsync(path, parent: pool.parentTransform).Task;
@@ -63,8 +64,10 @@ public class PoolManager : Singleton<PoolManager>
         // TODO : 배포 시 삭제
         if (!ResourceManagerH.Instance.isInit)
         {
+            //Debug.Log(Time.time+"init_before");
             ResourceManagerH.Instance.Init();
             yield return new WaitUntil(() => ResourceManagerH.Instance.isInit);
+            //Debug.Log(Time.time+"init_after");
         }
         #endregion
         yield return TaskAsIEnumerator(InitAsync());

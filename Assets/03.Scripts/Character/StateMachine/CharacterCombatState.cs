@@ -20,17 +20,17 @@ public class CharacterCombatState : CharacterBaseState
     }
     public override void Update()
     {
-        if (stateMachine.Character.Controller.isChanneling == false)
-        {
-            if (stateMachine.Character.Target == null) stateMachine.ChangeState(stateMachine.Pursuit);
-            else
-            {
-                if ((characterTransform.position - stateMachine.Character.Target.position).magnitude > stateMachine.Character.StatHandler.curStat.AttackRange)
-                {
-                    stateMachine.ChangeState(stateMachine.Pursuit);
-                }
-            }
-        }
+        //if (stateMachine.Character.Controller.isChanneling == false)
+        //{
+        //    if (stateMachine.Character.Target == null) stateMachine.ChangeState(stateMachine.Pursuit);
+        //    else
+        //    {
+        //        if ((characterTransform.position - stateMachine.Character.Target.position).magnitude > stateMachine.Character.StatHandler.curStat.AttackRange)
+        //        {
+        //            stateMachine.ChangeState(stateMachine.Pursuit);
+        //        }
+        //    }
+        //}
         
         
         base.Update();

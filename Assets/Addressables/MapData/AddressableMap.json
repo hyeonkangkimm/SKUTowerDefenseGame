@@ -4,6 +4,12 @@
             "addressableType": 0,
             "key": "npc0001",
             "path": "Assets/02.Prefabs/Character/CharlottePB.prefab"
+        },
+        {
+            "addressableType": 2,
+            "key": "bgm0001",
+            "path": "Assets/MusicSource/BGM0001.wav"
         }
+       
     ]
 }

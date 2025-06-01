@@ -80,7 +80,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             if (manaUI != null && manaUI.UseMana(manaCost))
             {
-                GameFlowManagerUII.Instance.CurrentTIle.PlaceCharacter(CardModelRcode);
+                GameManager.Instance.CurrentTIle.OnPlaceCharacter(CardModelRcode);
                 //Instantiate(cardModelPrefab, worldPosition, Quaternion.identity);
                 StartCoroutine(StartCooldown());
             }

@@ -15,6 +15,8 @@ public class CharacterCloseAttack : MonoBehaviour
     public Animator MyAnimator;
     public float timeSinceLastAttack;
     public float AttackReadyTime;
+    public float AttackAnimationLength;
+    public AnimationClip clip;
     float attackRange => characterController.character.StatHandler.curStat.AttackRange;
     float CurAtk => characterController.character.StatHandler.curStat.Atk;
     protected float CurAs => characterController.character.StatHandler.curStat.AttackSpeed;
@@ -24,14 +26,14 @@ public class CharacterCloseAttack : MonoBehaviour
     {
         characterController  = GetComponentInParent<CharacterControllerH>();
         timeSinceLastAttack = 0f;
-        AttackReady = new WaitForSeconds(AttackReadyTime == 0f ? 0.85f : AttackReadyTime);
-        MyAnimator=GetComponent<Animator>();
+        AttackReady = new WaitForSeconds(AttackReadyTime == 0f ? 1.35f : AttackReadyTime);
 
 
     }
     public virtual void Start()
     {
         stateMachine = characterController.character.StateMachine;
+        AttackAnimationLength = clip.length;
     }
     public void FixedUpdate()
     {
@@ -40,27 +42,27 @@ public class CharacterCloseAttack : MonoBehaviour
     }
     public void OnDisable()
     {
-        characterController.OnAttack -= OnAttack;
+        characterController.OnAttack -= onAttack;
         //characterController.OnAttackSpeedChange -= ChangeAttackMotionSpeed;
 
     }
     public void OnEnable()
     {
-        characterController.OnAttack += OnAttack;
+        characterController.OnAttack += onAttack;
         //characterController.OnAttackSpeedChange += ChangeAttackMotionSpeed;
     }
 
     public void Update()
     {
-        if(timeSinceLastAttack > 1 / (CurAs + CurAsMul))
+        if(timeSinceLastAttack > AttackAnimationLength / (CurAs + CurAsMul))
         {
             characterController.isAttacking = false;
         }
         timeSinceLastAttack += Time.deltaTime;
     }
-    private void OnAttack()
+    private void onAttack()
     {
-        ChangeAttackMotionSpeed();
+        ChangeAttackMotionSpeed(); //AS에 따라 애니메이션 속도 변경
         if (characterController.character.Animator.GetBool(characterController.character.DataAnim.NormalAttackParameterHash))
         {
             timeSinceLastAttack = 0f;
@@ -73,20 +75,29 @@ public class CharacterCloseAttack : MonoBehaviour
     }
     private IEnumerator CloseAttack()
     {
-        if (characterController.character.Target != null)
-            MoveMeleePos(characterController.character.Target.position, attackRange);
+        //if (characterController.character.Target != null)
+            //MoveMeleePos(characterController.character.Target.position, attackRange);
         yield return AttackReady;
         if (!characterController.isDead)
         {
-            Collider2D[] coliders2Ds = Physics2D.OverlapBoxAll(meleePos.position, boxSize,0, characterController.character.LayerMask);
-            foreach (Collider2D colider in coliders2Ds)
+            if(characterController.DetectCollider is BoxCollider box)
             {
-                if (colider.GetComponent<Character>().EntityType == characterController.character.TargetType)
-                {
-                    IDamageable damagable = colider.GetComponent<IDamageable>();
-                    var (damage, isCritical) = characterController.CalculateDamage(characterController.character.StatHandler.curStat.GetCurAtk());
-                    damagable?.TakeDamage(damage, isCritical);
-                }
+                Vector3 worldCenter = box.transform.TransformPoint(box.center);
+                Vector3 worldSize = Vector3.Scale(box.size, box.transform.lossyScale) * 0.5f;
+                Quaternion rotation = box.transform.rotation;
+                Collider[] hits = Physics.OverlapBox(worldCenter, worldSize, rotation);
+            
+                 foreach (Collider colider in hits)
+                 {
+                     if (true)
+                     {
+                         IDamageable damagable = colider.GetComponent<IDamageable>();
+                        damagable?.TakeDamage(characterController.character.StatHandler.curStat.GetCurAtk());
+                        Debug.Log("근접공격");
+                        //var (damage, isCritical) = characterController.CalculateDamage(characterController.character.StatHandler.curStat.GetCurAtk());
+                         //damagable?.TakeDamage(damage, isCritical);
+                     }
+                 }
             }
         }
     }
@@ -102,11 +113,7 @@ public class CharacterCloseAttack : MonoBehaviour
         meleePos.localPosition = newMeleePos;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(meleePos.position, boxSize);
-    }
+
     private void SetAttackMotionSpeed(float attackSpeed=1f)
     {
         //MyAnimator.SetFloat(Animator.StringToHash("CurAttackMotionSpeed"), attackSpeed);
