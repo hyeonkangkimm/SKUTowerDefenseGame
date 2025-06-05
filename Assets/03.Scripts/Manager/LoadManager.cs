@@ -9,4 +9,9 @@ public class LoadManager : Singleton<LoadManager>
         path = "Hero/" + path;
         return (GameObject)Resources.Load(path);
     }
+    public GameObject GetMobPrefab(string path)
+    {
+        path = "Mob/" + path;
+        return (GameObject)Resources.Load(path);
+    }
 }

@@ -17,12 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: f3f0b82c5d1be2e458c9e77362938b4b
   m_SerializeEntries:
-  - m_GUID: 45fd0f16c4c19ce46b9fb59c797e09af
-    m_Address: Assets/02.Prefabs/Character/CharlottePB.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - InitDownload
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 286487f9d71b837489f1be407c865b02
     m_Address: Assets/Addressables/MapData/AddressableMap.json
     m_ReadOnly: 0

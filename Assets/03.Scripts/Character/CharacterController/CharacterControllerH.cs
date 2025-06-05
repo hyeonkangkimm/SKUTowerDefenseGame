@@ -92,13 +92,11 @@ public class CharacterControllerH : Controller
     }
     public void CallAttack()
     {
-        Debug.Log("CallAttack발동");
 
         if (!isAttacking & !isDead)
         {
             //ChooseAttackType();
             OnAttack?.Invoke();
-            Debug.Log("OnAttack발동");
 
         }
     }

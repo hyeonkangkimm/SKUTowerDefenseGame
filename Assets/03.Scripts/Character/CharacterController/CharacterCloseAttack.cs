@@ -26,7 +26,8 @@ public class CharacterCloseAttack : MonoBehaviour
     {
         characterController  = GetComponentInParent<CharacterControllerH>();
         timeSinceLastAttack = 0f;
-        AttackReady = new WaitForSeconds(AttackReadyTime == 0f ? 1.35f : AttackReadyTime);
+        AttackReadyTime = AttackReadyTime == 0f ? 1f : AttackReadyTime;
+        AttackReady = new WaitForSeconds(AttackReadyTime);
 
 
     }
@@ -124,7 +125,7 @@ public class CharacterCloseAttack : MonoBehaviour
     {
         //Debug.Log(CurAs + "/" + CurAsMul);
         SetAttackMotionSpeed(CurAs+ CurAsMul);//애니메이션 빠르게
-        AttackReady = new WaitForSeconds(AttackReadyTime * (1 / (CurAs + CurAsMul)))
+        AttackReady = new WaitForSeconds(AttackReadyTime / (CurAs + CurAsMul))
         ; //공격 적용시점도 빠르게
     }
 }

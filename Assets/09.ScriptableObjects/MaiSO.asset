@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d9add7d1dec7d146a72fcfde17d1b76, type: 3}
-  m_Name: New Hero
+  m_Name: MaiSO
   m_EditorClassIdentifier: 
-  hid: 0
-  icon: {fileID: 0}
-  heroName: 
-  heroDescription: 
-  RCode: npc0001
+  hid: 6
+  icon: {fileID: 21300000, guid: 3cf2e0ad2b696994893ebdff454c0a83, type: 3}
+  heroName: "\uB9C8\uC774"
+  heroDescription: "\uB9C8\uC774\uB294 \uACF5\uC218 \uC804\uD658\uC774 \uB6F0\uC5B4\uB09C
+    \uD328\uC158 \uB514\uC790\uC774\uB108\uC785\uB2C8\uB2E4. \uC544\uAD70\uC740 \uC548\uC804\uD558\uAC8C
+    \uBCF4\uD638\uD558\uBA74\uC11C \uB3D9\uC2DC\uC5D0 \uC608\uCE21\uD558\uAE30 \uC5B4\uB824\uC6B4
+    \uC6C0\uC9C1\uC784\uC73C\uB85C \uC801\uC744 \uBC29\uD574\uD569\uB2C8\uB2E4."
+  RCode: npc0006
   multipleStat:
     StatChangeType: 0
     Atk: 0
