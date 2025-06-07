@@ -8,17 +8,10 @@ public class CardImageCollector : MonoBehaviour
 
     void Start()
     {
-        // Card1의 CharacterImage 가져오기
-        Transform card1 = transform.Find("Card1/CharacterImage");
-        if (card1 != null)
-        {
-            Image img = card1.GetComponent<Image>();
-            if (img != null)
-                cardImages.Add(img);
-        }
+        
 
-        // Card2 ~ Card5의 Image 가져오기
-        for (int i = 2; i <= 5; i++)
+        // Card ~ Card5의 Image 가져오기
+        for (int i = 1; i <= 5; i++)
         {
             string path = $"Card{i}/Image";
             Transform card = transform.Find(path);
