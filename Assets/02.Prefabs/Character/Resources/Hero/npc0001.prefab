@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 7012797357692667442}
   - component: {fileID: 3811488261460584000}
   - component: {fileID: 125364105499349312}
+  - component: {fileID: -2053523193528737365}
   m_Layer: 0
   m_Name: npc0001
   m_TagString: Player
@@ -229,6 +230,10 @@ MonoBehaviour:
   Renderer: {fileID: 7844236778453549912}
   DetectCollider: {fileID: 3868353697699344880}
   DetectRenderer: {fileID: 8620958838032430305}
+  isHit: 0
+  isHeal: 0
+  isDead: 0
+  isChanneling: 0
 --- !u!114 &5286935546709928268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,6 +345,7 @@ MonoBehaviour:
       SkillMultiplier: 0
       DamageMultiplier: 0
       HealMultiplier: 0
+  so: {fileID: 11400000, guid: fd3a2348d1a0e5040944b70dc5ba95c1, type: 2}
   rarityType: 0
   GradeLevel: 0
   StarsLevel: 0
@@ -361,12 +367,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStat:
     StatChangeType: 0
-    Atk: 0
+    Atk: 1
     Health: 10
     Defense: 0
-    AttackSpeed: 0
+    AttackSpeed: 1
     MoveSpeed: 0
-    AttackRange: 0
+    AttackRange: 2
     AtkMultiplier: 0
     HealthMultiplier: 0
     DefenseMultiplier: 0
@@ -481,6 +487,27 @@ MonoBehaviour:
   damageTextPos: {fileID: 1831374160495599282}
   CurrentYOffset: 0
   Enemy: 0
+--- !u!114 &-2053523193528737365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9157911292676662898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3bd6e2ecd9c2554da10ceeb7c4fc446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleePos: {fileID: 0}
+  boxSize: {x: 0, y: 0}
+  characterController: {fileID: 9199370595885475616}
+  MyAnimator: {fileID: 6644813093804568505}
+  timeSinceLastAttack: 0
+  AttackReadyTime: 0
+  AttackAnimationLength: 0
+  clip: {fileID: -203655887218126122, guid: b583df027f7993f41994a689f82e08b9, type: 3}
+  CriticalChance: 0
 --- !u!1001 &963079708521878056
 PrefabInstance:
   m_ObjectHideFlags: 0

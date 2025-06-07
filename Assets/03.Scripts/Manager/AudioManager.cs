@@ -30,7 +30,7 @@ public class AudioManager : Singleton<AudioManager>
 
     private void Start()
     {
-        //PlayBGM("BGM00001");
+        PlayBGM("BGM00001");
         //PlayBGM("STAGEDEFAULT");
     }
 
@@ -89,7 +89,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void SetAudioMixerVolume(EAudioMixerType type, float volume)
     {
-        // 오디오 믹서의 값은 -80 ~ 0까지이기 때문에 0.0001 ~ 1의 Log10 * 20을 한다.
+        // 오디오 믹서의 값은 -80 ~ 20까지이기 때문에 0.0001 ~ 10의 Log10 * 20을 한다.
         audioMixer.SetFloat(type.ToString(), Mathf.Log10(volume) * 20);
     }
 

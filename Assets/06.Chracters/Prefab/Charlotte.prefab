@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5189249915784126196}
   - component: {fileID: 5746832676868383947}
   - component: {fileID: 8635153168417662078}
+  - component: {fileID: 7945917908920365758}
   m_Layer: 0
   m_Name: Charlotte
   m_TagString: Player
@@ -104,7 +105,7 @@ MonoBehaviour:
     RCode: 
     multipleStat:
       StatChangeType: 0
-      Atk: 0
+      Atk: 0.05
       Health: 0
       Defense: 0
       AttackSpeed: 0
@@ -139,8 +140,8 @@ MonoBehaviour:
       DamageMultiplier: 0
       HealMultiplier: 0
     gradeStatModifier:
-      StatChangeType: 0
-      Atk: 0
+      StatChangeType: 1
+      Atk: 2.5
       Health: 0
       Defense: 0
       AttackSpeed: 0
@@ -174,6 +175,7 @@ MonoBehaviour:
       SkillMultiplier: 0
       DamageMultiplier: 0
       HealMultiplier: 0
+  so: {fileID: 11400000, guid: fd3a2348d1a0e5040944b70dc5ba95c1, type: 2}
   rarityType: 0
   GradeLevel: 0
   StarsLevel: 0
@@ -195,10 +197,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStat:
     StatChangeType: 0
-    Atk: 0
+    Atk: 1
     Health: 10
     Defense: 0
-    AttackSpeed: 0
+    AttackSpeed: 1
     MoveSpeed: 0
     AttackRange: 0
     AtkMultiplier: 0
@@ -315,6 +317,27 @@ MonoBehaviour:
   damageTextPos: {fileID: 168863220770856544}
   CurrentYOffset: 0
   Enemy: 0
+--- !u!114 &7945917908920365758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5099317933434983375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3bd6e2ecd9c2554da10ceeb7c4fc446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleePos: {fileID: 0}
+  boxSize: {x: 0, y: 0}
+  characterController: {fileID: 8077222523370999664}
+  MyAnimator: {fileID: 447944643413540273}
+  timeSinceLastAttack: 0
+  AttackReadyTime: 1
+  AttackAnimationLength: 0
+  clip: {fileID: -203655887218126122, guid: b583df027f7993f41994a689f82e08b9, type: 3}
+  CriticalChance: 0
 --- !u!1 &5686382890235764064
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +367,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 2}
-  m_LocalScale: {x: 2, y: 2, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7728402585325798518}
@@ -420,7 +443,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7367460124147643951
 GameObject:
@@ -17058,7 +17081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 129505896533718907, guid: bf3cc0207c882b54d982dd8edf0ab51a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 129505896533718907, guid: bf3cc0207c882b54d982dd8edf0ab51a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -17066,7 +17089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 129505896533718907, guid: bf3cc0207c882b54d982dd8edf0ab51a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 129505896533718907, guid: bf3cc0207c882b54d982dd8edf0ab51a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -17086,7 +17109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 129505896533718907, guid: bf3cc0207c882b54d982dd8edf0ab51a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 129505896533718907, guid: bf3cc0207c882b54d982dd8edf0ab51a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

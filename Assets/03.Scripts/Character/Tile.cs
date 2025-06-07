@@ -14,7 +14,7 @@ public class Tile : MonoBehaviour
 {
     private Renderer rend;
     private Color originalColor;
-    public GameObject currentPlacedObject;
+    public GameObject CurrentPlacedObject;
     private CharacterControllerH SummonPrefabControl;
     void Start()
     {
@@ -25,7 +25,7 @@ public class Tile : MonoBehaviour
     void OnMouseEnter()
     {
         rend.material.color = Color.yellow;
-        GameFlowManagerUII.Instance.CurrentTIle = this;
+        GameManager.Instance.CurrentTIle = this;
     }
 
     void OnMouseExit()
@@ -33,10 +33,10 @@ public class Tile : MonoBehaviour
         rend.material.color = originalColor;
     }
 
-    public void PlaceCharacter(string rcode)
+    public void OnPlaceCharacter(string rcode)
     {
         //벽설치, 포탑설치, 캐릭터 설치 대응해야함
-        if (currentPlacedObject == null)
+        if (CurrentPlacedObject == null)
         {
             GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
             if (prefabToPlace != null)
@@ -49,11 +49,15 @@ public class Tile : MonoBehaviour
                 if (placeable != null)
                     placeable.OnPlaced(this.transform.position);
 
-                currentPlacedObject = prefabToPlace;
+                CurrentPlacedObject = prefabToPlace;
 
             }
             if (prefabToPlace == null)
                 Debug.Log("로딩안됨");
+        }
+        else
+        {
+            //설치불가
         }
     }
     void OnSummonCharacter(CharacterControllerH controller)
@@ -62,7 +66,7 @@ public class Tile : MonoBehaviour
     }
     void OnSummonCharacterDie()
     {
-        currentPlacedObject = null;
+        CurrentPlacedObject = null;
         SummonPrefabControl.OnDeath -= OnSummonCharacterDie;
     }
 }

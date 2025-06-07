@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 public class CharacterControllerH : Controller
 {
     public Renderer Renderer;
@@ -36,7 +37,7 @@ public class CharacterControllerH : Controller
     protected override void Update() 
     {
         base.Update();
-        //character.StateMachine.Update(); 
+        character.StateMachine.Update(); 
     }
     #region Hurt and Death Coroutine
     public override IEnumerator PlayHurtAnimationAndIdleCoroutine()
@@ -91,10 +92,12 @@ public class CharacterControllerH : Controller
     }
     public void CallAttack()
     {
+
         if (!isAttacking & !isDead)
         {
             //ChooseAttackType();
             OnAttack?.Invoke();
+
         }
     }
     public void CallHeal(int amount)
@@ -139,7 +142,6 @@ public class CharacterControllerH : Controller
         if (other.CompareTag("Monster"))
         {
             Debug.Log("몬스터 감지됨: " + other.name);
-
             this.character.StateMachine.ChangeState(character.StateMachine.NormalAttack);
         }
     }

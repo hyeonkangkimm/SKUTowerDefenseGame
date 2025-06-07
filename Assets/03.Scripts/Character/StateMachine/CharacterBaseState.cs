@@ -5,14 +5,14 @@ using static StatManager;
 public class CharacterBaseState : IState
 {
     protected CharacterStateMachine stateMachine;
-    protected GameFlowManagerUII gameManager;
+    protected GameManager gameManager;
     protected AnimatorStateInfo animatorStateInfo;
     float currentMotionTime;
     //protected AnimatorControllerParameter curMotionTime;
     protected CharacterBaseState(CharacterStateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
-        gameManager = GameFlowManagerUII.Instance;
+        gameManager = GameManager.Instance;
         //curMotionTime = stateMachine.Character.Animator.GetParameter(stateMachine.Character.DataAnim.CurMotionTimeParameterHash);
     }
     public virtual void Enter()

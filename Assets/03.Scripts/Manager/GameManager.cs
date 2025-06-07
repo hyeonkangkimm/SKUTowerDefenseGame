@@ -8,22 +8,16 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-public class GameFlowManagerUII : Singleton<GameFlowManagerUII>
+public class GameManager : Singleton<GameManager>
 {
-    public static bool isInit;
-    public bool isReady;
+   
 
-
-    public List<Character> EntryList; /* 0 : Player*/ 
-    private readonly float minDistance = 0.5f; /* 캐릭터들이 안 겹치게*/  
-    public List<Monster> Monsters;
     public int ReadyCount = 0;
     
     [SerializeField]public String SelectedPrefabRcode;
     public Tile CurrentTIle;
     public ECombatConditionType CombatConditionType = ECombatConditionType.READY;
 
-    private int dungeonNum;
 
 
 
@@ -43,12 +37,6 @@ public class GameFlowManagerUII : Singleton<GameFlowManagerUII>
     {
 
     }
-  
-
-   
-
-
-    
 
     public void ShowAlert(string message,EAlertType type)
     {

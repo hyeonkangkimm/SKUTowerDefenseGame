@@ -12,10 +12,11 @@ public enum AIState
     Attacking
 }
 
-public class NPC : MonoBehaviour, IDamageable
+public class MonsterAI : MonoBehaviour, IDamageable
 {
     [Header("Stats")]
     public int health;
+    public bool Die;
     public float walkSpeed;
     //public ItemData[] dropOnDeath;
 
@@ -53,6 +54,7 @@ public class NPC : MonoBehaviour, IDamageable
     {
         SetState(AIState.Wandering);
         GoToDestination();
+        Die = false;
     }
 
     void Update()
@@ -152,7 +154,7 @@ public class NPC : MonoBehaviour, IDamageable
         {
             agent.isStopped = true;
 
-            if (Time.time - lastAttackTime > attackRate)
+            if (Time.time - lastAttackTime > attackRate*1.35f)//attackRate*clipSpeed
             {
                 lastAttackTime = Time.time;
                 //애니메이션에서 Event함수로 조절함
@@ -163,7 +165,7 @@ public class NPC : MonoBehaviour, IDamageable
                 //}
 
 
-                animator.speed = 1;
+                animator.speed = 1/attackRate;
                 animator.SetTrigger("Attack");
             }
 
@@ -192,20 +194,24 @@ public class NPC : MonoBehaviour, IDamageable
         float angle = Vector3.Angle(transform.forward, directionToPlayer);
         return angle < fieldOfView * 0.5f;
     }
-
+    public void TakeDamage(int value, bool critic = false)
+    {
+        TakePhysicalDamage(value);
+    }
     public void TakePhysicalDamage(int damage)
     {
         health -= damage;
         if (health <= 0)
         {
-            Die();
+            OnDie();
         }
 
         StartCoroutine(DamageFlash());
     }
 
-    void Die()
+    void OnDie()
     {
+        Die = true;
         //Drop item
         //for (int i = 0; i < dropOnDeath.Length; i++)
         //{
@@ -241,13 +247,13 @@ public class NPC : MonoBehaviour, IDamageable
     /// </summary>
     public void AttackBegin()
     {
+        if(NearTarget != null)
+        {
         IDamageable character = NearTarget.GetComponent<IDamageable>();
         character.TakeDamage(damage);
+        } 
        
     }
 
-    public void TakeDamage(int value, bool critic = false)
-    {
-        throw new NotImplementedException();
-    }
+   
 }

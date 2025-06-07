@@ -39,7 +39,8 @@ public class HeroData
 
 public class Hero : Character
 {
-    public HeroData data = new();
+    public HeroData data;
+    public HeroSO so;
     public ERarityType rarityType;
     public int GradeLevel;
     public int StarsLevel;
@@ -58,6 +59,7 @@ public class Hero : Character
     protected override void Awake()
     {
         base.Awake();
+        data = new(so);
         random = new System.Random();
         
     }
@@ -83,13 +85,7 @@ public class Hero : Character
     public override void FindTarget()
     {
         targetList.Clear();
-        foreach (Character monster in GameFlowManagerUII.Instance.Monsters)
-        {
-            if (monster != null && monster.isActiveAndEnabled)
-            {
-                targetList.Add(monster);
-            }
-        }
+        
         SetTarget();
         return;
     }
