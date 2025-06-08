@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d9add7d1dec7d146a72fcfde17d1b76, type: 3}
-  m_Name: KatjaSO
+  m_Name: 07_DebiSO
   m_EditorClassIdentifier: 
-  hid: 2
-  icon: {fileID: 21300000, guid: 0da8db7b5868f104b8710e8b13fb20e0, type: 3}
-  heroName: "\uCE74\uD2F0\uC57C"
-  heroDescription: "\uCE74\uD2F0\uC57C\uB294 \uB4DC\uB860\uC73C\uB85C \uC801\uC758
-    \uC704\uCE58\uB97C \uD30C\uC545\uD558\uACE0 \uAE34 \uC0AC\uAC70\uB9AC\uB97C \uC774\uC6A9\uD558\uC5EC
-    \uC801\uC744 \uACAC\uC81C\uD558\uB294 \uB370 \uD2B9\uD654\uB41C \uC2E4\uD5D8\uCCB4\uC785\uB2C8\uB2E4."
-  RCode: npc0002
+  hid: 7
+  icon: {fileID: -968256738, guid: ac8cbf2648172934e966e656df42efa9, type: 3}
+  heroName: "\uB370\uBE44"
+  heroDescription: "\uB370\uBE44\uB294 \uCC28\uBD84\uD558\uACE0 \uB0C9\uC815\uD55C
+    \uC131\uACA9\uC758 \uC30D\uB465\uC774 \uC790\uB9E4 \uC911 \uD55C \uBA85\uC73C\uB85C,
+    \uC8FC\uB85C \uBC29\uC5B4\uC801\uC778 \uC5ED\uD560\uC744 \uB9E1\uC2B5\uB2C8\uB2E4.\uADFC\uC811
+    \uC804\uD22C\uC5D0 \uD2B9\uD654\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4."
+  RCode: npc0007
   multipleStat:
     StatChangeType: 0
     Atk: 0
@@ -39,12 +40,12 @@ MonoBehaviour:
     HealMultiplier: 0
   PassiveStat:
     StatChangeType: 0
-    Atk: 0
-    Health: 0
+    Atk: 3
+    Health: 20
     Defense: 0
-    AttackSpeed: 0
+    AttackSpeed: 1
     MoveSpeed: 0
-    AttackRange: 0
+    AttackRange: 4
     AtkMultiplier: 0
     HealthMultiplier: 0
     DefenseMultiplier: 0

@@ -23,30 +23,25 @@ public abstract class Character :MonoBehaviour , IDamageable, IPlaceable
     public CharacterAnimationData DataAnim;
     public CharacterStateMachine StateMachine;
     public CharacterControllerH Controller;
-    public LayerMask LayerMask;
-    public EEntityType EntityType;
-    public EEntityType TargetType;
+    public LayerMask TargetLayerMask;
     public Animator Animator;
     //public BodyEffect BodyEffect;
     public int CurAtk => (int)StatHandler.curStat.Atk; 
 
     public HealthSystem Health { get; private set; }    
-    // 스테이지 재 시작 시 캐릭터 생성 될 위치
-    public Vector3 DefalutPos;
-    protected List<Character> targetList = new List<Character>();
     private Dictionary<CharacterStat, Coroutine> activeBuffs;
 
     protected virtual void Awake()
     {        
         DataAnim.Initialize();
         Animator = GetComponentInChildren<Animator>();
-        //StatHandler = GetComponent<StatHandler>();
+        StatHandler = GetComponent<StatHandler>();
         Controller = GetComponent<CharacterControllerH>();
-        //Health = GetComponent<HealthSystem>();
+        Health = GetComponent<HealthSystem>();
         StateMachine = new CharacterStateMachine(this);
         StateMachine.Initialize();
         StateMachine.ChangeState(StateMachine.Idle);
-        //
+        
     }
     protected virtual void Start()
     {
@@ -73,8 +68,6 @@ public abstract class Character :MonoBehaviour , IDamageable, IPlaceable
         Health.InitHealth(StatHandler.curStat.GetCurHealth());
     }
 
-    public abstract void FindTarget();
-    public abstract void SetTarget();
     public virtual void TakeDamage(int value, bool critic)
     {
         

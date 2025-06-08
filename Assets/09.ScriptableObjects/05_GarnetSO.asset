@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d9add7d1dec7d146a72fcfde17d1b76, type: 3}
-  m_Name: MarleneSO
+  m_Name: 05_GarnetSO
   m_EditorClassIdentifier: 
-  hid: 8
-  icon: {fileID: -968256738, guid: 5e57bbf03e59c844596d1d4c50d1ce1a, type: 3}
-  heroName: "\uB9C8\uB97C\uB80C"
-  heroDescription: "\uB9C8\uB97C\uB80C\uC740 \uC5F4\uC815\uC801\uC774\uACE0 \uC9C1\uC124\uC801\uC778
-    \uC131\uACA9\uC758 \uC30D\uB465\uC774 \uC790\uB9E4 \uC911 \uD55C \uBA85\uC73C\uB85C,
-    \uC8FC\uB85C \uACF5\uACA9\uC801\uC778 \uC5ED\uD560\uC744 \uB9E1\uC2B5\uB2C8\uB2E4.
-    \uC6D0\uAC70\uB9AC \uC804\uD22C\uC5D0 \uD2B9\uD654\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4."
-  RCode: npc0008
+  hid: 5
+  icon: {fileID: 21300000, guid: 15be63b441d4ab9478ba2b10a20fad43, type: 3}
+  heroName: "\uAC00\uB137"
+  heroDescription: "\uACE0\uD1B5\uC5D0 \uAC15\uD55C \uC9D1\uCC29\uC744 \uBCF4\uC774\uB294
+    \uAC00\uB137\uC740 \uC804\uC704\uC5D0\uC11C \uC801\uADF9\uC801\uC73C\uB85C \uD53C\uD574\uB97C
+    \uBC1B\uAC70\uB098 \uD53C\uD574\uB97C \uC785\uD788\uB294 \uAC78 \uC990\uAE30\uB294
+    \uC2E4\uD5D8\uCCB4\uC785\uB2C8\uB2E4. \uB300\uC0C1\uACFC \uC790\uC2E0\uC744 \uC544\uC774\uC5B8
+    \uBA54\uC774\uB4E0\uC5D0 \uAC00\uB46C \uC601\uC6D0\uD55C \uACE0\uD1B5\uC744 \uC120\uC0AC\uD569\uB2C8\uB2E4."
+  RCode: npc0005
   multipleStat:
     StatChangeType: 0
     Atk: 0
@@ -40,12 +41,12 @@ MonoBehaviour:
     HealMultiplier: 0
   PassiveStat:
     StatChangeType: 0
-    Atk: 0
-    Health: 0
+    Atk: 4
+    Health: 10
     Defense: 0
-    AttackSpeed: 0
+    AttackSpeed: 1
     MoveSpeed: 0
-    AttackRange: 0
+    AttackRange: 5
     AtkMultiplier: 0
     HealthMultiplier: 0
     DefenseMultiplier: 0

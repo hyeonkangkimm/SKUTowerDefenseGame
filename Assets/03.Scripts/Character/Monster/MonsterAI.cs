@@ -27,7 +27,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
     [Header("AI")]
     private NavMeshAgent agent;
     
-    public int detectDistance;//맵한칸 거리 기준
+    public int detectionRange;//맵한칸 거리 기준
     private AIState aiState;
 
     [Header("Combat")]
@@ -42,7 +42,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
     [SerializeField] private GameObject NearTarget;
     private Animator animator;
     private SkinnedMeshRenderer[] meshRenderers;
-
+    LayerMask enemyLayer;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -52,9 +52,11 @@ public class MonsterAI : MonoBehaviour, IDamageable
 
     void Start()
     {
+        agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
         SetState(AIState.Wandering);
         GoToDestination();
         Die = false;
+        enemyLayer = 1 << 6;
     }
 
     void Update()
@@ -62,31 +64,25 @@ public class MonsterAI : MonoBehaviour, IDamageable
         //NearTarget이 죽었을 때 타겟 해제, if문 안에서 앞 조건식 먼저 계산한후 false면 if문을 나가기 때문에 뒤에 NullReferenceException오류가 안난다
         if (NearTarget != null &&!NearTarget.activeInHierarchy)
             NearTarget = null;
-        if (NearTarget == null)
-        {
-            Character nearest = null;
-            float minSqr = Mathf.Infinity;
-
-            var nearbyHeroes = CharacterManager.Instance.GetHeroesNear(transform.position, detectDistance);
-
-            foreach (var hero in nearbyHeroes)
+        
+        
+            Vector3 origin = transform.position + Vector3.up ;
+            Vector3 direction = transform.forward;
+            Debug.DrawRay(origin, direction * detectionRange, Color.red);
+            RaycastHit[] hits = Physics.RaycastAll(origin, direction, detectionRange,enemyLayer);
+            foreach (RaycastHit hit in hits)
             {
-                float sqrDist = (hero.transform.position - transform.position).sqrMagnitude;
-                if (sqrDist < detectDistance * detectDistance && sqrDist < minSqr)
-                {
-                    minSqr = sqrDist;
-                    nearest = hero;
-                }
+                NearTarget = hit.collider.gameObject;
+                break;
             }
-            if (nearest != null)
-            {
-                NearTarget = nearest.gameObject;   
-            }
-        }
-        else
-        {
-            playerDistance = Vector3.Distance(transform.position, NearTarget.transform.position);
-        }
+
+        // Raycast로 적 감지
+        
+       
+        
+        
+         
+        
         animator.SetBool("Moving", aiState != AIState.Idle);
         switch (aiState)
         {
@@ -132,7 +128,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
 
     void PassiveUpdate()
     {
-        if (playerDistance < detectDistance)
+        if (playerDistance < detectionRange)
         {
             SetState(AIState.Attacking);
             return;

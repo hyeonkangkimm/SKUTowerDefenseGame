@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d9add7d1dec7d146a72fcfde17d1b76, type: 3}
-  m_Name: MaiSO
+  m_Name: 04_LiDaillinSO
   m_EditorClassIdentifier: 
-  hid: 6
-  icon: {fileID: 21300000, guid: 3cf2e0ad2b696994893ebdff454c0a83, type: 3}
-  heroName: "\uB9C8\uC774"
-  heroDescription: "\uB9C8\uC774\uB294 \uACF5\uC218 \uC804\uD658\uC774 \uB6F0\uC5B4\uB09C
-    \uD328\uC158 \uB514\uC790\uC774\uB108\uC785\uB2C8\uB2E4. \uC544\uAD70\uC740 \uC548\uC804\uD558\uAC8C
-    \uBCF4\uD638\uD558\uBA74\uC11C \uB3D9\uC2DC\uC5D0 \uC608\uCE21\uD558\uAE30 \uC5B4\uB824\uC6B4
-    \uC6C0\uC9C1\uC784\uC73C\uB85C \uC801\uC744 \uBC29\uD574\uD569\uB2C8\uB2E4."
-  RCode: npc0006
+  hid: 4
+  icon: {fileID: 21300000, guid: 767cdd4bdf1b7894795657e0067d579b, type: 3}
+  heroName: "\uB9AC \uB2E4\uC774\uB9B0"
+  heroDescription: "\uB9AC \uB2E4\uC774\uB9B0\uC740 \uB6F0\uC5B4\uB09C \uADFC\uC811
+    \uC804\uD22C \uB2A5\uB825\uC73C\uB85C \uC801\uC758 \uD575\uC2EC \uC2E4\uD5D8\uCCB4\uB97C
+    \uBB34\uB825\uD654\uC2DC\uD0AC \uC218 \uC788\uC73C\uBA70, \uC704\uD5D8\uD55C
+    \uC21C\uAC04\uC5D0\uB294 \uCDE8\uAD8C\uC73C\uB85C \uACF5\uACA9\uC744 \uD758\uB824\uBCF4\uB0BC
+    \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  RCode: npc0004
   multipleStat:
     StatChangeType: 0
     Atk: 0
@@ -39,13 +40,13 @@ MonoBehaviour:
     DamageMultiplier: 0
     HealMultiplier: 0
   PassiveStat:
-    StatChangeType: 0
-    Atk: 0
-    Health: 0
+    StatChangeType: 4
+    Atk: 3
+    Health: 20
     Defense: 0
-    AttackSpeed: 0
+    AttackSpeed: 1
     MoveSpeed: 0
-    AttackRange: 0
+    AttackRange: 4
     AtkMultiplier: 0
     HealthMultiplier: 0
     DefenseMultiplier: 0

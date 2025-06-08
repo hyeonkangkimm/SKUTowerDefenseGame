@@ -36,6 +36,15 @@ public class HeroData
 
     }
 }
+[RequireComponent(typeof(CharacterControllerH))]
+[RequireComponent(typeof(StatHandler))]
+[RequireComponent(typeof(HealthSystem))]
+[RequireComponent(typeof(CharacterDamaged))]
+[RequireComponent(typeof(CharacterCloseAttack))]
+
+
+
+
 
 public class Hero : Character
 {
@@ -61,19 +70,15 @@ public class Hero : Character
         base.Awake();
         data = new(so);
         random = new System.Random();
-        
+        StatHandler.baseStat = so.PassiveStat;
+
     }
 
     protected override void Start()
     {
         base.Start();
-
-        //StatHandler.baseStat = StatManager.Instance.statHandler.curStat;
-        StatHandler.RemoveStatModifier(data.multipleStat);
-        StatHandler.AddStatModifier(data.multipleStat);
-        //Health.InitHealth(StatHandler.curStat.GetCurHealth());
-        //Target = GameManager.Instance.Monsters[0].transform;
-
+        
+        InitStat();
     }
 
 
@@ -82,25 +87,7 @@ public class Hero : Character
         StatHandler.UpdateStatModifier();
     }
 
-    public override void FindTarget()
-    {
-        targetList.Clear();
-        
-        SetTarget();
-        return;
-    }
-    public override void SetTarget()
-    {
-        if (targetList.Count > 0)
-        {
-            int randomIndex = random.Next(targetList.Count);
-            Target = targetList[randomIndex].gameObject.transform;
-        }
-        else
-        {
-            Target = null;
-        }
-    }
+    
 }
 
 //    /// <summary>

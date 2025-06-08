@@ -39,25 +39,62 @@ public class Tile : MonoBehaviour
         if (CurrentPlacedObject == null)
         {
             GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
-            if (prefabToPlace != null)
-            {
-                SummonPrefabControl = prefabToPlace.GetComponent<CharacterControllerH>();
-                OnSummonCharacter(SummonPrefabControl);
-                prefabToPlace.transform.position = this.transform.position;
+           
+            
+                if (prefabToPlace != null)
+                {
+                    SummonPrefabControl = prefabToPlace.GetComponent<CharacterControllerH>();
+                    OnSummonCharacter(SummonPrefabControl);
+                    prefabToPlace.transform.position = this.transform.position;
 
-                var placeable = prefabToPlace.GetComponent<IPlaceable>();
-                if (placeable != null)
-                    placeable.OnPlaced(this.transform.position);
+                    var placeable = prefabToPlace.GetComponent<IPlaceable>();
+                    
+                    if (placeable != null)
+                        placeable.OnPlaced(this.transform.position);
 
-                CurrentPlacedObject = prefabToPlace;
+                    CurrentPlacedObject = prefabToPlace;
 
-            }
-            if (prefabToPlace == null)
-                Debug.Log("로딩안됨");
+                }
+                if (prefabToPlace == null)
+                    Debug.Log("로딩안됨");
+
         }
         else
         {
             //설치불가
+        }
+    }
+    
+    public void OnPlaceWall(string rcode)
+    {
+        Vector3 placePosition = this.transform.position;
+        Vector2Int gridPos = GridObstacleManager.Instance.WorldToGrid(placePosition);
+
+        // 1. 장애물 설치 가능 검사
+        bool canPlace = GridObstacleManager.Instance.TryPlaceObstacle(gridPos);
+
+        if (!canPlace)
+        {
+            Debug.Log("경로 차단됨! 벽 설치 취소");
+            return;
+        }
+
+        // 2. 설치 가능하면 Pool에서 프리팹 꺼내기
+        GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
+
+        if (prefabToPlace != null)
+        {
+            prefabToPlace.transform.position = placePosition;
+
+            var placeable = prefabToPlace.GetComponent<IPlaceable>();
+            if (placeable != null)
+                placeable.OnPlaced(placePosition);
+
+            CurrentPlacedObject = prefabToPlace;
+        }
+        else
+        {
+            Debug.LogWarning("벽 프리팹 로딩 실패");
         }
     }
     void OnSummonCharacter(CharacterControllerH controller)

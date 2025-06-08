@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d9add7d1dec7d146a72fcfde17d1b76, type: 3}
-  m_Name: DebiSO
+  m_Name: 08_MarleneSO
   m_EditorClassIdentifier: 
-  hid: 7
-  icon: {fileID: -968256738, guid: ac8cbf2648172934e966e656df42efa9, type: 3}
-  heroName: "\uB370\uBE44"
-  heroDescription: "\uB370\uBE44\uB294 \uCC28\uBD84\uD558\uACE0 \uB0C9\uC815\uD55C
+  hid: 8
+  icon: {fileID: -968256738, guid: 5e57bbf03e59c844596d1d4c50d1ce1a, type: 3}
+  heroName: "\uB9C8\uB97C\uB80C"
+  heroDescription: "\uB9C8\uB97C\uB80C\uC740 \uC5F4\uC815\uC801\uC774\uACE0 \uC9C1\uC124\uC801\uC778
     \uC131\uACA9\uC758 \uC30D\uB465\uC774 \uC790\uB9E4 \uC911 \uD55C \uBA85\uC73C\uB85C,
-    \uC8FC\uB85C \uBC29\uC5B4\uC801\uC778 \uC5ED\uD560\uC744 \uB9E1\uC2B5\uB2C8\uB2E4.\uADFC\uC811
-    \uC804\uD22C\uC5D0 \uD2B9\uD654\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4."
-  RCode: npc0007
+    \uC8FC\uB85C \uACF5\uACA9\uC801\uC778 \uC5ED\uD560\uC744 \uB9E1\uC2B5\uB2C8\uB2E4.
+    \uC6D0\uAC70\uB9AC \uC804\uD22C\uC5D0 \uD2B9\uD654\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4."
+  RCode: npc0008
   multipleStat:
     StatChangeType: 0
     Atk: 0
@@ -40,12 +40,12 @@ MonoBehaviour:
     HealMultiplier: 0
   PassiveStat:
     StatChangeType: 0
-    Atk: 0
-    Health: 0
+    Atk: 11
+    Health: 22
     Defense: 0
-    AttackSpeed: 0
+    AttackSpeed: 1
     MoveSpeed: 0
-    AttackRange: 0
+    AttackRange: 5
     AtkMultiplier: 0
     HealthMultiplier: 0
     DefenseMultiplier: 0

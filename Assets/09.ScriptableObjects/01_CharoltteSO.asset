@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d9add7d1dec7d146a72fcfde17d1b76, type: 3}
-  m_Name: LiDaillinSO
+  m_Name: 01_CharoltteSO
   m_EditorClassIdentifier: 
-  hid: 4
-  icon: {fileID: 21300000, guid: 767cdd4bdf1b7894795657e0067d579b, type: 3}
-  heroName: "\uB9AC \uB2E4\uC774\uB9B0"
-  heroDescription: "\uB9AC \uB2E4\uC774\uB9B0\uC740 \uB6F0\uC5B4\uB09C \uADFC\uC811
-    \uC804\uD22C \uB2A5\uB825\uC73C\uB85C \uC801\uC758 \uD575\uC2EC \uC2E4\uD5D8\uCCB4\uB97C
-    \uBB34\uB825\uD654\uC2DC\uD0AC \uC218 \uC788\uC73C\uBA70, \uC704\uD5D8\uD55C
-    \uC21C\uAC04\uC5D0\uB294 \uCDE8\uAD8C\uC73C\uB85C \uACF5\uACA9\uC744 \uD758\uB824\uBCF4\uB0BC
-    \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-  RCode: npc0004
+  hid: 0
+  icon: {fileID: 21300000, guid: f73433bedb15b7e4b98d4b4189e536cf, type: 3}
+  heroName: "\uC0EC\uB7FF"
+  heroDescription: "\uBE5B\uC744 \uC0AC\uC6A9\uD574 \uC544\uAD70\uC744 \uBCF4\uC870\uD558\uACE0
+    \uD53C\uD574\uB97C \uBB34\uB825\uD654 \uC2DC\uD0AC \uC218 \uC788\uB294 \uC0C1\uB0E5\uD55C
+    \uB9C8\uC74C\uC744 \uAC00\uC9C4 \uC2E4\uD5D8\uCCB4\uC785\uB2C8\uB2E4."
+  RCode: npc0001
   multipleStat:
     StatChangeType: 0
     Atk: 0
@@ -41,10 +39,10 @@ MonoBehaviour:
     HealMultiplier: 0
   PassiveStat:
     StatChangeType: 0
-    Atk: 0
-    Health: 0
+    Atk: 2
+    Health: 10
     Defense: 0
-    AttackSpeed: 0
+    AttackSpeed: 1
     MoveSpeed: 0
     AttackRange: 0
     AtkMultiplier: 0

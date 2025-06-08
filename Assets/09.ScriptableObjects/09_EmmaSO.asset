@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d9add7d1dec7d146a72fcfde17d1b76, type: 3}
-  m_Name: EmmaSO
+  m_Name: 09_EmmaSO
   m_EditorClassIdentifier: 
   hid: 1
   icon: {fileID: 21300000, guid: 32de58f32e368e44fad3f66b27ace086, type: 3}
@@ -39,12 +39,12 @@ MonoBehaviour:
     HealMultiplier: 0
   PassiveStat:
     StatChangeType: 0
-    Atk: 0
-    Health: 0
+    Atk: 4
+    Health: 11
     Defense: 0
-    AttackSpeed: 0
+    AttackSpeed: 1
     MoveSpeed: 0
-    AttackRange: 0
+    AttackRange: 5
     AtkMultiplier: 0
     HealthMultiplier: 0
     DefenseMultiplier: 0

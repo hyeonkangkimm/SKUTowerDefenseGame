@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 public class CharacterControllerH : Controller
 {
-    public Renderer Renderer;
+    private Renderer Renderer;
     protected Color originalColor;
     [NonSerialized] public Character character;
-    public Collider DetectCollider;
-    public Renderer DetectRenderer;
+    
     [NonSerialized] public HealthSystem healthSystem;
     //public List<Skill> SkillList;
     public event Action OnDeath;
@@ -28,7 +27,6 @@ public class CharacterControllerH : Controller
     {
         base.Awake();
         healthSystem = GetComponent<HealthSystem>();
-        DetectRenderer.enabled = false;
         character = GetComponent<Character>();
         isDead = false;
         Renderer = GetComponentInChildren<Renderer>();
@@ -128,20 +126,12 @@ public class CharacterControllerH : Controller
     {
 
     }
-    private void OnMouseEnter()
-    {
-        DetectRenderer.enabled = true;
-    }
-    private void OnMouseExit()
-    {
-        DetectRenderer.enabled = false;
-
-    }
+   
+   
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Monster"))
         {
-            Debug.Log("몬스터 감지됨: " + other.name);
             this.character.StateMachine.ChangeState(character.StateMachine.NormalAttack);
         }
     }

@@ -8,8 +8,8 @@ using UnityEngine.TextCore.Text;
 public class CharacterCloseAttack : MonoBehaviour
 {
     public WaitForSeconds AttackReady;
-    public Transform meleePos;
-    public Vector2 boxSize;
+    public float detectionRange;
+    public LayerMask enemyLayer;
     [SerializeField]protected CharacterControllerH characterController;
     public CharacterStateMachine stateMachine;
     public Animator MyAnimator;
@@ -28,13 +28,14 @@ public class CharacterCloseAttack : MonoBehaviour
         timeSinceLastAttack = 0f;
         AttackReadyTime = AttackReadyTime == 0f ? 1f : AttackReadyTime;
         AttackReady = new WaitForSeconds(AttackReadyTime);
-
+        enemyLayer = 1 << 7;
 
     }
     public virtual void Start()
     {
         stateMachine = characterController.character.StateMachine;
         AttackAnimationLength = clip.length;
+        detectionRange = attackRange;
     }
     public void FixedUpdate()
     {
@@ -81,24 +82,15 @@ public class CharacterCloseAttack : MonoBehaviour
         yield return AttackReady;
         if (!characterController.isDead)
         {
-            if(characterController.DetectCollider is BoxCollider box)
+            Vector3 origin = transform.position + Vector3.up;
+            Vector3 direction = transform.forward;
+            Debug.DrawRay(origin, direction * detectionRange, Color.red);
+            RaycastHit[] hits = Physics.RaycastAll(origin, direction, detectionRange,enemyLayer);
+            foreach(RaycastHit hit in hits)
             {
-                Vector3 worldCenter = box.transform.TransformPoint(box.center);
-                Vector3 worldSize = Vector3.Scale(box.size, box.transform.lossyScale) * 0.5f;
-                Quaternion rotation = box.transform.rotation;
-                Collider[] hits = Physics.OverlapBox(worldCenter, worldSize, rotation);
-            
-                 foreach (Collider colider in hits)
-                 {
-                     if (true)
-                     {
-                         IDamageable damagable = colider.GetComponent<IDamageable>();
-                        damagable?.TakeDamage(characterController.character.StatHandler.curStat.GetCurAtk());
-                        Debug.Log("근접공격");
-                        //var (damage, isCritical) = characterController.CalculateDamage(characterController.character.StatHandler.curStat.GetCurAtk());
-                         //damagable?.TakeDamage(damage, isCritical);
-                     }
-                 }
+                IDamageable damagable = hit.collider.GetComponent<IDamageable>();
+                damagable?.TakeDamage(characterController.character.StatHandler.curStat.GetCurAtk());
+                Debug.Log("근접공격");
             }
         }
     }
@@ -107,13 +99,7 @@ public class CharacterCloseAttack : MonoBehaviour
     /// 타겟위치로 근접공격 위치 재설정
     /// </summary>
     /// <param name="target"></param>
-    private void MoveMeleePos(Vector3 target ,float range =1f)
-    {
-        Vector3 direction = Vector3.Normalize(target - characterController.transform.position);
-        Vector3 newMeleePos = direction * range;
-        meleePos.localPosition = newMeleePos;
-    }
-
+  
 
     private void SetAttackMotionSpeed(float attackSpeed=1f)
     {
