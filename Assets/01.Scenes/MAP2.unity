@@ -7701,6 +7701,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1209779769744172008, guid: a95cf0bf859671f42b40aa9b4864f378, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8797554616783382114, guid: a95cf0bf859671f42b40aa9b4864f378, type: 3}
       propertyPath: m_Name
       value: npc0003
@@ -34541,6 +34545,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - rcode: npc0001
+    size: 5
+    prefab: {fileID: 9157911292676662898, guid: 45fd0f16c4c19ce46b9fb59c797e09af, type: 3}
+  - rcode: npc0002
+    size: 5
+    prefab: {fileID: 9157911292676662898, guid: 45fd0f16c4c19ce46b9fb59c797e09af, type: 3}
+  - rcode: npc0003
     size: 5
     prefab: {fileID: 9157911292676662898, guid: 45fd0f16c4c19ce46b9fb59c797e09af, type: 3}
 --- !u!114 &1450717866

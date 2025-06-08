@@ -38,13 +38,13 @@ MonoBehaviour:
     DamageMultiplier: 0
     HealMultiplier: 0
   PassiveStat:
-    StatChangeType: 0
+    StatChangeType: 4
     Atk: 2
     Health: 10
     Defense: 0
     AttackSpeed: 1
     MoveSpeed: 0
-    AttackRange: 0
+    AttackRange: 5
     AtkMultiplier: 0
     HealthMultiplier: 0
     DefenseMultiplier: 0

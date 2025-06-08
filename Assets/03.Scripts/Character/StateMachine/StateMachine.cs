@@ -23,7 +23,7 @@ public class StateMachine
     public void Update()
     {
         currentState?.Update();
-        Debug.Log(currentState.ToString());
+        //Debug.Log(currentState.ToString());
     }
 
 }
