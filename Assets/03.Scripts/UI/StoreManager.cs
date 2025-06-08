@@ -13,21 +13,25 @@ public class ShopManager : MonoBehaviour
     public int maxAvailableCards = 5;
 
     private List<string> availableRcodes = new List<string>() { "C001", "C002", "C003", "C004", "C005" };
+    [SerializeField]private List<HeroSO> availableCards = new List<HeroSO>();
 
     public void RollCards()
     {
+        maxAvailableCards = availableCards.Count;
         for (int i = 0; i < cardSlots.Length; i++)
         {
             var slot = cardSlots[i];
 
             if (i < maxAvailableCards)
             {
-                string rcode = GetRandomRcode();
-                string name = GetCardNameByRcode(rcode);
-                string desc = GetCardDescByRcode(rcode);
+                int random = Random.Range(1, maxAvailableCards);
+                string price = Random.Range(1, 3).ToString();
+                string name = availableCards[random].heroName;
+                string desc = availableCards[random].heroDescription;
+                Sprite heroImage = availableCards[random].icon;
 
                 slot.cardImage.enabled = true;
-                slot.SetCard(rcode, name, desc);
+                slot.SetCard(price, name, desc, heroImage);
             }
         }
 
@@ -64,37 +68,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    private string GetRandomRcode()
-    {
-        int index = Random.Range(0, availableRcodes.Count);
-        return availableRcodes[index];
-    }
 
-    private string GetCardNameByRcode(string rcode)
-    {
-        switch (rcode)
-        {
-            case "C001": return "Archer";
-            case "C002": return "Knight";
-            case "C003": return "Mage";
-            case "C004": return "Healer";
-            case "C005": return "Rogue";
-            default: return "???";
-        }
-    }
-
-    private string GetCardDescByRcode(string rcode)
-    {
-        switch (rcode)
-        {
-            case "C001": return "Shoots arrows at enemies.";
-            case "C002": return "Tanky melee unit.";
-            case "C003": return "Casts powerful spells.";
-            case "C004": return "Heals allies over time.";
-            case "C005": return "Fast attacker from the shadows.";
-            default: return "Unknown skill.";
-        }
-    }
 
     public void PurchaseCard(StoreCardSlot slot)
     {
