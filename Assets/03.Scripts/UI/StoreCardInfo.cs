@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,15 +9,19 @@ public class StoreCardInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 {
     protected Vector3 originalScale;
     public float hoverScale = 1.2f;
-    [SerializeField] private TextMeshProUGUI skillName;
+    [SerializeField] private TextMeshProUGUI cardPrice;
     [SerializeField] private TextMeshProUGUI skillDescription;
+    [SerializeField] private TextMeshProUGUI heroCardName;
 
     public string cardDescription;
     public string cardName;
-    public void ShowToolTip(string _skillDescription, string _skillName)
+    public string price;
+    
+    public void ShowToolTip(string _skillDescription, string _skillName, string _cardPrice)
     {
-        skillName.text = _skillName;
+        heroCardName.text = _skillName;
         skillDescription.text = _skillDescription;
+        cardPrice.text = _cardPrice;
         gameObject.SetActive(true);
     }
 
@@ -36,7 +41,7 @@ public class StoreCardInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         transform.localScale = originalScale * hoverScale;
-        ShowToolTip(cardDescription, cardName);
+        ShowToolTip(cardDescription, cardName, price);
     }
 
     public void OnPointerExit(PointerEventData eventData)
