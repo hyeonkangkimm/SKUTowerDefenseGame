@@ -25,6 +25,8 @@ public class SkillTreeSlot : MonoBehaviour
     void Start()
     {
         skillImage.color = lockedSkillColor;
+        //resource = ResourceManager.Instance;
+        resource = FindObjectOfType<ResourceManager>();
     }
 
     // Update is called once per frame

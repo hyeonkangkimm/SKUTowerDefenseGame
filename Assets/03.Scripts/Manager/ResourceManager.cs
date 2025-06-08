@@ -10,7 +10,7 @@ public enum resourseType {
     iron
 }
 
-public class ResourceManager : MonoBehaviour
+public class ResourceManager : Singleton<ResourceManager>
 {
     public int money;
     public int wood;
