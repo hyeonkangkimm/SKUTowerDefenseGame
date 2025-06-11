@@ -5,15 +5,16 @@ using System.Collections;
 
 public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [Header("rcode만추가하면됨")]
-    public string CardModelRcode;
-    private Image cardImage;
-    public GameObject cardModelPrefab;   // 3D 모델 소환용 프리팹
+    [Header("카드 데이터 연결")]
+    public HeroSO heroData;
+
+    [Header("하위 캐릭터 이미지에만 아이콘 적용")]
+    [SerializeField] public Image characterImage;  // 하위에 있는 캐릭터 일러스트용 이미지
     public float manaCost = 2f;
     public float cooldownDuration = 3f;
 
-    [SerializeField] private ManaUUI manaUI;          // 마나 관리 스크립트
-    [SerializeField] private RectTransform manaBG;    // 드래그 취소 허용 영역 (manaBG 이미지의 RectTransform)
+    [SerializeField] private ManaUUI manaUI;
+    [SerializeField] private RectTransform manaBG;
 
     private RectTransform dragObject;
     private Canvas canvas;
@@ -30,8 +31,12 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         mainCamera = Camera.main;
 
         originalPosition = dragObject.anchoredPosition;
-        cardImage = GetComponent<Image>();
-        cardImage.fillAmount = 1f;
+
+        // ✅ icon 적용
+        if (heroData != null && characterImage != null)
+        {
+            characterImage.sprite = heroData.icon;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -63,7 +68,6 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             return;
         }
 
-        // 마우스가 manaBG 영역 안에 있으면 드래그 취소
         if (RectTransformUtility.RectangleContainsScreenPoint(
             manaBG,
             Input.mousePosition,
@@ -80,8 +84,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             if (manaUI != null && manaUI.UseMana(manaCost))
             {
-                GameManager.Instance.CurrentTIle.OnPlaceCharacter(CardModelRcode);
-                //Instantiate(cardModelPrefab, worldPosition, Quaternion.identity);
+                GameManager.Instance.CurrentTIle.OnPlaceCharacter(heroData.RCode);
                 StartCoroutine(StartCooldown());
             }
             else
@@ -127,7 +130,6 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         isCooldown = true;
         float elapsed = 0f;
 
-        // 자신 포함 하위 모든 Image 컴포넌트 가져오기
         Image[] allImages = GetComponentsInChildren<Image>();
 
         foreach (var img in allImages)
@@ -140,7 +142,6 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             elapsed += Time.deltaTime;
             float fillValue = elapsed / cooldownDuration;
 
-            // 모든 이미지 fillAmount 동기화
             foreach (var img in allImages)
             {
                 img.fillAmount = fillValue;
@@ -155,5 +156,12 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         }
 
         isCooldown = false;
+    }
+    public void UpdateCardVisual()
+    {
+        if (heroData != null && characterImage != null)
+        {
+            characterImage.sprite = heroData.icon;
+        }
     }
 }
