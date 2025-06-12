@@ -19,7 +19,7 @@ public class CharacterSelectManager : MonoBehaviour
     [Header("새 카드 관련")]
     public GameObject newCardPrefab;
     public Transform newCardParent;
-    public Sprite[] newCardSprites;
+    public List<HeroSO> newHeroList;
     private List<CharacterButton> newCardButtons = new List<CharacterButton>();
     private List<CharacterButton> selectedNewCards = new List<CharacterButton>();
     private List<CharacterButton> confirmedNewSelection = new List<CharacterButton>();
@@ -75,32 +75,44 @@ public class CharacterSelectManager : MonoBehaviour
     {
         newCardButtons.Clear();
 
-        foreach (Sprite sprite in newCardSprites)
+        for (int i = 0; i < newHeroList.Count; i++)
         {
-            GameObject cardObj = Instantiate(newCardPrefab, newCardParent, false);
+            HeroSO hero = newHeroList[i];
 
+            GameObject cardObj = Instantiate(newCardPrefab, newCardParent, false);
             CharacterButton cb = cardObj.GetComponent<CharacterButton>();
+
             if (cb != null)
             {
                 cb.selectManager = this;
                 cb.SetSelected(false);
-                cb.isOldCard = false; // 새 카드임을 표시
+                cb.isOldCard = false;
 
-                // 이미지 설정
+                // HeroSO 연결
+                cb.heroData = hero;
+
+                // 새 카드 리스트 내 인덱스 저장
+                cb.cardIndex = i;
+
+                // 카드 이미지 설정
                 Transform imageTransform = cardObj.transform.Find("Image");
                 if (imageTransform != null)
                 {
-                    Image charImage = imageTransform.GetComponent<Image>();
-                    if (charImage != null)
-                        charImage.sprite = sprite;
+                    Image image = imageTransform.GetComponent<Image>();
+                    if (image != null)
+                    {
+                        image.sprite = hero.icon;
+                    }
                 }
 
                 newCardButtons.Add(cb);
             }
         }
-
         Debug.Log($"✅ 새 카드 {newCardButtons.Count}장 생성 완료");
     }
+
+
+
 
     // ✅ 기존 카드들을 스왑 패널에 출력
     public void OnConfirmOldCardSelection()
@@ -113,16 +125,28 @@ public class CharacterSelectManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (Image sourceImage in cardImageCollector.cardImages)
+        Debug.Log($"[OnConfirmOldCardSelection] cardImages.Count: {cardImageCollector.cardImages.Count}");
+        Debug.Log($"[OnConfirmOldCardSelection] heroDataList.Count: {cardImageCollector.heroDataList.Count}");
+
+        for (int i = 0; i < cardImageCollector.cardImages.Count; i++)
         {
+            Image sourceImage = cardImageCollector.cardImages[i];
+            HeroSO heroData = cardImageCollector.heroDataList[i];
+
+            Debug.Log($"Creating card {i}: heroName={heroData.heroName}");
+
             GameObject card = Instantiate(cardPrefab, swapPanelContent);
 
             CharacterButton cb = card.GetComponent<CharacterButton>();
             if (cb != null)
             {
                 cb.selectManager = this;
-                cb.isOldCard = true; // 기존 카드임을 표시
+                cb.isOldCard = true;
                 cb.SetSelected(false);
+                cb.heroData = heroData;
+
+                // **카드 리스트 내 인덱스 할당**
+                cb.cardIndex = i;
             }
 
             Transform imageTransform = card.transform.Find("Image");
@@ -141,8 +165,11 @@ public class CharacterSelectManager : MonoBehaviour
                 checkMark.gameObject.SetActive(false);
         }
 
-        Debug.Log("✅ 기존 카드가 스왑 패널에 출력되었습니다.");
+        Debug.Log("기존 카드가 스왑 패널에 출력되었습니다.");
     }
+
+
+
 
     // ✅ 새 카드 선택 확정
 
@@ -192,6 +219,11 @@ public class CharacterSelectManager : MonoBehaviour
             return;
         }
 
+        if (newHeroList == null || newHeroList.Count < confirmedOldSelection.Count)
+        {
+            newHeroList = new List<HeroSO>(new HeroSO[confirmedOldSelection.Count]);
+        }
+
         Debug.Log("🌀 카드 스왑 시작");
 
         for (int i = 0; i < confirmedOldSelection.Count; i++)
@@ -199,45 +231,79 @@ public class CharacterSelectManager : MonoBehaviour
             CharacterButton oldBtn = confirmedOldSelection[i];
             CharacterButton newBtn = confirmedNewSelection[i];
 
-            // 기존 카드의 인덱스 찾기
-            int oldIndex = swapPanelContent.GetSiblingIndexOfChild(oldBtn.gameObject);
-            if (oldIndex < 0 || oldIndex >= cardImageCollector.cardImages.Count)
+            HeroSO newHeroData = newBtn.heroData;
+
+            // 기존 카드 오브젝트 인덱스 찾기
+            int matchingIndex = cardImageCollector.heroDataList.FindIndex(h => h == oldBtn.heroData);
+            if (matchingIndex < 0 || matchingIndex >= cardImageCollector.cardObjects.Count)
             {
-                Debug.LogWarning($"⚠️ 기존 카드 인덱스가 유효하지 않습니다: {oldIndex}");
+                Debug.LogWarning($"⚠️ cardObjects에서 인덱스 {matchingIndex}가 유효하지 않음");
                 continue;
             }
 
-            // 기존 카드 원본 이미지
-            Image mainCardImage = cardImageCollector.cardImages[oldIndex];
-            if (mainCardImage == null) continue;
+            GameObject realCardObj = cardImageCollector.cardObjects[matchingIndex];
+            CardDragHandler dragHandler = realCardObj.GetComponent<CardDragHandler>();
 
-            // 새 카드 이미지
-            Image newCardImage = newBtn.GetComponentInChildren<Image>();
-            if (newCardImage == null) continue;
+            if (dragHandler != null)
+            {
+                // 기존 카드 데이터를 새 카드 데이터로 교체
+                dragHandler.heroData = newHeroData;
+                dragHandler.characterImage.sprite = newHeroData.icon;
+                dragHandler.UpdateCardVisual();
 
-            // 스프라이트 스왑
-            Sprite temp = mainCardImage.sprite;
-            mainCardImage.sprite = newCardImage.sprite;
-            newCardImage.sprite = temp;
+                Debug.Log($"✅ HeroData 교체됨: {dragHandler.heroData.heroName}");
+
+                // CardImageCollector 내부 리스트도 갱신
+                cardImageCollector.heroDataList[matchingIndex] = newHeroData;
+                cardImageCollector.cardImages[matchingIndex].sprite = newHeroData.icon;
+
+                // 스왑 후 새 카드 UI에 표시할 데이터로 기존 카드 데이터 넣기 (정확한 인덱스 사용)
+                newHeroList[newBtn.cardIndex] = oldBtn.heroData;
+
+                // 기존 카드 버튼에도 새 카드 데이터와 UI 갱신
+                oldBtn.SetHeroData(newHeroData);
+                oldBtn.SetSelected(false);
+            }
+            else
+            {
+                Debug.LogError($"❌ CardDragHandler가 없습니다: {realCardObj.name}");
+            }
         }
+
+        // 새 카드 버튼들에 '기존 카드 데이터(newHeroList)'로 UI 갱신
+        for (int i = 0; i < newCardButtons.Count; i++)
+        {
+            CharacterButton btn = newCardButtons[i];
+            if (i < newHeroList.Count)
+            {
+                btn.SetHeroData(newHeroList[i]);  // 기존 카드 데이터로 세팅
+                btn.SetSelected(false);
+            }
+        }
+
+        // 선택 초기화
         foreach (var btn in newCardButtons)
         {
-            btn.ResetSelection(); // 체크마크 끄기
+            btn.ResetSelection();
         }
 
         Debug.Log("✅ 카드 스왑 완료");
 
-        // 스왑 UI 닫기
         if (swapPanel != null)
             swapPanel.SetActive(false);
-
 
         selectedOldCards.Clear();
         selectedNewCards.Clear();
         confirmedOldSelection.Clear();
         confirmedNewSelection.Clear();
     }
-   
+
+
+
+
+
+
+
 
 
     // ✅ 외부에서 선택된 카드 목록 접근
