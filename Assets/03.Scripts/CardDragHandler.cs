@@ -9,9 +9,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public HeroSO heroData;
 
     [Header("하위 캐릭터 이미지에만 아이콘 적용")]
-    [SerializeField] public Image characterImage;  // 하위에 있는 캐릭터 일러스트용 이미지
-    public float manaCost = 2f;
-    public float cooldownDuration = 3f;
+    [SerializeField] public Image characterImage;
 
     [SerializeField] private ManaUUI manaUI;
     [SerializeField] private RectTransform manaBG;
@@ -32,10 +30,15 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         originalPosition = dragObject.anchoredPosition;
 
-        // ✅ icon 적용
+        // 아이콘 설정
         if (heroData != null && characterImage != null)
         {
             characterImage.sprite = heroData.icon;
+        }
+
+        if (heroData != null)
+        {
+            Debug.Log($"[CardDragHandler] {heroData.heroName} 마나: {heroData.manacost}, 쿨다운: {heroData.cooldownDuration}");
         }
     }
 
@@ -49,15 +52,14 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (isCooldown || !isDragging) return;
 
-        Vector2 localPoint;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvas.transform as RectTransform,
             eventData.position,
             canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera,
-            out localPoint
-        );
-
-        dragObject.anchoredPosition = localPoint;
+            out Vector2 localPoint))
+        {
+            dragObject.anchoredPosition = localPoint;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -82,10 +84,10 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (worldPosition != Vector3.zero)
         {
-            if (manaUI != null && manaUI.UseMana(manaCost))
+            if (manaUI != null && manaUI.UseMana(heroData.manacost))
             {
                 GameManager.Instance.CurrentTIle.OnPlaceCharacter(heroData.RCode);
-                StartCoroutine(StartCooldown());
+                StartCoroutine(StartCooldown(heroData.cooldownDuration));
             }
             else
             {
@@ -115,17 +117,14 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Vector3 GetMouseWorldPosition()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             return hit.point;
         }
-
         return Vector3.zero;
     }
 
-    private IEnumerator StartCooldown()
+    private IEnumerator StartCooldown(float duration)
     {
         isCooldown = true;
         float elapsed = 0f;
@@ -137,10 +136,10 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             img.fillAmount = 0f;
         }
 
-        while (elapsed < cooldownDuration)
+        while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float fillValue = elapsed / cooldownDuration;
+            float fillValue = elapsed / duration;
 
             foreach (var img in allImages)
             {
@@ -157,6 +156,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         isCooldown = false;
     }
+
     public void UpdateCardVisual()
     {
         if (heroData != null && characterImage != null)
