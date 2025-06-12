@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.8813}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 846092920391538082}
@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1.36, z: 2.47}
-  m_Center: {x: 0, y: 0, z: 1.16}
+  m_Size: {x: 2, y: 1.36, z: 3}
+  m_Center: {x: 0, y: 0, z: 1.5}
 --- !u!1 &8797554616783382114
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +323,7 @@ MonoBehaviour:
   UpgradeIncreaseCost: 50
   UpstarDefaultCost: 5
   UpstarIncreaseCost: 10
+  meshRenderers: []
 --- !u!54 &2634834723967106156
 Rigidbody:
   m_ObjectHideFlags: 0

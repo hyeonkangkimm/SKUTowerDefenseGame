@@ -38,7 +38,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
     public float fieldOfView = 120f;
 
     [Header("Target")]
-    public float playerDistance;
+    public float TargetDistance;
     [SerializeField] private GameObject NearTarget;
     private Animator animator;
     private SkinnedMeshRenderer[] meshRenderers;
@@ -64,25 +64,18 @@ public class MonsterAI : MonoBehaviour, IDamageable
         //NearTarget이 죽었을 때 타겟 해제, if문 안에서 앞 조건식 먼저 계산한후 false면 if문을 나가기 때문에 뒤에 NullReferenceException오류가 안난다
         if (NearTarget != null &&!NearTarget.activeInHierarchy)
             NearTarget = null;
+        if(null!=NearTarget)
+            TargetDistance = (NearTarget.transform.position-this.transform.position).magnitude;
         
-        
-            Vector3 origin = transform.position + Vector3.up ;
-            Vector3 direction = transform.forward;
-            Debug.DrawRay(origin, direction * detectionRange, Color.red);
-            RaycastHit[] hits = Physics.RaycastAll(origin, direction, detectionRange,enemyLayer);
-            foreach (RaycastHit hit in hits)
-            {
-                NearTarget = hit.collider.gameObject;
-                break;
-            }
-
-        // Raycast로 적 감지
-        
-       
-        
-        
-         
-        
+       Vector3 origin = transform.position + Vector3.up ;
+       Vector3 direction = transform.forward;
+       Debug.DrawRay(origin, direction * detectionRange, Color.red);
+       RaycastHit[] hits = Physics.RaycastAll(origin, direction, detectionRange,enemyLayer);
+       foreach (RaycastHit hit in hits)
+       {
+           NearTarget = hit.collider.gameObject;
+           break;
+       }
         animator.SetBool("Moving", aiState != AIState.Idle);
         switch (aiState)
         {
@@ -94,6 +87,11 @@ public class MonsterAI : MonoBehaviour, IDamageable
                 AttackingUpdate();
                 break;
         }
+    }
+    public void StatChange(int stage, int wave)
+    {
+        health = stage*10+wave;
+        damage = stage*1;
     }
 
     public void SetState(AIState state)
@@ -128,7 +126,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
 
     void PassiveUpdate()
     {
-        if (playerDistance < detectionRange)
+        if (TargetDistance < detectionRange)
         {
             SetState(AIState.Attacking);
             return;
@@ -146,11 +144,11 @@ public class MonsterAI : MonoBehaviour, IDamageable
     void AttackingUpdate()
     {  
         //거리가 안에 있고 시야에 있으면 공격
-        if (playerDistance < attackDistance && IsPlayerInFieldOfView())
+        if (TargetDistance < attackDistance && IsPlayerInFieldOfView())
         {
             agent.isStopped = true;
 
-            if (Time.time - lastAttackTime > attackRate*1.35f)//attackRate*clipSpeed
+            if (Time.time - lastAttackTime > attackRate)//attackRate*clipSpeed
             {
                 lastAttackTime = Time.time;
                 //애니메이션에서 Event함수로 조절함
@@ -161,7 +159,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
                 //}
 
 
-                animator.speed = 1/attackRate;
+                //animator.speed = 1/attackRate;
                 animator.SetTrigger("Attack");
             }
 
@@ -224,7 +222,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
             renderer.material.color = new Color(1.0f, 0.6f, 0.6f);
         }
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
 
         foreach (var renderer in meshRenderers)
         {
