@@ -21,7 +21,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Vector2 originalPosition;
     private bool isCooldown = false;
     private bool isDragging = false;
-
+    
     void Start()
     {
         dragObject = GetComponent<RectTransform>();
@@ -84,10 +84,33 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (worldPosition != Vector3.zero)
         {
+            bool mana=true;
             if (manaUI != null && manaUI.UseMana(heroData.manacost))
             {
-                GameManager.Instance.CurrentTIle.OnPlaceCharacter(heroData.RCode);
-                StartCoroutine(StartCooldown(heroData.cooldownDuration));
+                if (heroData.RCode == "rock")
+                {
+                    mana= GameManager.Instance.CurrentTIle.OnPlaceWall(heroData.RCode);
+                    if(mana==false)
+                    {
+                        manaUI.UseMana(-heroData.manacost);
+                    }
+                    
+                }
+                else
+                {
+                    GameManager.Instance.CurrentTIle.OnPlaceCharacter(heroData.RCode);
+                    
+                }
+
+                if(mana==false)
+                {
+                    CancelDrag();
+                }
+                else
+                {
+                    StartCoroutine(StartCooldown(heroData.cooldownDuration));
+                }
+                    
             }
             else
             {

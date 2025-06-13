@@ -65,7 +65,7 @@ public class Tile : MonoBehaviour
         }
     }
     
-    public void OnPlaceWall(string rcode)
+    public bool OnPlaceWall(string rcode)
     {
         Vector3 placePosition = this.transform.position;
         Vector2Int gridPos = GridObstacleManager.Instance.WorldToGrid(placePosition);
@@ -76,7 +76,7 @@ public class Tile : MonoBehaviour
         if (!canPlace)
         {
             Debug.Log("경로 차단됨! 벽 설치 취소");
-            return;
+            return false;
         }
 
         // 2. 설치 가능하면 Pool에서 프리팹 꺼내기
@@ -91,10 +91,12 @@ public class Tile : MonoBehaviour
                 placeable.OnPlaced(placePosition);
 
             CurrentPlacedObject = prefabToPlace;
+            return true;
         }
         else
         {
             Debug.LogWarning("벽 프리팹 로딩 실패");
+            return false;
         }
     }
     void OnSummonCharacter(CharacterControllerH controller)
