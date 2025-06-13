@@ -6296,6 +6296,33 @@ MonoBehaviour:
   - rcode: npc0001
     size: 5
     prefab: {fileID: 9157911292676662898, guid: 45fd0f16c4c19ce46b9fb59c797e09af, type: 3}
+  - rcode: rock
+    size: 5
+    prefab: {fileID: 5848167866193253233, guid: 4dc9dfcada85d4341a5924d4147a4473, type: 3}
+  - rcode: npc0002
+    size: 5
+    prefab: {fileID: 1425799370927950693, guid: 9d17813cf829b6e4fb9cf5beacb9aad5, type: 3}
+  - rcode: npc0003
+    size: 5
+    prefab: {fileID: 8797554616783382114, guid: a95cf0bf859671f42b40aa9b4864f378, type: 3}
+  - rcode: npc0004
+    size: 5
+    prefab: {fileID: 3577486869829984559, guid: 0314e651fd513df4191696f10ca4b1da, type: 3}
+  - rcode: npc0005
+    size: 5
+    prefab: {fileID: 427502674586650623, guid: 226d047de131db64a8131d56773d5826, type: 3}
+  - rcode: npc0006
+    size: 5
+    prefab: {fileID: 7394970959904733832, guid: 825a7ab3be62d3d49b40ba2b84de1fca, type: 3}
+  - rcode: npc0007
+    size: 5
+    prefab: {fileID: 7076691750617241213, guid: 8b4617dc091946f4f8d15b592599763a, type: 3}
+  - rcode: npc0008
+    size: 5
+    prefab: {fileID: 5708883710923499180, guid: 7f11e94cd3a09874f9f5adae3f61f948, type: 3}
+  - rcode: npc0009
+    size: 5
+    prefab: {fileID: 808959316652988666, guid: 142d3a9eb69954e498e6fe7758e797e6, type: 3}
 --- !u!21 &1460751738
 Material:
   serializedVersion: 8
@@ -9266,7 +9293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7957743432865164098, guid: 48d07b543e5b4b648809ff5de0048d96, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.22
+      value: 1.65
       objectReference: {fileID: 0}
     - target: {fileID: 7957743432865164098, guid: 48d07b543e5b4b648809ff5de0048d96, type: 3}
       propertyPath: m_LocalPosition.z

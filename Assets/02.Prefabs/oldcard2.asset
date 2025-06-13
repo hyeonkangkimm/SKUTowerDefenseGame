@@ -16,9 +16,10 @@ MonoBehaviour:
   icon: {fileID: -968256738, guid: ac8cbf2648172934e966e656df42efa9, type: 3}
   manacost: 1
   cooldownDuration: 1
+  heroPrefab: {fileID: 0}
   heroName: "\uC5E0\uB9C8"
   heroDescription: 
-  RCode: npc0001
+  RCode: npc0008
   multipleStat:
     StatChangeType: 0
     Atk: 0

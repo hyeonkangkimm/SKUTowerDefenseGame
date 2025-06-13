@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hid: 0
   icon: {fileID: 871980822, guid: bdeaeacf91e805f449e7fa66d480d644, type: 3}
-  manacost: 1
+  manacost: 2
   cooldownDuration: 1
-  heroName: "\uAC00\uB137"
+  heroPrefab: {fileID: 0}
+  heroName: "\uB3CC"
   heroDescription: 
-  RCode: npc0001
+  RCode: rock
   multipleStat:
     StatChangeType: 0
     Atk: 0
