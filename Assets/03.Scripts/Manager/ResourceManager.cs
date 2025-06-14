@@ -12,19 +12,26 @@ public enum resourseType {
 
 public class ResourceManager : Singleton<ResourceManager>
 {
-    public int money;//카드구매
-    //특성강화
+    public static ResourceManager Instance { get; private set; }
+    public int money;
     public int wood;
     public int stone;
     public int iron;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        //money = 0;
-        //wood = 0;  
-        //stone = 0;
-        //iron = 0;
+        
     }
 
     // Update is called once per frame
@@ -32,25 +39,8 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         
     }
-    public void GainResource(resourseType resouce,int amount)
-    {
-        switch (resouce)
-        {
-            case resourseType.money:
-                money+=amount;
-                break;
-            case resourseType.wood:
-                wood+=amount;
-                break;
-            case resourseType.stone:
-                stone += amount;
-                break;
-            case resourseType.iron:
-                iron += amount;
-                break;
-        }
-    }
-    public int GetResouceAmount(resourseType resouce)//UI표시
+
+    public int GetResouceAmount(resourseType resouce)
     {
         int amount = 0;
         switch(resouce)
@@ -92,5 +82,13 @@ public class ResourceManager : Singleton<ResourceManager>
         {
             return false;
         }
+    }
+
+    public void AddResource(int moneyAmount, int woodAmount, int stoneAmount, int ironAmount)
+    {
+        money += moneyAmount;
+        wood += woodAmount;
+        stone += stoneAmount;
+        iron += ironAmount;
     }
 }
