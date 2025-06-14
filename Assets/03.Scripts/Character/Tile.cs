@@ -27,10 +27,27 @@ public class Tile : MonoBehaviour
     void OnMouseEnter()
     {
         rend.material.color = Color.yellow;
-        GameManager.Instance.CurrentTIle = this;
+        GameManager.Instance.CurrentTile = this;
     }
 
     void OnMouseExit()
+    {
+        rend.material.color = originalColor;
+    }
+    public void OnHovering() 
+    {
+        if (CurrentPlacedObject == null || CurrentPlacedObject.activeSelf)
+        {
+            rend.material.color = Color.yellow;
+
+        }
+        else
+        {
+            rend.material.color = Color.red;
+
+        }
+    }
+    public void OnHoverExit()
     {
         rend.material.color = originalColor;
     }

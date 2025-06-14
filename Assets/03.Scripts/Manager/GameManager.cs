@@ -15,23 +15,60 @@ public class GameManager : Singleton<GameManager>
     public int ReadyCount = 0;
     
     [SerializeField]public String SelectedPrefabRcode;
-    public Tile CurrentTIle;
+    public Tile CurrentTile;
     public ECombatConditionType CombatConditionType = ECombatConditionType.READY;
-
-
-
+    public LayerMask layerMask;
+    [SerializeField]Camera cam;
+    
+    RaycastHit hit;
 
     private WaitForSecondsRealtime waitRead;
 
     private void Start()
     {
         Application.targetFrameRate = 60;
+        cam = Camera.main;
+        
+        
     }
 
 
     private void Update()
+        
     {
-        //HeroPosUpdate();
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity, layerMask);
+        Tile foundTile = null;
+        foreach (RaycastHit h in hits)
+        {
+            Tile tile = h.collider.gameObject.GetComponent<Tile>();
+            if (tile != null)
+            {
+                foundTile = tile;
+                break;
+            }
+        }
+
+        if (foundTile != null)
+        {
+            if (CurrentTile != foundTile)
+            {
+                CurrentTile.OnHoverExit();
+            }
+            CurrentTile = foundTile;
+            CurrentTile.OnHovering();
+        }
+        else //타일밖으로 가면
+        {
+            if (CurrentTile != null)
+                CurrentTile.OnHoverExit();
+            CurrentTile = null;
+            Debug.Log("Tile 밖");
+        }
+
+                
+
+
     }
    
 
