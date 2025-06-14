@@ -19,7 +19,7 @@ MonoBehaviour:
   heroPrefab: {fileID: 0}
   heroName: "\uB3CC"
   heroDescription: 
-  RCode: rock
+  RCode: npcrock
   multipleStat:
     StatChangeType: 0
     Atk: 0

@@ -17,6 +17,7 @@ public class Tile : MonoBehaviour
     private Color originalColor;
     public GameObject CurrentPlacedObject;
     private CharacterControllerH SummonPrefabControl;
+    LayerMask tileLayer;
     void Start()
     {
         rend = GetComponent<Renderer>();

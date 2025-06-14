@@ -18,15 +18,7 @@ public class ResourceManager : Singleton<ResourceManager>
     public int stone;
     public int iron;
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-        Instance = this;
-    }
+    
 
     // Start is called before the first frame update
     void Start()
@@ -83,7 +75,24 @@ public class ResourceManager : Singleton<ResourceManager>
             return false;
         }
     }
-
+    public void GainResource(resourseType resouce, int amount)
+    {
+        switch (resouce)
+        {
+            case resourseType.money:
+                money += amount;
+                break;
+            case resourseType.wood:
+                wood += amount;
+                break;
+            case resourseType.stone:
+                stone += amount;
+                break;
+            case resourseType.iron:
+                iron += amount;
+                break;
+        }
+    }
     public void AddResource(int moneyAmount, int woodAmount, int stoneAmount, int ironAmount)
     {
         money += moneyAmount;
