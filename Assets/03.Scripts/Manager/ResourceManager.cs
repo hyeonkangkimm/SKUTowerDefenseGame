@@ -12,10 +12,21 @@ public enum resourseType {
 
 public class ResourceManager : Singleton<ResourceManager>
 {
+    public static ResourceManager Instance { get; private set; }
     public int money;
     public int wood;
     public int stone;
     public int iron;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -71,5 +82,13 @@ public class ResourceManager : Singleton<ResourceManager>
         {
             return false;
         }
+    }
+
+    public void AddResource(int moneyAmount, int woodAmount, int stoneAmount, int ironAmount)
+    {
+        money += moneyAmount;
+        wood += woodAmount;
+        stone += stoneAmount;
+        iron += ironAmount;
     }
 }
