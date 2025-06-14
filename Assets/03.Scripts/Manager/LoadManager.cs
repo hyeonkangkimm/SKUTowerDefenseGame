@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadManager : Singleton<LoadManager>
+public class   LoadManager : Singleton<LoadManager>
 {
-    public GameObject GetHeroPrefab(string path)
+    public GameObject GetPrefab(string rcode)
     {
-        path = "Hero/" + path;
+        string path="";
+        if(rcode.Contains("npc"))
+            path = "Hero/" + rcode;
+        if (rcode.Contains("mob"))
+            path = "Mob/" + rcode;
         return (GameObject)Resources.Load(path);
     }
-    public GameObject GetMobPrefab(string path)
-    {
-        path = "Mob/" + path;
-        return (GameObject)Resources.Load(path);
-    }
+    
 }

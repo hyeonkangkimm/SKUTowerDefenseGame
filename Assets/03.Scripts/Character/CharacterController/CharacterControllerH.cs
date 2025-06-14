@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 public class CharacterControllerH : Controller
@@ -16,6 +17,7 @@ public class CharacterControllerH : Controller
     public event Action<int> OnHeal;
     //public event Action OnAttackSpeedChange;
 
+    public List<GameObject> enemiesInRange = new List<GameObject>();
     public bool isHit;
     public bool isHeal;
     public bool isDead;
@@ -71,6 +73,18 @@ public class CharacterControllerH : Controller
     public void OnDisable()
     {
         currentHurtCoroutine = null;
+        foreach (GameObject enemy in enemiesInRange)
+        {
+            if (enemy != null)
+            {
+                MonsterAI ai = enemy.GetComponent<MonsterAI>();
+                if (ai != null)
+                {
+                    ai.OnDeath -= OnEnemyDeath;  
+                }
+            }
+        }
+        enemiesInRange.Clear(); // 리스트 초기화
     }
     #endregion
     #region Action CallBack
@@ -107,16 +121,7 @@ public class CharacterControllerH : Controller
     //    OnAttackSpeedChange?.Invoke();
     //}
     #endregion
-    [ContextMenu("Walk")]
-    public void CMFight()
-    {
-         character.StateMachine.ChangeState(character.StateMachine.Pursuit);
-    }
-    [ContextMenu("Attack")]
-    public void CMAttack()
-    {
-        character.StateMachine.ChangeState(character.StateMachine.NormalAttack);
-    }
+    
     public void ChooseAttackType()
     {
         
@@ -126,17 +131,48 @@ public class CharacterControllerH : Controller
     {
 
     }
-   
-   
+
+    #region 전투상태관리
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Monster"))
         {
+            MonsterAI ai = other.GetComponent<MonsterAI>();
+            ai.OnDeath -= OnEnemyDeath;
+            ai.OnDeath += OnEnemyDeath;
+            enemiesInRange.Add(other.gameObject);
             this.character.StateMachine.ChangeState(character.StateMachine.NormalAttack);
+        }
+        
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Monster"))
+        {
+
+        MonsterAI ai = other.GetComponent<MonsterAI>();
+        ai.OnDeath -= OnEnemyDeath;
+        enemiesInRange.Remove(other.gameObject);
+             if (enemiesInRange.Count == 0)
+             {
+                 this.character.StateMachine.ChangeState(character.StateMachine.Idle);
+             }
         }
     }
 
-
+    public void OnEnemyDeath(GameObject enemy)
+    {
+        if (enemiesInRange.Contains(enemy))
+        {
+            enemiesInRange.Remove(enemy);
+            if (enemiesInRange.Count == 0)
+            {
+            this.character.StateMachine.ChangeState(character.StateMachine.Idle);
+            }
+        }
+       
+    }
+    #endregion
     #region 공격전 데미지계산
     /// <summary>
     /// 플레이어의 현재 공격력을 받아서, AtkMultiplier를 계산

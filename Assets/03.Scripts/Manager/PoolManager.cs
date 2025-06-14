@@ -49,7 +49,8 @@ public class PoolManager : Singleton<PoolManager>
             //Debug.Log(pool.rcode);
             List<GameObject> list = new List<GameObject>();
             poolDictionary.Add(pool.rcode, list);
-            pool.prefab = LoadManager.Instance.GetHeroPrefab(pool.rcode);
+            pool.prefab = LoadManager.Instance.GetPrefab(pool.rcode);
+
             AddPoolObject(pool);
             //var path = ResourceManager.Instance.GetPath(pool.rcode, EAddressableType.PREFAB);
             //pool.prefab = await Addressables.InstantiateAsync(path, parent: pool.parentTransform).Task;

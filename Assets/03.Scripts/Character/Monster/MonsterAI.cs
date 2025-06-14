@@ -11,27 +11,49 @@ public enum AIState
     Wandering,
     Attacking
 }
+[System.Serializable]
+public struct DropItem
+{
+    public int amount;
+    public resourseType type;
+    public DropItem(resourseType type, int amount)
+    {
+        this.type = type;
+        this.amount = amount;
+    }
+}
 
 public class MonsterAI : MonoBehaviour, IDamageable
 {
+
     [Header("Stats")]
-    public int health;
+    
+    [Tooltip("StageManager에서 관리할 변수들 구조체, 소환하면서 곱셈할거임")]
+
+    public int Health;
+    public int BaseHp;
+    public int Damage;
+    public int BaseDamage;
+    public Sprite Icon;
+
+
+    public DropItem[] DropItems;
     public bool Die;
+    public event Action<GameObject> OnDeath;
     public float walkSpeed;
-    //public ItemData[] dropOnDeath;
 
     [Header("Movement")]
     public Transform targetDestination;
-    private bool reachedFinalDestination = false;
+    public bool reachedFinalDestination = false;
 
     [Header("AI")]
     private NavMeshAgent agent;
     
     public int detectionRange;//맵한칸 거리 기준
-    private AIState aiState;
+    [SerializeField]private AIState aiState;
 
     [Header("Combat")]
-    public int damage;
+    
     public float attackRate;
     private float lastAttackTime;
     public float attackDistance;
@@ -48,6 +70,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        
     }
 
     void Start()
@@ -57,6 +80,15 @@ public class MonsterAI : MonoBehaviour, IDamageable
         GoToDestination();
         Die = false;
         enemyLayer = 1 << 6;
+        
+    }
+    private void OnEnable()
+    {
+        Die = false;
+    }
+    void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     void Update()
@@ -87,12 +119,9 @@ public class MonsterAI : MonoBehaviour, IDamageable
                 AttackingUpdate();
                 break;
         }
+
     }
-    public void StatChange(int stage, int wave)
-    {
-        health = stage*10+wave;
-        damage = stage*1;
-    }
+   
 
     public void SetState(AIState state)
     {
@@ -126,23 +155,26 @@ public class MonsterAI : MonoBehaviour, IDamageable
 
     void PassiveUpdate()
     {
-        if (TargetDistance < detectionRange)
+        if (TargetDistance < detectionRange&&NearTarget!=null)
         {
             SetState(AIState.Attacking);
             return;
         }
 
         // 목적지 도착 판정
-        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance && (!agent.hasPath || agent.velocity.sqrMagnitude == 0f))
+        if (!agent.pathPending&&agent.remainingDistance <= agent.stoppingDistance)
         {
+            Debug.Log("Reached");
             reachedFinalDestination = true;
             SetState(AIState.Idle);
-            GameObject.Destroy(gameObject);
+            gameObject.SetActive(false);
+            //벽 체력깍기
         }
     }
 
     void AttackingUpdate()
-    {  
+    {  if (Die)
+            return;
         //거리가 안에 있고 시야에 있으면 공격
         if (TargetDistance < attackDistance && IsPlayerInFieldOfView())
         {
@@ -194,25 +226,24 @@ public class MonsterAI : MonoBehaviour, IDamageable
     }
     public void TakePhysicalDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        Health -= damage;
+        if (Health <= 0)
         {
             OnDie();
         }
-
-        StartCoroutine(DamageFlash());
+        if(!Die)
+             StartCoroutine(DamageFlash());
     }
 
     void OnDie()
     {
         Die = true;
-        //Drop item
-        //for (int i = 0; i < dropOnDeath.Length; i++)
-        //{
-        //    Instantiate(dropOnDeath[i].dropPrefab, transform.position + Vector3.up * 2, Quaternion.identity);
-        //}
-        //refactoring Destory--> Pooling
-        Destroy(gameObject);
+        for (int i = 0; i <DropItems.Length; i++)
+        {
+            ResourceManager.Instance.GainResource(DropItems[i].type, DropItems[i].amount);
+        }
+        OnDeath?.Invoke(this.gameObject);
+        gameObject.SetActive(false);
     }
 
     IEnumerator DamageFlash()
@@ -244,7 +275,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
         if(NearTarget != null)
         {
         IDamageable character = NearTarget.GetComponent<IDamageable>();
-        character.TakeDamage(damage);
+        character.TakeDamage(Damage);
         } 
        
     }

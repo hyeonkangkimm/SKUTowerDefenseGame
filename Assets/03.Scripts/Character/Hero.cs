@@ -81,6 +81,10 @@ public class Hero : Character
         
         InitStat();
     }
+    private void OnEnable()
+    {
+        InitStat();
+    }
 
 
     public void ChangeStat()

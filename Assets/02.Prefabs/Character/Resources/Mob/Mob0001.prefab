@@ -150,12 +150,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c4e142e0978c5408b76ee991b9bfc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1111
+  Health: 0
+  BaseHp: 0
+  Damage: 0
+  BaseDamage: 0
+  Icon: {fileID: 0}
+  DropItems:
+  - amount: 1
+    type: 0
   Die: 0
   walkSpeed: 4
   targetDestination: {fileID: 0}
   detectionRange: 5
-  damage: 10
   attackRate: 1.35
   attackDistance: 5
   fieldOfView: 20
