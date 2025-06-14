@@ -1,18 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterDeath : MonoBehaviour
 {
-    private CharacterControllerH _characterController;
+    private Action OnDeath;
     private void OnEnable()
     {
-        _characterController = GetComponent<CharacterControllerH>();
-        _characterController.OnDeath += Death;
+        OnDeath += Death;
     }
     private void OnDisable()
     {
-        _characterController.OnDeath -= Death;
+        OnDeath -= Death;
 
     }
     void Death()

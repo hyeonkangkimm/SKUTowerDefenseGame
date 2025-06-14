@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,8 +37,10 @@ public class Tile : MonoBehaviour
     public void OnPlaceCharacter(string rcode)
     {
         //벽설치, 포탑설치, 캐릭터 설치 대응해야함
-        if (CurrentPlacedObject == null)
+        if (CurrentPlacedObject != null && CurrentPlacedObject.activeInHierarchy)
         {
+            return;
+        }
             GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
            
             
@@ -58,44 +61,53 @@ public class Tile : MonoBehaviour
                 if (prefabToPlace == null)
                     Debug.Log("로딩안됨");
 
-        }
-        else
-        {
-            //설치불가
-        }
     }
+        
     
-    public void OnPlaceWall(string rcode)
+    
+    public bool OnPlaceWall(string rcode)
     {
-        Vector3 placePosition = this.transform.position;
-        Vector2Int gridPos = GridObstacleManager.Instance.WorldToGrid(placePosition);
-
-        // 1. 장애물 설치 가능 검사
-        bool canPlace = GridObstacleManager.Instance.TryPlaceObstacle(gridPos);
-
-        if (!canPlace)
+        if (CurrentPlacedObject != null && CurrentPlacedObject.activeInHierarchy)
         {
-            Debug.Log("경로 차단됨! 벽 설치 취소");
-            return;
+            return false;
         }
+            Vector3 placePosition = this.transform.localPosition;
+            Vector2Int gridPos = GridObstacleManager.Instance.WorldToGrid(placePosition);
+            if (gridPos.y == 0 || gridPos.y == 7)
+            {
+                Debug.Log("좌측끝 우측끝에는 벽 설치 불가");
+                return false;
+            }
 
-        // 2. 설치 가능하면 Pool에서 프리팹 꺼내기
-        GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
+            // 1. 장애물 설치 가능 검사
+            bool canPlace = GridObstacleManager.Instance.TryPlaceObstacle(gridPos);
 
-        if (prefabToPlace != null)
-        {
-            prefabToPlace.transform.position = placePosition;
+            if (!canPlace)
+            {
+                Debug.Log("경로 차단됨! 벽 설치 취소");
+                return false;
+            }
 
-            var placeable = prefabToPlace.GetComponent<IPlaceable>();
-            if (placeable != null)
-                placeable.OnPlaced(placePosition);
+            // 2. 설치 가능하면 Pool에서 프리팹 꺼내기
+            GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
+            prefabToPlace.transform.parent = this.transform;
+            if (prefabToPlace != null)
+            {
+                prefabToPlace.transform.localPosition = Vector3.zero;
 
-            CurrentPlacedObject = prefabToPlace;
-        }
-        else
-        {
-            Debug.LogWarning("벽 프리팹 로딩 실패");
-        }
+                var placeable = prefabToPlace.GetComponent<IPlaceable>();
+                if (placeable != null)
+                    placeable.OnPlaced(placePosition);
+
+                CurrentPlacedObject = prefabToPlace;
+                return true;
+            }
+            else
+            {
+                Debug.LogWarning("벽 프리팹 로딩 실패");
+                return false;
+            }
+        
     }
     void OnSummonCharacter(CharacterControllerH controller)
     {

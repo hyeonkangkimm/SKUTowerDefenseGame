@@ -6,6 +6,9 @@ public class HeroSO : ScriptableObject
 {
     public int hid;
     public Sprite icon;
+    public int manacost;
+    public float cooldownDuration;
+    public GameObject heroPrefab;
 
     public string heroName;
     public string heroDescription;

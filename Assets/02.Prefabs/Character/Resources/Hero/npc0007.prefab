@@ -320,6 +320,7 @@ MonoBehaviour:
   UpgradeIncreaseCost: 50
   UpstarDefaultCost: 5
   UpstarIncreaseCost: 10
+  meshRenderers: []
 --- !u!1 &7979486628470441846
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,8 +372,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1.36, z: 2.47}
-  m_Center: {x: 0, y: 0, z: 1.16}
+  m_Size: {x: 2, y: 1.36, z: 3}
+  m_Center: {x: 0, y: 0, z: 1.5}
 --- !u!1001 &402797629492690296
 PrefabInstance:
   m_ObjectHideFlags: 0

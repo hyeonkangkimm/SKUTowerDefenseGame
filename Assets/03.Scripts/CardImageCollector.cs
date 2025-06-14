@@ -1,28 +1,38 @@
-using System.Collections.Generic;
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 public class CardImageCollector : MonoBehaviour
 {
+    public GameObject cardPrefab;             // ì¹´ë“œ í”„ë¦¬íŒ¹
+    public Transform parentTransform;         // ì¹´ë“œê°€ ìƒì„±ë  ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ (ì˜ˆ: ManaBGì˜ Content)
+    public List<GameObject> cardObjects;
     public List<Image> cardImages = new List<Image>();
+    public List<HeroSO> heroDataList = new List<HeroSO>(); // âœ… ì¶”ê°€
 
-    void Start()
+    // ì´ë¯¸ì§€ì™€ HeroSOë¥¼ ë§¤ì¹­í•´ì„œ ì €ì¥
+    public void SetupCards(List<HeroSO> heroes)
     {
-        
-
-        // Card ~ Card5ÀÇ Image °¡Á®¿À±â
-        for (int i = 1; i <= 5; i++)
+        for (int i = 0; i < heroes.Count; i++)
         {
-            string path = $"Card{i}/Image";
-            Transform card = transform.Find(path);
-            if (card != null)
-            {
-                Image img = card.GetComponent<Image>();
-                if (img != null)
-                    cardImages.Add(img);
-            }
-        }
+            GameObject card = Instantiate(cardPrefab, parentTransform); // ì¹´ë“œ ìƒì„±
+            HeroSO hero = heroes[i];
 
-        Debug.Log($"ÃÑ {cardImages.Count}°³ÀÇ Ä«µå ÀÌ¹ÌÁö°¡ µî·ÏµÇ¾ú½À´Ï´Ù.");
+            cardObjects.Add(card); // ğŸ’¡ ì¹´ë“œ ì˜¤ë¸Œì íŠ¸ ì €ì¥
+
+            Image img = card.GetComponentInChildren<Image>();
+            cardImages.Add(img);
+
+            CardDragHandler handler = card.GetComponent<CardDragHandler>();
+            if (handler != null)
+            {
+                handler.heroData = hero;
+                handler.characterImage = img;
+                handler.UpdateCardVisual();
+            }
+
+            heroDataList.Add(hero);
+        }
     }
 }

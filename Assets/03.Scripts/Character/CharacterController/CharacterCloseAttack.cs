@@ -50,6 +50,8 @@ public class CharacterCloseAttack : MonoBehaviour
     }
     public void OnEnable()
     {
+        timeSinceLastAttack = 0f;
+
         characterController.OnAttack += onAttack;
         //characterController.OnAttackSpeedChange += ChangeAttackMotionSpeed;
     }

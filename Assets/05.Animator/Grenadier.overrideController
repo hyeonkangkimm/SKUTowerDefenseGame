@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Grenadier
+  m_Controller: {fileID: 9100000, guid: f93edc0a6f99adc4e8728e3510dd562f, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 257e753645ba2954ca2439c671e5337b, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 70b0e092b9e42f041a6d654770eb7fd9, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: ab5bda48f8799bb4f84ab060e69f60a7, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: b93bfeb64d884874893428342c354224, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 207dc8692867d714ab049ba3b95ff920, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: c139235e3a6bb2b41abfdcc1c54bad61, type: 3}

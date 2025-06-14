@@ -63,6 +63,7 @@ public class Hero : Character
 
     public int UpstarDefaultCost = 5;
     public int UpstarIncreaseCost = 10;
+    public SkinnedMeshRenderer[] meshRenderers;
 
 
     protected override void Awake()
@@ -71,7 +72,7 @@ public class Hero : Character
         data = new(so);
         random = new System.Random();
         StatHandler.baseStat = so.PassiveStat;
-
+        meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
 
     protected override void Start()
@@ -80,14 +81,31 @@ public class Hero : Character
         
         InitStat();
     }
+    private void OnEnable()
+    {
+        InitStat();
+    }
 
 
     public void ChangeStat()
     {
         StatHandler.UpdateStatModifier();
     }
+    IEnumerator DamageFlash()
+    {
+        foreach (var renderer in meshRenderers)
+        {
+            renderer.material.color = new Color(1.0f, 0.6f, 0.6f);
+        }
 
-    
+        yield return new WaitForSeconds(0.2f);
+
+        foreach (var renderer in meshRenderers)
+        {
+            renderer.material.color = Color.white;
+        }
+    }
+
 }
 
 //    /// <summary>

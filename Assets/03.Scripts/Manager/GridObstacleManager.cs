@@ -22,20 +22,16 @@ public class GridObstacleManager : Singleton<GridObstacleManager>
     {
         if (!IsInBounds(pos)) return false;
 
-        // 임시로 장애물 설치해보기
         gridMap[pos.x, pos.y] = 1;
 
-        // 경로가 막히면 설치 취소
-        //bool reachable = IsReachable(startCell, goalCell);
-        bool reachable = IsPathFromLeftToRight();
-        if (!reachable)
+        bool pathStillExists = IsPathFromTopToBottom(); 
+
+        if (!pathStillExists)
         {
-            Debug.Log("경로 차단됨, 설치 불가!");
-            gridMap[pos.x, pos.y] = 0; // 되돌림
+            gridMap[pos.x, pos.y] = 0;
             return false;
         }
 
-        Debug.Log("설치 완료!");
         return true;
     }
 
@@ -70,38 +66,38 @@ public class GridObstacleManager : Singleton<GridObstacleManager>
         }
         return false;
     }
-    public bool IsPathFromLeftToRight()
+    public bool IsPathFromTopToBottom()
     {
-        int width = gridMap.GetLength(0);  // 5
-        int height = gridMap.GetLength(1); // 9
+        int width = gridMap.GetLength(0);  // 5 (X index)
+        int height = gridMap.GetLength(1); // 9 (Z index)
 
         bool[,] visited = new bool[width, height];
         Queue<Vector2Int> queue = new Queue<Vector2Int>();
 
-        // 1. 왼쪽 열(X = 0)에서 시작 가능한 지점들을 큐에 넣기
-        for (int y = 0; y < height; y++)
+        // 1. 맨 위 Z줄 (zIndex == 0)에서 시작
+        for (int x = 0; x < width; x++)
         {
-            if (gridMap[0, y] == 0)
+            if (gridMap[x, 0] == 0)
             {
-                queue.Enqueue(new Vector2Int(0, y));
-                visited[0, y] = true;
+                queue.Enqueue(new Vector2Int(x, 0));
+                visited[x, 0] = true;
             }
         }
 
-        // 2. BFS로 탐색
+        // 2. BFS 탐색
         Vector2Int[] dirs = {
-        new Vector2Int(0,1), new Vector2Int(1,0),
-        new Vector2Int(0,-1), new Vector2Int(-1,0),
-        new Vector2Int(1,1), new Vector2Int(-1,1),
-        new Vector2Int(1,-1), new Vector2Int(-1,-1)
-    };
+            new Vector2Int(0,1),  // 위
+            new Vector2Int(1,0),  // 오른쪽
+            new Vector2Int(0,-1), // 아래
+            new Vector2Int(-1,0)  // 왼쪽
+        };
 
         while (queue.Count > 0)
         {
             var cur = queue.Dequeue();
 
-            // 도착 판정: 오른쪽 열 도달
-            if (cur.x == width - 1) return true;
+            // 아래쪽 줄(Z 마지막) 도달하면 통과
+            if (cur.y == height - 1) return true;
 
             foreach (var dir in dirs)
             {
@@ -114,7 +110,7 @@ public class GridObstacleManager : Singleton<GridObstacleManager>
             }
         }
 
-        return false; // 하나도 못 도달
+        return false; // 길 없음
     }
     bool IsInBounds(Vector2Int pos)
     {
@@ -125,6 +121,7 @@ public class GridObstacleManager : Singleton<GridObstacleManager>
     {
         int x = Mathf.RoundToInt((position.x - origin.x) / cellSize);
         int z = Mathf.RoundToInt((position.z - origin.y) / cellSize);
+        Debug.Log($"{x},{z}");
         return new Vector2Int(x, z);
     }
 
