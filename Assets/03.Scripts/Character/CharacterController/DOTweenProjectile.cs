@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class DOTweenProjectile : MonoBehaviour
 {
@@ -7,16 +8,20 @@ public class DOTweenProjectile : MonoBehaviour
     public float height = 2f;
     public float duration = 1f;
     public int damage = 10;
-
+    public ParticleSystem OnHitEffect;
+    public AudioClip bulletClip;
+    public AudioClip onHitClip;
+    public void InitProj(int damage)
+    {
+        this.damage = damage;
+    }
     void Start()
     {
-        if (target == null)
-        {
-            Debug.LogWarning("No target assigned to projectile.");
-            Destroy(gameObject);
-            return;
-        }
 
+        if (target != null)
+        {
+            transform.DOMove(target.transform.position, 0.5f).SetEase(Ease.Linear);
+        }
         Vector3 start = transform.position;
         Vector3 end = target.transform.position;
 
@@ -28,6 +33,7 @@ public class DOTweenProjectile : MonoBehaviour
         // 움직임
         transform.DOPath(path, duration, PathType.CatmullRom, PathMode.Full3D)
             .SetEase(Ease.InOutSine)
+            .SetLookAt(0.01f)
             .OnComplete(() => {
                 // 명중 시 처리
                 MonsterAI ai = target.GetComponent<MonsterAI>();
@@ -40,9 +46,28 @@ public class DOTweenProjectile : MonoBehaviour
     }
     void Update()
     {
-        if (target != null)
+       
+        if (target == null)
         {
-            transform.DOMove(target.transform.position, 0.5f).SetEase(Ease.Linear);
+            Debug.LogWarning("No target assigned to projectile.");
+            Destroy(this.gameObject);
+            return;
         }
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        if (OnHitEffect != null)
+        {
+            var onHitObj = Instantiate(OnHitEffect, transform.position, Quaternion.identity);
+            var onHit = onHitObj.gameObject.AddComponent<AudioTrigger>();
+            if (onHitClip != null)
+            {
+                onHit.onClip = onHitClip;
+            }
+
+        }
+        Destroy(this.gameObject);
     }
 }

@@ -53,6 +53,7 @@ public class StageManager : MonoBehaviour
             float waveMultiplier = 1 + (CurrentWave - 1) * 0.1f;
             monsterAI.Health = (int)(monsterAI.BaseHp * stageMultiplier * waveMultiplier);
             monsterAI.Damage = (int)(monsterAI.BaseDamage * stageMultiplier * waveMultiplier);
+            monsterAI.OnWaveChanged();
             for (int i = 0; i < monsterAI.DropItems.Length; i++)
             {
                 DropItem drop = monsterAI.DropItems[i];

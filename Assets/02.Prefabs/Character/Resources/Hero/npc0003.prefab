@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2437893124207247092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6725348336050205525}
+  m_Layer: 6
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6725348336050205525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2437893124207247092}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.72, z: 0.35}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 846092920391538082}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3898210411047286130
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6517450780769193866}
-  - component: {fileID: 4322420066586048590}
+  - component: {fileID: 5290062107751421174}
   m_Layer: 0
   m_Name: DetectBox
   m_TagString: Untagged
@@ -32,8 +63,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 846092920391538082}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4322420066586048590
-BoxCollider:
+--- !u!135 &5290062107751421174
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -47,12 +78,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1.36, z: 3}
-  m_Center: {x: 0, y: 0, z: 1.5}
+  m_Radius: 5.75
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8797554616783382114
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +124,7 @@ Transform:
   - {fileID: 8557227528922682739}
   - {fileID: 8915202734215405193}
   - {fileID: 6517450780769193866}
+  - {fileID: 6725348336050205525}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9058778024764824828
@@ -108,6 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
+  enemiesInRange: []
   isHit: 0
   isHeal: 0
   isDead: 0
@@ -191,7 +224,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8797554616783382114}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3bd6e2ecd9c2554da10ceeb7c4fc446, type: 3}
   m_Name: 
@@ -347,7 +380,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -570,7 +603,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c358da173ffe634a82e5a83563fc995, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2994018681250709746}
   m_SourcePrefab: {fileID: 100100000, guid: 1c358da173ffe634a82e5a83563fc995, type: 3}
 --- !u!95 &2315217230450429705 stripped
 Animator:
@@ -582,3 +618,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1c358da173ffe634a82e5a83563fc995, type: 3}
   m_PrefabInstance: {fileID: 8163856673767436952}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9046238196384468937 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1c358da173ffe634a82e5a83563fc995, type: 3}
+  m_PrefabInstance: {fileID: 8163856673767436952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2994018681250709746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9046238196384468937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2ba96270d7de684a8e8444a44356e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 9058778024764824828}
+  projectilePrefab: {fileID: 8579476460161706892, guid: 0e02ab8d187b5554697978c177977749, type: 3}
+  firePoint: {fileID: 6725348336050205525}

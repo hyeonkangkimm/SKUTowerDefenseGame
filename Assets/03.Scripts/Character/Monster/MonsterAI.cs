@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using NUnit.Framework.Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public enum AIState
 {
@@ -64,12 +65,14 @@ public class MonsterAI : MonoBehaviour, IDamageable
     [SerializeField] private GameObject NearTarget;
     private Animator animator;
     private SkinnedMeshRenderer[] meshRenderers;
+    MonterHealthSystem healthSystem;
     LayerMask enemyLayer;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         meshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        healthSystem = GetComponent<MonterHealthSystem>();
         
     }
 
@@ -82,8 +85,13 @@ public class MonsterAI : MonoBehaviour, IDamageable
         enemyLayer = 1 << 6;
         
     }
+    public void OnWaveChanged()
+    {
+        healthSystem.HealthChanged(Health);
+    }
     private void OnEnable()
     {
+        healthSystem.HealthChanged(Health);
         Die = false;
     }
     void OnDisable()
@@ -121,7 +129,6 @@ public class MonsterAI : MonoBehaviour, IDamageable
         }
 
     }
-   
 
     public void SetState(AIState state)
     {
@@ -226,8 +233,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
     }
     public void TakePhysicalDamage(int damage)
     {
-        Health -= damage;
-        if (Health <= 0)
+        if (healthSystem.TakeDamage(damage))
         {
             OnDie();
         }

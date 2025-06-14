@@ -11,7 +11,7 @@ public class CharacterRangeAttack : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform firePoint;
     private GameObject currentTarget;
-    void Start()
+    void Awake()
     {
         characterController = GetComponentInParent<CharacterControllerH>();
         
@@ -33,22 +33,23 @@ public class CharacterRangeAttack : MonoBehaviour
     }
     public void OnDisable()
     {
-        characterController.OnAttack -= onAttack;
+       
 
     }
     public void OnEnable()
     {
-        characterController.OnAttack += onAttack;
+        
     }
     /// <summary>
     /// 애니메이션 투사체 발사 시점에 출발
     /// </summary>
-    void onAttack()
+    public void OnShot()
     {
         if (currentTarget == null) return;
-
+    
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         DOTweenProjectile dp = proj.GetComponent<DOTweenProjectile>();
+        dp.InitProj((int)CurAtk);
         dp.target = currentTarget;
     }
 }
