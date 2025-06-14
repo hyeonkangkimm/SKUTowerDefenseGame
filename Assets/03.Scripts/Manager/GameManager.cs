@@ -39,10 +39,9 @@ public class GameManager : Singleton<GameManager>
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits = Physics.RaycastAll(ray, Mathf.Infinity, layerMask);
         Tile foundTile = null;
-        foreach (RaycastHit h in hits)
+        foreach (RaycastHit hit in hits)
         {
-            Tile tile = h.collider.gameObject.GetComponent<Tile>();
-            if (tile != null)
+            if (hit.collider.gameObject.TryGetComponent<Tile>(out Tile tile))
             {
                 foundTile = tile;
                 break;
@@ -51,7 +50,8 @@ public class GameManager : Singleton<GameManager>
 
         if (foundTile != null)
         {
-            if (CurrentTile != foundTile)
+            
+            if (CurrentTile!=null&&CurrentTile != foundTile)
             {
                 CurrentTile.OnHoverExit();
             }

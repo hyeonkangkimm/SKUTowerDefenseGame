@@ -149,14 +149,13 @@ public class CharacterControllerH : Controller
     {
         if(other.CompareTag("Monster"))
         {
-
-        MonsterAI ai = other.GetComponent<MonsterAI>();
-        ai.OnDeath -= OnEnemyDeath;
-        enemiesInRange.Remove(other.gameObject);
-             if (enemiesInRange.Count == 0)
-             {
-                 this.character.StateMachine.ChangeState(character.StateMachine.Idle);
-             }
+           MonsterAI ai = other.GetComponent<MonsterAI>();
+           ai.OnDeath -= OnEnemyDeath;
+           enemiesInRange.Remove(other.gameObject);
+           if (enemiesInRange.Count == 0)
+           {
+               this.character.StateMachine.ChangeState(character.StateMachine.Idle);
+           }
         }
     }
 

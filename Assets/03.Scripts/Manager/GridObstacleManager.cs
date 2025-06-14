@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-using UnityEngine;
-using System.Collections.Generic;
-
 public class GridObstacleManager : Singleton<GridObstacleManager>
 {
     public int gridWidth = 5;
