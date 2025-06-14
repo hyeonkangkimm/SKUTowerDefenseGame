@@ -87,7 +87,7 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             bool mana=true;
             if (manaUI != null && manaUI.UseMana(heroData.manacost))
             {
-                if (heroData.RCode == "rock")
+                if (heroData.RCode == "npcrock")
                 {
                     mana= GameManager.Instance.CurrentTIle.OnPlaceWall(heroData.RCode);
                     if(mana==false)

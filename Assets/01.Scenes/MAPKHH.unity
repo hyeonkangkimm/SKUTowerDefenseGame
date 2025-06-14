@@ -6296,7 +6296,7 @@ MonoBehaviour:
   - rcode: npc0001
     size: 5
     prefab: {fileID: 9157911292676662898, guid: 45fd0f16c4c19ce46b9fb59c797e09af, type: 3}
-  - rcode: rock
+  - rcode: npcrock
     size: 5
     prefab: {fileID: 5848167866193253233, guid: 4dc9dfcada85d4341a5924d4147a4473, type: 3}
   - rcode: npc0002

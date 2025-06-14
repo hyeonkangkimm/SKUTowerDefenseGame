@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8510092257204388473}
   - component: {fileID: -5177535660885077698}
   m_Layer: 0
-  m_Name: rock
+  m_Name: npcrock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
