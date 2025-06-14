@@ -84,6 +84,24 @@ public class ResourceManager : Singleton<ResourceManager>
         }
     }
 
+    public void GainResource(resourseType resouce, int amount)
+    {
+        switch (resouce)
+        {
+            case resourseType.money:
+                money += amount;
+                break;
+            case resourseType.wood:
+                wood += amount;
+                break;
+            case resourseType.stone:
+                stone += amount;
+                break;
+            case resourseType.iron:
+                iron += amount;
+                break;
+        }
+    }
     public void AddResource(int moneyAmount, int woodAmount, int stoneAmount, int ironAmount)
     {
         money += moneyAmount;
