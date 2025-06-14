@@ -12,7 +12,7 @@ public class ShopManager : MonoBehaviour
     public Vector2 animationOffset = new Vector2(0f, 100f);
     public int maxAvailableCards = 5;
 
-    public CardLevelManager cardLevelManager;
+    private List<string> availableRcodes = new List<string>() { "C001", "C002", "C003", "C004", "C005" };
     [SerializeField]private List<HeroSO> availableCards = new List<HeroSO>();
 
     public void RollCards()
@@ -24,12 +24,14 @@ public class ShopManager : MonoBehaviour
 
             if (i < maxAvailableCards)
             {
-                int random = Random.Range(0, maxAvailableCards);
-                HeroSO hero = availableCards[random];
+                int random = Random.Range(1, maxAvailableCards);
                 string price = Random.Range(1, 3).ToString();
+                string name = availableCards[random].heroName;
+                string desc = availableCards[random].heroDescription;
+                Sprite heroImage = availableCards[random].icon;
 
                 slot.cardImage.enabled = true;
-                slot.SetCard(hero, price);
+                slot.SetCard(price, name, desc, heroImage);
             }
         }
 
@@ -71,11 +73,6 @@ public class ShopManager : MonoBehaviour
     public void PurchaseCard(StoreCardSlot slot)
     {
         if (slot.isPurchased) return;
-
-        if (cardLevelManager != null && slot.heroSO != null)
-        {
-            cardLevelManager.LevelUp(slot.heroSO.hid);
-        }
 
         slot.SetEmpty();
     }
