@@ -7,21 +7,46 @@ using Unity.VisualScripting;
 
 public class ShopManager : MonoBehaviour
 {
+    public static ShopManager Instance { get; private set; }
+
     public StoreCardSlot[] cardSlots;
     public float animationDuration = 0.5f;
     public Vector2 animationOffset = new Vector2(0f, 100f);
     public int maxAvailableCards = 5;
 
-    private List<string> availableRcodes = new List<string>() { "C001", "C002", "C003", "C004", "C005" };
-    [SerializeField]private List<HeroSO> availableCards = new List<HeroSO>();
+    [SerializeField] private GameObject[] storeUnlocks;
 
+    public int priceRange = 2;
+
+    [SerializeField]private List<HeroSO> availableCards = new List<HeroSO>();
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        Instance = this;
+    }
     private void Start()
     {
         RollCards();
     }
+
+    void OnEnable()
+    {
+        for (int i = 0; i < SkillManager.Instance.CheckStoreLevel(); i++)
+        {
+            storeUnlocks[i].SetActive(true);
+        }
+    }
+    private void Update()
+    {
+        maxAvailableCards = 4 + SkillManager.Instance.CheckStoreLevel();
+    }
+
     public void RollCards()
     {
-        maxAvailableCards = availableCards.Count;
         for (int i = 0; i < cardSlots.Length; i++)
         {
             var slot = cardSlots[i];
@@ -29,49 +54,18 @@ public class ShopManager : MonoBehaviour
             if (i < maxAvailableCards)
             {
                 int random = Random.Range(1, maxAvailableCards);
-                int price = Random.Range(1, 3);
+                int price = Random.Range(1, priceRange);
                 string name = availableCards[random].heroName;
                 string desc = availableCards[random].heroDescription;
                 Sprite heroImage = availableCards[random].icon;
                 int heroID = availableCards[random].hid;
 
                 slot.cardImage.enabled = true;
-                slot.SetCard(price, name, desc, heroImage, heroID);
+                slot.SetCard(price, name, desc, heroImage, heroID, price);
             }
         }
-
-        StopAllCoroutines();
-        StartCoroutine(AnimateCardsIn());
     }
 
-    private IEnumerator AnimateCardsIn()
-    {
-        foreach (var slot in cardSlots)
-        {
-            if (!slot.gameObject.activeSelf || slot.isPurchased) continue;
-
-            RectTransform rt = slot.cardTransform;
-            CanvasGroup cg = slot.canvasGroup;
-
-            Vector2 end = rt.anchoredPosition;
-            Vector2 start = end + animationOffset;
-            rt.anchoredPosition = start;
-            cg.alpha = 0f;
-
-            float elapsed = 0f;
-            while (elapsed < animationDuration)
-            {
-                float t = elapsed / animationDuration;
-                rt.anchoredPosition = Vector2.Lerp(start, end, t);
-                cg.alpha = t;
-                elapsed += Time.deltaTime;
-                yield return null;
-            }
-
-            rt.anchoredPosition = end;
-            cg.alpha = 1f;
-        }
-    }
 
 
 
@@ -80,5 +74,10 @@ public class ShopManager : MonoBehaviour
         if (slot.isPurchased) return;
 
         slot.SetEmpty();
+    }
+
+    public void UpdatePriceRange()
+    {
+        priceRange++;
     }
 }

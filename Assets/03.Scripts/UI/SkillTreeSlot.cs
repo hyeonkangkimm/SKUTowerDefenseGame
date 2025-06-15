@@ -21,12 +21,15 @@ public class SkillTreeSlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI stoneAmount;
     [SerializeField] private TextMeshProUGUI ironAmount;
 
+    public bool isSkillTreeUnlocker;
+    public bool isSkillPriceUp;
+    public bool resorseSKill;
+
     // Start is called before the first frame update
     void Start()
     {
         skillImage.color = lockedSkillColor;
         //resource = ResourceManager.Instance;
-        resource = FindObjectOfType<ResourceManager>();
     }
 
     // Update is called once per frame
@@ -39,6 +42,7 @@ public class SkillTreeSlot : MonoBehaviour
 
     public void UnLockSkillSlot()
     {
+        if (unlocked) return;
         if (resource.HaveEnoughResource( requireWoodAmount, requirestoneAmount, requireironAmount) == false)
             return;
 
@@ -61,6 +65,29 @@ public class SkillTreeSlot : MonoBehaviour
         }
 
         unlocked = true;
+        UnlockSKillTreeSlot();
+        PriceUp();
         skillImage.color = Color.white;
+    }
+
+    public void UnlockSKillTreeSlot()
+    {
+        if (!isSkillTreeUnlocker) return;
+
+        SkillManager.Instance.OpenSlot();
+    }
+
+    public void PriceUp()
+    {
+        if (!isSkillPriceUp) return;
+
+        ShopManager.Instance.UpdatePriceRange();
+    }
+
+    public void ResourseLevelUp()
+    {
+        if (!resorseSKill) return;
+
+        ResourceManager.Instance.UpdateLevel();
     }
 }

@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -253,7 +253,7 @@ MonoBehaviour:
   cardInfo: {fileID: 8736501946064115140}
   cardImage: {fileID: 4594884628610934054}
   store: {fileID: 0}
-  price: 
+  price: 0
   isPurchased: 0
 --- !u!225 &5185746646064579350
 CanvasGroup:

@@ -13,22 +13,24 @@ public class StoreCardSlot : MonoBehaviour, IPointerClickHandler
     public StoreCardInfo cardInfo;
     public Image cardImage;
     private int heroID = 0;
+    private int level;
 
     [SerializeField] public GameObject store;
     [HideInInspector] public int price;
      public bool isPurchased = false;
 
-    public void SetCard(int price, string name, string description, Sprite heroImage, int heroID)
+    public void SetCard(int price, string name, string description, Sprite heroImage, int heroID, int level)
     {
         this.price = price;
         isPurchased = false;
 
-        cardNameText.text = name;
+        cardNameText.text = level.ToString();
         cardInfo.cardName = name;
         cardInfo.cardDescription = description;
         cardInfo.price = price.ToString();
         cardImage.sprite = heroImage;
         this.heroID = heroID;
+        this.level = level;
 
         gameObject.SetActive(true);
     }
@@ -56,8 +58,11 @@ public class StoreCardSlot : MonoBehaviour, IPointerClickHandler
             {
                 return;
             }
-
-            CardLevelManager.Instance.LevelUp(this.heroID);
+            
+            for(int i = 0; i <= level; i++)
+            {
+                CardLevelManager.Instance.LevelUp(this.heroID);
+            }
             shop.PurchaseCard(this);
         }
     }

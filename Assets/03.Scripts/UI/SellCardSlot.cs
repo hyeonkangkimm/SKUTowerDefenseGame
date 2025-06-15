@@ -14,11 +14,12 @@ public class SellCardSlot : MonoBehaviour, IPointerClickHandler
 
     public static SellCardSlot selectedSlot = null;
 
-    private void Start()
+    
+    private void OnEnable()
     {
         UpdateSlot();
     }
-    private void OnEnable()
+    private void Start()
     {
         UpdateSlot();
     }
