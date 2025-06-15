@@ -16,6 +16,8 @@ public class ManaUUI : MonoBehaviour
 
     private float currentMana;
 
+    private Coroutine manaChangeCoroutine = null;
+
     void Start()
     {
         currentMana = maxMana;
@@ -33,8 +35,11 @@ public class ManaUUI : MonoBehaviour
             if (currentMana < maxMana)
             {
                 float target = Mathf.Min(currentMana + 1, maxMana);
-                // 마나 회복 애니메이션 실행
-                StartCoroutine(SmoothChangeMana(currentMana, target));
+
+                if (manaChangeCoroutine != null)
+                    StopCoroutine(manaChangeCoroutine);
+
+                manaChangeCoroutine = StartCoroutine(SmoothChangeMana(currentMana, target));
                 currentMana = target;
             }
         }
@@ -50,8 +55,10 @@ public class ManaUUI : MonoBehaviour
 
             Debug.Log($"[ManaUI] 마나 사용 요청: {cost} | 이전 마나: {start} → 이후 마나: {target}");
 
-            // 마나 변화 애니메이션 실행
-            StartCoroutine(SmoothChangeMana(start, target));
+            if (manaChangeCoroutine != null)
+                StopCoroutine(manaChangeCoroutine);
+
+            manaChangeCoroutine = StartCoroutine(SmoothChangeMana(start, target));
             currentMana = target;
             return true;
         }
@@ -76,6 +83,7 @@ public class ManaUUI : MonoBehaviour
         }
 
         UpdateUI(end); // 애니메이션 완료 후 최종 값으로 업데이트
+        manaChangeCoroutine = null;
     }
 
     // UI 업데이트 (마나 바 및 텍스트)
@@ -91,6 +99,7 @@ public class ManaUUI : MonoBehaviour
             manaText.text = $"{Mathf.FloorToInt(value)} / {Mathf.FloorToInt(maxMana)}";  // 마나 텍스트 표시
         }
     }
+   
 
     // 현재 마나 조회
     public float GetCurrentMana() => currentMana;

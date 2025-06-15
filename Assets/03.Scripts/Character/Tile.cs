@@ -26,42 +26,51 @@ public class Tile : MonoBehaviour
     void OnMouseEnter()
     {
         rend.material.color = Color.yellow;
-        GameManager.Instance.CurrentTIle = this;
+        GameManager.Instance.CurrentTile = this;
     }
 
     void OnMouseExit()
     {
         rend.material.color = originalColor;
-    }
-
-    public void OnPlaceCharacter(string rcode)
-    {
-        //벽설치, 포탑설치, 캐릭터 설치 대응해야함
-        if (CurrentPlacedObject != null && CurrentPlacedObject.activeInHierarchy)
+        if (GameManager.Instance.CurrentTile == this)
         {
-            return;
+            GameManager.Instance.CurrentTile = null;
         }
-            GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
-           
-            
-                if (prefabToPlace != null)
-                {
-                    SummonPrefabControl = prefabToPlace.GetComponent<CharacterControllerH>();
-                    OnSummonCharacter(SummonPrefabControl);
-                    prefabToPlace.transform.position = this.transform.position;
-
-                    var placeable = prefabToPlace.GetComponent<IPlaceable>();
-                    
-                    if (placeable != null)
-                        placeable.OnPlaced(this.transform.position);
-
-                    CurrentPlacedObject = prefabToPlace;
-
-                }
-                if (prefabToPlace == null)
-                    Debug.Log("로딩안됨");
-
     }
+
+        public bool OnPlaceCharacter(string rcode)
+        {
+            //벽설치, 포탑설치, 캐릭터 설치 대응해야함
+            if (CurrentPlacedObject != null && CurrentPlacedObject.activeInHierarchy)
+            {
+            Debug.Log("이미 오브젝트가 배치된 타일입니다.");
+            return false;  // 소환 실패
+             }
+                GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
+           
+           
+                    if (prefabToPlace != null)
+                    {
+                        SummonPrefabControl = prefabToPlace.GetComponent<CharacterControllerH>();
+                        OnSummonCharacter(SummonPrefabControl);
+                        prefabToPlace.transform.position = this.transform.position;
+
+                        var placeable = prefabToPlace.GetComponent<IPlaceable>();
+                    
+                        if (placeable != null)
+                            placeable.OnPlaced(this.transform.position);
+
+                        CurrentPlacedObject = prefabToPlace;
+
+                          return true;  // 소환 성공
+
+                    }
+                    if (prefabToPlace == null)
+                        Debug.Log("로딩안됨");
+
+
+                return false;
+        }
         
     
     
@@ -118,4 +127,5 @@ public class Tile : MonoBehaviour
         CurrentPlacedObject = null;
         SummonPrefabControl.OnDeath -= OnSummonCharacterDie;
     }
+
 }

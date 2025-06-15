@@ -116,8 +116,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8921f5f808b69047a27af519fb38b4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  checkMark: {fileID: 802010666768426584}
+  cardIndex: 0
+  heroData: {fileID: 0}
   selectManager: {fileID: 0}
+  checkMark: {fileID: 802010666768426584}
+  isOldCard: 0
+  characterImage: {fileID: 0}
 --- !u!1 &802010666768426584
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,8 +156,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 50, y: 75}
-  m_SizeDelta: {x: 83.3625, y: 87.9014}
+  m_AnchoredPosition: {x: 83.363, y: 123.1}
+  m_SizeDelta: {x: 100.2547, y: 133.5957}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &2579701097958588156
 CanvasRenderer:

@@ -15,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     public int ReadyCount = 0;
     
     [SerializeField]public String SelectedPrefabRcode;
-    public Tile CurrentTIle;
+    public Tile CurrentTile;
     public ECombatConditionType CombatConditionType = ECombatConditionType.READY;
 
 
