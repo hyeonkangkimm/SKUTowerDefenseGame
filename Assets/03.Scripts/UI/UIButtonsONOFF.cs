@@ -20,6 +20,11 @@ public class UIButtonsONOFF : MonoBehaviour
 
     public void TurnOnAndOff()
     {
+        if(!(GameManager.Instance.CombatConditionType == ECombatConditionType.START))
+        {
+            return;
+        }
+
         if (this.GetComponent<AudioSource>() != null)
         {
             this.GetComponent<AudioSource>().Play();
