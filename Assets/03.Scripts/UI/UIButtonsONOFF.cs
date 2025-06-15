@@ -20,7 +20,7 @@ public class UIButtonsONOFF : MonoBehaviour
 
     public void TurnOnAndOff()
     {
-        if(!(GameManager.Instance.CombatConditionType == ECombatConditionType.START))
+        if((GameManager.Instance.CombatConditionType == ECombatConditionType.START))
         {
             return;
         }
