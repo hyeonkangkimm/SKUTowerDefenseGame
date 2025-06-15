@@ -16,7 +16,7 @@ public class CharacterRangeAttack : MonoBehaviour
         characterController = GetComponentInParent<CharacterControllerH>();
         
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -30,7 +30,7 @@ public class CharacterRangeAttack : MonoBehaviour
             direction.y = 0; // 수평 회전만
             transform.rotation = Quaternion.LookRotation(direction);
             if ((currentTarget.transform.position - transform.position).magnitude > AtkRange)
-                currentTarget = characterController.enemiesInRange[0];
+                currentTarget = characterController.enemiesInRange.Count > 0 ? characterController.enemiesInRange[0] : null;
         }
 
     }
@@ -53,7 +53,7 @@ public class CharacterRangeAttack : MonoBehaviour
         GameObject proj = PoolManager.Instance.SpawnFromPool(prcCode);
         proj.transform.SetPositionAndRotation(firePoint.position, Quaternion.identity);
         DOTweenProjectile dp = proj.GetComponent<DOTweenProjectile>();
-        dp.InitProj((int)CurAtk);
+        dp.InitProj((int)CurAtk,currentTarget);
         dp.target = currentTarget;
     }
 }
