@@ -19,7 +19,7 @@ public class MonsetInfo
         Name = name; Icon = icon;
     }
 }
-public class StageManager : MonoBehaviour
+public class StageManager: Singleton<StageManager> 
 {
     [Header("StageField")]
     public int CurrentStage = 1;
@@ -31,6 +31,7 @@ public class StageManager : MonoBehaviour
     public float GeneratingTime;
     public TextMeshProUGUI TimeText;
     public TextMeshProUGUI WaveText;
+
     [NonSerialized]public TextMeshProUGUI SpawnLeftText;
 
     private WaitForSeconds SpawnInterval;
@@ -82,6 +83,7 @@ public class StageManager : MonoBehaviour
             if (TimeBetweenWaves <= 0)
             {
                 GameManager.Instance.CombatConditionType = ECombatConditionType.START;
+                GameManager.Instance.OnNextWaveStart();
                 StartNextWave();
             }
         }
@@ -107,7 +109,7 @@ public class StageManager : MonoBehaviour
             //특수몹(신규몹) 소환 실행
         }
         //시간제한 Time 변경
-        GeneratingTime = (CurrentStage * 10 + CurrentWave) * SpawnIntervalTime + 10f;
+        GeneratingTime = (CurrentStage * 10 + CurrentWave) * SpawnIntervalTime + 20f;
         TimeBetweenWaves = 60f;
         WaveText.text = $"Stage:{CurrentStage} || Wave:{CurrentWave}/{MaxWavesPerStage}";
     }
@@ -120,8 +122,8 @@ public class StageManager : MonoBehaviour
         MonsterAI monsterAI = monster.GetComponent<MonsterAI>();
         float stageMultiplier = 1 + (CurrentStage - 1) * 0.2f;
         float waveMultiplier = 1 + (CurrentWave - 1) * 0.1f;
-        monsterAI.Health = (int)(monsterAI.BaseHp * stageMultiplier * waveMultiplier);
-        monsterAI.Damage = (int)(monsterAI.BaseDamage * stageMultiplier * waveMultiplier);
+        monsterAI.HealthUpdate(stageMultiplier);
+        monsterAI.DamageUpdate(stageMultiplier);
         monsterAI.OnWaveChanged();
         for (int i = 0; i < monsterAI.DropItems.Length; i++)
         {
@@ -165,6 +167,7 @@ public class StageManager : MonoBehaviour
     IEnumerator SpawnCorotine()
     {
         int totalMonster = CurrentStage * 10 + CurrentWave;
+        //SpawnLeftText.text = totalMonster.ToString();
         for (int i = 0; i < totalMonster; i++)
         {
             //SpawnLeftText.text = (totalMonster - i).ToString();

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4811564421870450898}
   - component: {fileID: 6610150059430756241}
+  - component: {fileID: 8332472659042149660}
   m_Layer: 0
   m_Name: prcEnergy
   m_TagString: Untagged
@@ -30,8 +31,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8123828604298394048}
   - {fileID: 4737969660582524993}
+  - {fileID: 8123828604298394048}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6610150059430756241
@@ -47,12 +48,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  height: 2
-  duration: 1
+  Name: 
+  speed: 10
+  rotateSpeed: 720
   damage: 10
   OnHitEffect: {fileID: 5379197343405763821}
+  OnOrbitEffect: {fileID: 4832771000101314118}
   bulletClip: {fileID: 0}
   onHitClip: {fileID: 0}
+--- !u!65 &8332472659042149660
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579476460161706892}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2757143140331656038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64,6 +88,10 @@ PrefabInstance:
     - target: {fileID: 5912344974454636654, guid: 83f8c9cbe221fca4eaae68c50efd83d3, type: 3}
       propertyPath: m_Name
       value: SmallEnergyBullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 5912344974454636654, guid: 83f8c9cbe221fca4eaae68c50efd83d3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7459070775325551399, guid: 83f8c9cbe221fca4eaae68c50efd83d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -115,6 +143,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7459070775325551399, guid: 83f8c9cbe221fca4eaae68c50efd83d3, type: 3}
   m_PrefabInstance: {fileID: 2757143140331656038}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &4832771000101314118 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7300938123587259680, guid: 83f8c9cbe221fca4eaae68c50efd83d3, type: 3}
+  m_PrefabInstance: {fileID: 2757143140331656038}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2844583517601770763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126,6 +159,18 @@ PrefabInstance:
     - target: {fileID: 4186470608034871016, guid: 519bfaf22a8bc4341862dfa0f6f89c3c, type: 3}
       propertyPath: m_Name
       value: SmallEnergyBulletHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324283893382468811, guid: 519bfaf22a8bc4341862dfa0f6f89c3c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324283893382468811, guid: 519bfaf22a8bc4341862dfa0f6f89c3c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324283893382468811, guid: 519bfaf22a8bc4341862dfa0f6f89c3c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6324283893382468811, guid: 519bfaf22a8bc4341862dfa0f6f89c3c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -166,6 +211,26 @@ PrefabInstance:
     - target: {fileID: 6324283893382468811, guid: 519bfaf22a8bc4341862dfa0f6f89c3c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6324283893382468811, guid: 519bfaf22a8bc4341862dfa0f6f89c3c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7917120168021017062, guid: 519bfaf22a8bc4341862dfa0f6f89c3c, type: 3}
+      propertyPath: InitialModule.size3D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7917120168021017062, guid: 519bfaf22a8bc4341862dfa0f6f89c3c, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 6.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7917120168021017062, guid: 519bfaf22a8bc4341862dfa0f6f89c3c, type: 3}
+      propertyPath: InitialModule.startSizeY.scalar
+      value: 5.385
+      objectReference: {fileID: 0}
+    - target: {fileID: 7917120168021017062, guid: 519bfaf22a8bc4341862dfa0f6f89c3c, type: 3}
+      propertyPath: InitialModule.startSizeZ.scalar
+      value: 4.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
