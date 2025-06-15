@@ -49,7 +49,7 @@ MonoBehaviour:
     Defense: 1
     AttackSpeed: 1
     MoveSpeed: 0
-    AttackRange: 6
+    AttackRange: 5
     AtkMultiplier: 0
     HealthMultiplier: 0
     DefenseMultiplier: 0

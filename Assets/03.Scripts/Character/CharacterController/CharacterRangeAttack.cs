@@ -8,7 +8,7 @@ public class CharacterRangeAttack : MonoBehaviour
     [SerializeField] protected CharacterControllerH characterController;
     float CurAtk => characterController.character.StatHandler.curStat.Atk;
     float AtkRange => characterController.character.StatHandler.curStat.AttackRange;
-    public GameObject projectilePrefab;
+    public string prcCode;
     public Transform firePoint;
     private GameObject currentTarget;
     void Awake()
@@ -29,9 +29,9 @@ public class CharacterRangeAttack : MonoBehaviour
             Vector3 direction = (currentTarget.transform.position - transform.position).normalized;
             direction.y = 0; // 수평 회전만
             transform.rotation = Quaternion.LookRotation(direction);
+            if ((currentTarget.transform.position - transform.position).magnitude > AtkRange)
+                currentTarget = characterController.enemiesInRange[0];
         }
-        if((currentTarget.transform.position-transform.position).magnitude>AtkRange)
-            currentTarget = characterController.enemiesInRange[0];
 
     }
     public void OnDisable()
@@ -49,8 +49,9 @@ public class CharacterRangeAttack : MonoBehaviour
     public void OnShot()
     {
         if (currentTarget == null||!currentTarget.activeSelf) return;
-    
-        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+
+        GameObject proj = PoolManager.Instance.SpawnFromPool(prcCode);
+        proj.transform.SetPositionAndRotation(firePoint.position, Quaternion.identity);
         DOTweenProjectile dp = proj.GetComponent<DOTweenProjectile>();
         dp.InitProj((int)CurAtk);
         dp.target = currentTarget;

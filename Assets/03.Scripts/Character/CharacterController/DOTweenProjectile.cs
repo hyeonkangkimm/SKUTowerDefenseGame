@@ -5,6 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 public class DOTweenProjectile : MonoBehaviour
 {
     public GameObject target;
+    public string Name;
     public float height = 2f;
     public float duration = 1f;
     public int damage = 10;
@@ -42,16 +43,15 @@ public class DOTweenProjectile : MonoBehaviour
                 {
                     ai.TakeDamage(damage);
                 }
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             });
     }
     void Update()
     {
        
-        if (target == null)
+        if (target == null|| !target.activeSelf)
         {
-            Debug.LogWarning("No target assigned to projectile.");
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
             return;
         }
         if (target != null)
@@ -65,6 +65,7 @@ public class DOTweenProjectile : MonoBehaviour
         
         if (OnHitEffect != null)
         {
+            PoolManager.Instance.SpawnFromPool(Name);
             var onHitObj = Instantiate(OnHitEffect, transform.position, Quaternion.identity);
             var onHit = onHitObj.gameObject.AddComponent<AudioTrigger>();
             if (onHitClip != null)
@@ -73,6 +74,6 @@ public class DOTweenProjectile : MonoBehaviour
             }
 
         }
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 }

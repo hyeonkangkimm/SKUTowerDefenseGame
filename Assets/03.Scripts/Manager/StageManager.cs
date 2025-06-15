@@ -108,7 +108,7 @@ public class StageManager : MonoBehaviour
             //특수몹(신규몹) 소환 실행
         }
         //시간제한 Time 변경
-        GeneratingTime = (CurrentStage * 10 + CurrentWave) * 2 + 40f;
+        GeneratingTime = (CurrentStage * 10 + CurrentWave) * SpawnIntervalTime + 10f;
         TimeBetweenWaves = 60f;
         WaveText.text = $"Stage:{CurrentStage} || Wave:{CurrentWave}/{MaxWavesPerStage}";
     }

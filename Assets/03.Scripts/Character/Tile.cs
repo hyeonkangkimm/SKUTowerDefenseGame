@@ -52,51 +52,37 @@ public class Tile : MonoBehaviour
         rend.material.color = originalColor;
     }
 
-    /*public void OnPlaceCharacter(string rcode)
+   
+    public bool OnPlaceCharacter(string rcode)
     {
-        //����ġ, ��ž��ġ, ĳ���� ��ġ �����ؾ���
+        
         if (CurrentPlacedObject != null && CurrentPlacedObject.activeInHierarchy)
         {
-            GameManager.Instance.CurrentTile = null;
-        }
-    }*/
+            return false;  //
+         }
+            GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
+       
+       
+                if (prefabToPlace != null)
+                {
+                    SummonPrefabControl = prefabToPlace.GetComponent<CharacterControllerH>();
+                    OnSummonCharacter(SummonPrefabControl);
+                    prefabToPlace.transform.position = this.transform.position;
 
-       public bool OnPlaceCharacter(string rcode)
-        {
-            //����ġ, ��ž��ġ, ĳ���� ��ġ �����ؾ���
-            if (CurrentPlacedObject != null && CurrentPlacedObject.activeInHierarchy)
-            {
-            Debug.Log("�̹� ������Ʈ�� ��ġ�� Ÿ���Դϴ�.");
-            return false;  // ��ȯ ����
-             }
-                GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
-           
-           
-                    if (prefabToPlace != null)
-                    {
-                        SummonPrefabControl = prefabToPlace.GetComponent<CharacterControllerH>();
-                        OnSummonCharacter(SummonPrefabControl);
-                        prefabToPlace.transform.position = this.transform.position;
+                    var placeable = prefabToPlace.GetComponent<IPlaceable>();
+                
+                    if (placeable != null)
+                        placeable.OnPlaced(this.transform.position);
 
-                        var placeable = prefabToPlace.GetComponent<IPlaceable>();
-                    
-                        if (placeable != null)
-                            placeable.OnPlaced(this.transform.position);
+                    CurrentPlacedObject = prefabToPlace;
 
-                        CurrentPlacedObject = prefabToPlace;
+                      return true;  
 
-                          return true;  // ��ȯ ����
-
-                    }
-                    if (prefabToPlace == null)
-                        Debug.Log("�ε��ȵ�");
-
-
-                return false;
-        }
-        
-    
-    
+                }
+                if (prefabToPlace == null)
+                    Debug.Log("�ε��ȵ�");
+            return false;
+    }
     public bool OnPlaceWall(string rcode)
     {
         if (CurrentPlacedObject != null && CurrentPlacedObject.activeInHierarchy)
@@ -107,7 +93,7 @@ public class Tile : MonoBehaviour
             Vector2Int gridPos = GridObstacleManager.Instance.WorldToGrid(placePosition);
             if (gridPos.y == 0 || gridPos.y == 7)
             {
-                Debug.Log("������ ���������� �� ��ġ �Ұ�");
+                Debug.Log("좌측끝 우측끝 설치불가");
                 return false;
             }
 
@@ -116,7 +102,7 @@ public class Tile : MonoBehaviour
 
             if (!canPlace)
             {
-                Debug.Log("��� ���ܵ�! �� ��ġ ���");
+                Debug.Log("경로를 모두 막으면 설치불가");
                 return false;
             }
 
