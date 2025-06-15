@@ -63,6 +63,10 @@ public class StoreCardSlot : MonoBehaviour, IPointerClickHandler
             {
                 CardLevelManager.Instance.LevelUp(this.heroID);
             }
+            if (GetComponent<AudioSource>() != null)
+            {
+                GetComponent<AudioSource>().Play();
+            }
             shop.PurchaseCard(this);
         }
     }

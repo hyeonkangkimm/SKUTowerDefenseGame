@@ -63,6 +63,7 @@ public class StageManager: Singleton<StageManager>
             GeneratingTime -= Time.deltaTime;
             if (GeneratingTime <= 0)
             {
+                ResourceManager.Instance.WaveOver();
                 GameManager.Instance.CombatConditionType = ECombatConditionType.READY;
             }
 

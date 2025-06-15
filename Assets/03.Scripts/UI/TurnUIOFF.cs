@@ -22,6 +22,10 @@ public class TurnUIOFF : MonoBehaviour
     }
     public void CloseUI()
     {
+        if (this.GetComponent<AudioSource>() != null)
+        {
+            this.GetComponent<AudioSource>().Play();
+        }
         target.SetActive(false);
     }
 

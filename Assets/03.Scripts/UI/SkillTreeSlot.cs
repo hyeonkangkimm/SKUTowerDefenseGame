@@ -65,6 +65,10 @@ public class SkillTreeSlot : MonoBehaviour
         }
 
         unlocked = true;
+        if (GetComponent<AudioSource>() != null)
+        {
+            GetComponent<AudioSource>().Play();
+        }
         UnlockSKillTreeSlot();
         PriceUp();
         skillImage.color = Color.white;
