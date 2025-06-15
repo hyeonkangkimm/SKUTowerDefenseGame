@@ -28,8 +28,6 @@ public class GameManager : Singleton<GameManager>
     {
         Application.targetFrameRate = 60;
         cam = Camera.main;
-        
-        
     }
 
 
@@ -72,10 +70,19 @@ public class GameManager : Singleton<GameManager>
     }
    
 
-    //card클래스의 정보를 받아와서 prefab생성
-    public void UseHeroCard()
+    //기존에 있던 히어로 disable
+    public void OnNextWaveStart()
     {
-
+        Hero[] heroes = FindObjectsByType<Hero>(FindObjectsSortMode.None);
+        foreach (Hero hero in heroes)
+        {
+            GameObject obj = hero.gameObject;
+            // 현재 계층에서 활성화되어 있다면 비활성화
+            if (obj.activeInHierarchy)
+            {
+                obj.SetActive(false);
+            }
+        }
     }
 
     public void ShowAlert(string message,EAlertType type)

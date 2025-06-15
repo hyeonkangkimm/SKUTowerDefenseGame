@@ -41,6 +41,7 @@ public class MonterHealthSystem : MonoBehaviour
     {
         MaxHealth = hp;
         CurHealth = hp;
+        ShowCurrentHpRate();
     }
 
     public bool TakeDamage(int damage, bool isCrit = false)

@@ -99,6 +99,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
     void OnDisable()
     {
         StopAllCoroutines();
+        OnDeath = null;
     }
 
     void Update()
@@ -274,9 +275,19 @@ public class MonsterAI : MonoBehaviour, IDamageable
             renderer.material.color = Color.white;
         }
     }
-    /// <summary>
-    /// 공격 Anim끝나는 지점
-    /// </summary>
+    public void HealthUpdate(float multiplier)
+    {
+        Health =(int)(BaseHp*multiplier);
+    }
+    public void DamageUpdate(float multiplier)
+    {
+        Damage = (int)(BaseDamage * multiplier);
+    }
+
+
+/// <summary>
+/// 공격 Anim끝나는 지점
+/// </summary>
     public void AttackEnd()
     {
 
