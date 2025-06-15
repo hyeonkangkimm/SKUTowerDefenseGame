@@ -30,7 +30,12 @@ public class ReactToMouse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     public void SetUIOn()
     {
-        if(GetComponent<AudioSource>() != null)
+        if ((GameManager.Instance.CombatConditionType == ECombatConditionType.START))
+        {
+            return;
+        }
+
+        if (GetComponent<AudioSource>() != null)
         {
             GetComponent<AudioSource>().Play();
         }
