@@ -47,5 +47,6 @@ public class StoreCardInfo : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerExit(PointerEventData eventData)
     {
         transform.localScale = originalScale;
+        ShowToolTip("", "", "");
     }
 }

@@ -12,6 +12,7 @@ public enum resourseType {
 
 public class ResourceManager : Singleton<ResourceManager>
 {
+
     public int money;//카드구매
     //특성강화
     public int wood;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9add7d1dec7d146a72fcfde17d1b76, type: 3}
   m_Name: oldcard5
   m_EditorClassIdentifier: 
-  hid: 0
+  hid: 10
   icon: {fileID: 871980822, guid: bdeaeacf91e805f449e7fa66d480d644, type: 3}
   manacost: 2
   cooldownDuration: 1

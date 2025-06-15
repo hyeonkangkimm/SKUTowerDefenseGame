@@ -70,7 +70,6 @@ public class CardLevelManager : MonoBehaviour
             return cardLevels[hid];
         }
 
-        Debug.LogWarning($"카드 번호 '{hid}'을 찾을 수 없거나 등록되지 않았습니다.");
         return -1; // 없는 카드일 경우
     }
 

@@ -15,6 +15,10 @@ public class ShopManager : MonoBehaviour
     private List<string> availableRcodes = new List<string>() { "C001", "C002", "C003", "C004", "C005" };
     [SerializeField]private List<HeroSO> availableCards = new List<HeroSO>();
 
+    private void Start()
+    {
+        RollCards();
+    }
     public void RollCards()
     {
         maxAvailableCards = availableCards.Count;
@@ -25,13 +29,14 @@ public class ShopManager : MonoBehaviour
             if (i < maxAvailableCards)
             {
                 int random = Random.Range(1, maxAvailableCards);
-                string price = Random.Range(1, 3).ToString();
+                int price = Random.Range(1, 3);
                 string name = availableCards[random].heroName;
                 string desc = availableCards[random].heroDescription;
                 Sprite heroImage = availableCards[random].icon;
+                int heroID = availableCards[random].hid;
 
                 slot.cardImage.enabled = true;
-                slot.SetCard(price, name, desc, heroImage);
+                slot.SetCard(price, name, desc, heroImage, heroID);
             }
         }
 
