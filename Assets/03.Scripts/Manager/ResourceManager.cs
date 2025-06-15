@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public enum resourseType {
@@ -12,6 +13,7 @@ public enum resourseType {
 
 public class ResourceManager : Singleton<ResourceManager>
 {
+    private int resourceSkillLevel = 0;
 
     public int money;//카드구매
     //특성강화
@@ -100,5 +102,38 @@ public class ResourceManager : Singleton<ResourceManager>
         wood += woodAmount;
         stone += stoneAmount;
         iron += ironAmount;
+    }
+
+    public void UpdateLevel()
+    {
+        resourceSkillLevel++;
+    }
+
+    public void WaveOver()
+    {
+        if(resourceSkillLevel == 1)
+        {
+            AddResource(0, 10, 0, 0);
+        }
+        if (resourceSkillLevel == 2)
+        {
+            AddResource(0, 10, 5, 0);
+        }
+        if (resourceSkillLevel == 3)
+        {
+            AddResource(0, 25, 5, 0);
+        }
+        if (resourceSkillLevel == 4)
+        {
+            AddResource(0, 25, 15, 0);
+        }
+        if (resourceSkillLevel == 5)
+        {
+            AddResource(0, 25, 15, 5);
+        }
+        if (resourceSkillLevel >= 6)
+        {
+            AddResource(0, 25, 15, 10);
+        }
     }
 }

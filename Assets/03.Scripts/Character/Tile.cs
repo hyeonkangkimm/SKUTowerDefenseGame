@@ -52,16 +52,16 @@ public class Tile : MonoBehaviour
         rend.material.color = originalColor;
     }
 
-    public void OnPlaceCharacter(string rcode)
+    /*public void OnPlaceCharacter(string rcode)
     {
         //����ġ, ��ž��ġ, ĳ���� ��ġ �����ؾ���
         if (CurrentPlacedObject != null && CurrentPlacedObject.activeInHierarchy)
         {
             GameManager.Instance.CurrentTile = null;
         }
-    }
+    }*/
 
-        public bool OnPlaceCharacter(string rcode)
+       public bool OnPlaceCharacter(string rcode)
         {
             //����ġ, ��ž��ġ, ĳ���� ��ġ �����ؾ���
             if (CurrentPlacedObject != null && CurrentPlacedObject.activeInHierarchy)
