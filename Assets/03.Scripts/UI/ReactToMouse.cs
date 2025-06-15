@@ -30,6 +30,10 @@ public class ReactToMouse : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     public void SetUIOn()
     {
+        if(GetComponent<AudioSource>() != null)
+        {
+            GetComponent<AudioSource>().Play();
+        }
         target.SetActive(true);
     }
 }

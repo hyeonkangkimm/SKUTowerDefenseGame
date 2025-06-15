@@ -20,6 +20,11 @@ public class UIButtonsONOFF : MonoBehaviour
 
     public void TurnOnAndOff()
     {
+        if (this.GetComponent<AudioSource>() != null)
+        {
+            this.GetComponent<AudioSource>().Play();
+        }
+
         turnOn.SetActive(true);
         for(int i = 0; i < turnOff.Length; i++)
         {

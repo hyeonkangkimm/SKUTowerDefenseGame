@@ -66,7 +66,31 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    public void RollCardsWithButton()
+    {
+        if (!ResourceManager.Instance.HaveEnoughMoney(1)) return;
+        if (GetComponent<AudioSource>() != null)
+        {
+            GetComponent<AudioSource>().Play();
+        }
+        for (int i = 0; i < cardSlots.Length; i++)
+        {
+            var slot = cardSlots[i];
 
+            if (i < maxAvailableCards)
+            {
+                int random = Random.Range(1, maxAvailableCards);
+                int price = Random.Range(1, priceRange);
+                string name = availableCards[random].heroName;
+                string desc = availableCards[random].heroDescription;
+                Sprite heroImage = availableCards[random].icon;
+                int heroID = availableCards[random].hid;
+
+                slot.cardImage.enabled = true;
+                slot.SetCard(price, name, desc, heroImage, heroID, price);
+            }
+        }
+    }
 
 
     public void PurchaseCard(StoreCardSlot slot)

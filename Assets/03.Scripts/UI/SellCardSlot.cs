@@ -73,7 +73,10 @@ public class SellCardSlot : MonoBehaviour, IPointerClickHandler
     {
         int level = CardLevelManager.Instance.GetLevel(hero.hid);
         if (level <= 0) return;
-
+        if (GetComponent<AudioSource>() != null)
+        {
+            GetComponent<AudioSource>().Play();
+        }
 
         ResourceManager.Instance.AddResource(GetSellPrice(level), 0, 0, 0);
         CardLevelManager.Instance.LevelDown(hero.hid);
