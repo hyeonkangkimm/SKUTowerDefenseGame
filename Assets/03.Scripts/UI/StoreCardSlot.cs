@@ -14,7 +14,7 @@ public class StoreCardSlot : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] public GameObject store;
     [HideInInspector] public string price;
-    [HideInInspector] public bool isPurchased = false;
+     public bool isPurchased = false;
 
     public void SetCard(string price, string name, string description, Sprite heroImage)
     {

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework.Interfaces;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -79,8 +80,6 @@ public class MonsterAI : MonoBehaviour, IDamageable
     void Start()
     {
         agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
-        SetState(AIState.Wandering);
-        GoToDestination();
         Die = false;
         enemyLayer = 1 << 6;
         
@@ -93,6 +92,9 @@ public class MonsterAI : MonoBehaviour, IDamageable
     {
         healthSystem.HealthChanged(Health);
         Die = false;
+        StartCoroutine(InitDestination());
+
+
     }
     void OnDisable()
     {
@@ -101,6 +103,10 @@ public class MonsterAI : MonoBehaviour, IDamageable
 
     void Update()
     {
+        if (!agent.isOnNavMesh)
+        {
+            return;
+        }
         //NearTarget이 죽었을 때 타겟 해제, if문 안에서 앞 조건식 먼저 계산한후 false면 if문을 나가기 때문에 뒤에 NullReferenceException오류가 안난다
         if (NearTarget != null &&!NearTarget.activeInHierarchy)
             NearTarget = null;
@@ -125,6 +131,8 @@ public class MonsterAI : MonoBehaviour, IDamageable
                 break;
             case AIState.Attacking:
                 AttackingUpdate();
+                break;
+            default:
                 break;
         }
 
@@ -169,9 +177,9 @@ public class MonsterAI : MonoBehaviour, IDamageable
         }
 
         // 목적지 도착 판정
-        if (!agent.pathPending&&agent.remainingDistance <= agent.stoppingDistance)
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance&&transform.position.z<=40)
         {
-            Debug.Log("Reached");
+            Debug.Log("Reached");   
             reachedFinalDestination = true;
             SetState(AIState.Idle);
             gameObject.SetActive(false);
@@ -285,6 +293,11 @@ public class MonsterAI : MonoBehaviour, IDamageable
         } 
        
     }
-
+    IEnumerator InitDestination()
+    {
+        yield return null;
+        SetState(AIState.Wandering);
+        GoToDestination();
+    }
    
 }

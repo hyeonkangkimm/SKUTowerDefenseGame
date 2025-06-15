@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
-/// ¹èÄ¡ÇÏ°í ³­ ÈÄ¿¡ ½ÇÇàÇÏ°í ½ÍÀº °Í ±¸Çö
-/// ex)¹èÄ¡ÇÏ¸é ÁÖº¯ Àû ¾óÀ½
+/// ï¿½ï¿½Ä¡ï¿½Ï°ï¿½ ï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+/// ex)ï¿½ï¿½Ä¡ï¿½Ï¸ï¿½ ï¿½Öºï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public interface IPlaceable
 {
@@ -17,6 +17,7 @@ public class Tile : MonoBehaviour
     private Color originalColor;
     public GameObject CurrentPlacedObject;
     private CharacterControllerH SummonPrefabControl;
+    LayerMask tileLayer;
     void Start()
     {
         rend = GetComponent<Renderer>();
@@ -32,7 +33,29 @@ public class Tile : MonoBehaviour
     void OnMouseExit()
     {
         rend.material.color = originalColor;
-        if (GameManager.Instance.CurrentTile == this)
+    }
+    public void OnHovering() 
+    {
+        if (CurrentPlacedObject == null || CurrentPlacedObject.activeSelf)
+        {
+            rend.material.color = Color.yellow;
+
+        }
+        else
+        {
+            rend.material.color = Color.red;
+
+        }
+    }
+    public void OnHoverExit()
+    {
+        rend.material.color = originalColor;
+    }
+
+    public void OnPlaceCharacter(string rcode)
+    {
+        //ï¿½ï¿½ï¿½ï¿½Ä¡, ï¿½ï¿½Å¾ï¿½ï¿½Ä¡, Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
+        if (CurrentPlacedObject != null && CurrentPlacedObject.activeInHierarchy)
         {
             GameManager.Instance.CurrentTile = null;
         }
@@ -40,11 +63,11 @@ public class Tile : MonoBehaviour
 
         public bool OnPlaceCharacter(string rcode)
         {
-            //º®¼³Ä¡, Æ÷Å¾¼³Ä¡, Ä³¸¯ÅÍ ¼³Ä¡ ´ëÀÀÇØ¾ßÇÔ
+            //ï¿½ï¿½ï¿½ï¿½Ä¡, ï¿½ï¿½Å¾ï¿½ï¿½Ä¡, Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
             if (CurrentPlacedObject != null && CurrentPlacedObject.activeInHierarchy)
             {
-            Debug.Log("ÀÌ¹Ì ¿ÀºêÁ§Æ®°¡ ¹èÄ¡µÈ Å¸ÀÏÀÔ´Ï´Ù.");
-            return false;  // ¼ÒÈ¯ ½ÇÆÐ
+            Debug.Log("ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");
+            return false;  // ï¿½ï¿½È¯ ï¿½ï¿½ï¿½ï¿½
              }
                 GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
            
@@ -62,11 +85,11 @@ public class Tile : MonoBehaviour
 
                         CurrentPlacedObject = prefabToPlace;
 
-                          return true;  // ¼ÒÈ¯ ¼º°ø
+                          return true;  // ï¿½ï¿½È¯ ï¿½ï¿½ï¿½ï¿½
 
                     }
                     if (prefabToPlace == null)
-                        Debug.Log("·Îµù¾ÈµÊ");
+                        Debug.Log("ï¿½Îµï¿½ï¿½Èµï¿½");
 
 
                 return false;
@@ -84,20 +107,20 @@ public class Tile : MonoBehaviour
             Vector2Int gridPos = GridObstacleManager.Instance.WorldToGrid(placePosition);
             if (gridPos.y == 0 || gridPos.y == 7)
             {
-                Debug.Log("ÁÂÃø³¡ ¿ìÃø³¡¿¡´Â º® ¼³Ä¡ ºÒ°¡");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Ò°ï¿½");
                 return false;
             }
 
-            // 1. Àå¾Ö¹° ¼³Ä¡ °¡´É °Ë»ç
+            // 1. ï¿½ï¿½Ö¹ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
             bool canPlace = GridObstacleManager.Instance.TryPlaceObstacle(gridPos);
 
             if (!canPlace)
             {
-                Debug.Log("°æ·Î Â÷´ÜµÊ! º® ¼³Ä¡ Ãë¼Ò");
+                Debug.Log("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Üµï¿½! ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½");
                 return false;
             }
 
-            // 2. ¼³Ä¡ °¡´ÉÇÏ¸é Pool¿¡¼­ ÇÁ¸®ÆÕ ²¨³»±â
+            // 2. ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ Poolï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
             prefabToPlace.transform.parent = this.transform;
             if (prefabToPlace != null)
@@ -113,7 +136,7 @@ public class Tile : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("º® ÇÁ¸®ÆÕ ·Îµù ½ÇÆÐ");
+                Debug.LogWarning("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
                 return false;
             }
         

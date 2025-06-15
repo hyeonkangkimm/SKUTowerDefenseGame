@@ -9,7 +9,7 @@ public class   LoadManager : Singleton<LoadManager>
         string path="";
         if(rcode.Contains("npc"))
             path = "Hero/" + rcode;
-        if (rcode.Contains("mob"))
+        if (rcode.Contains("Mob"))
             path = "Mob/" + rcode;
         return (GameObject)Resources.Load(path);
     }

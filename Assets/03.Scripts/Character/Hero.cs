@@ -81,8 +81,9 @@ public class Hero : Character
         
         InitStat();
     }
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         InitStat();
     }
 

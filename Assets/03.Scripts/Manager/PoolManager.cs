@@ -11,7 +11,7 @@ public class Pool
 {
     public string rcode; // key value by rcode
     public int size; // initial size
-    private Transform parentTransform; // parent object
+    [NonSerialized] public Transform parentTransform; // parent object
     public GameObject prefab;
 }
 public class PoolManager : Singleton<PoolManager>
@@ -20,7 +20,7 @@ public class PoolManager : Singleton<PoolManager>
     [SerializeField] private List<Pool> pools = new List<Pool>();
     private Dictionary<string, List<GameObject>> poolDictionary;
     [NonSerialized] public bool IsInit;
-
+    public GameObject PoolParent;
     protected override void Awake()
     {
         base.Awake();
@@ -46,12 +46,13 @@ public class PoolManager : Singleton<PoolManager>
         // pools에 있는 모든 오브젝트를 탐색하고 정해놓은 size만큼 프리팹을 미리 만들어 놓음
         foreach (Pool pool in pools)
         {
-            //Debug.Log(pool.rcode);
+           //Debug.Log(pool.rcode);
             List<GameObject> list = new List<GameObject>();
             poolDictionary.Add(pool.rcode, list);
             pool.prefab = LoadManager.Instance.GetPrefab(pool.rcode);
-
+            pool.parentTransform = PoolParent.transform;
             AddPoolObject(pool);
+            
             //var path = ResourceManager.Instance.GetPath(pool.rcode, EAddressableType.PREFAB);
             //pool.prefab = await Addressables.InstantiateAsync(path, parent: pool.parentTransform).Task;
             //yield return TaskAsIEnumerator(AddPoolObject(pool));
@@ -91,17 +92,21 @@ public class PoolManager : Singleton<PoolManager>
 
     private void AddPoolObject(Pool pool) // 프리팹 생성
     {
+        GameObject gameObject = new GameObject(pool.rcode);
+        gameObject.transform.parent = pool.parentTransform;
         for (int i = 0; i < pool.size; i++)
         {
-            GameObject poolObj = Instantiate(pool.prefab);
+            GameObject poolObj = Instantiate(pool.prefab,pool.parentTransform);
             poolObj.name = pool.rcode;
+            poolObj.transform.SetParent(gameObject.transform, false);
             poolObj.SetActive(false);
+    
             poolDictionary[pool.rcode].Add(poolObj);
         }
     }
 
     // 이미 생성된 오브젝트 풀에서 프리팹을 가져옴
-    public GameObject SpawnFromPool(string rcode)
+    public GameObject SpawnFromPool(string rcode, bool active = true)
     {
         if (!poolDictionary.ContainsKey(rcode))
         {
@@ -125,7 +130,7 @@ public class PoolManager : Singleton<PoolManager>
                 poolObject = poolDictionary[rcode][i + 1];
             }
         }
-
+       if(active)
         poolObject.gameObject.SetActive(true); // 활성화
 
         return poolObject;

@@ -7,7 +7,7 @@ public class CharacterRangeAttack : MonoBehaviour
 {
     [SerializeField] protected CharacterControllerH characterController;
     float CurAtk => characterController.character.StatHandler.curStat.Atk;
-
+    float AtkRange => characterController.character.StatHandler.curStat.AttackRange;
     public GameObject projectilePrefab;
     public Transform firePoint;
     private GameObject currentTarget;
@@ -30,6 +30,9 @@ public class CharacterRangeAttack : MonoBehaviour
             direction.y = 0; // 수평 회전만
             transform.rotation = Quaternion.LookRotation(direction);
         }
+        if((currentTarget.transform.position-transform.position).magnitude>AtkRange)
+            currentTarget = characterController.enemiesInRange[0];
+
     }
     public void OnDisable()
     {
@@ -45,7 +48,7 @@ public class CharacterRangeAttack : MonoBehaviour
     /// </summary>
     public void OnShot()
     {
-        if (currentTarget == null) return;
+        if (currentTarget == null||!currentTarget.activeSelf) return;
     
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         DOTweenProjectile dp = proj.GetComponent<DOTweenProjectile>();

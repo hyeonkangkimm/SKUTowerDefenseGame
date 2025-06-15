@@ -17,16 +17,17 @@ public class DOTweenProjectile : MonoBehaviour
     }
     void Start()
     {
-
+        CapsuleCollider col = target.GetComponent<CapsuleCollider>();
+        float heightOffset = col != null ? col.height/2 : 0f;
         if (target != null)
         {
             transform.DOMove(target.transform.position, 0.5f).SetEase(Ease.Linear);
         }
         Vector3 start = transform.position;
-        Vector3 end = target.transform.position;
+        Vector3 end = target.transform.position+Vector3.up* heightOffset;
 
         // 경유지점 (중간에 높이 있는 지점)
-        Vector3 mid = (start + end) / 2f + Vector3.up * height;
+        Vector3 mid = (start + end) / 2f + Vector3.up * heightOffset*2;
 
         Vector3[] path = new Vector3[] { mid, end };
 
@@ -52,6 +53,10 @@ public class DOTweenProjectile : MonoBehaviour
             Debug.LogWarning("No target assigned to projectile.");
             Destroy(this.gameObject);
             return;
+        }
+        if (target != null)
+        {
+            transform.DOMove(target.transform.position, 0.5f).SetEase(Ease.Linear);
         }
 
     }
