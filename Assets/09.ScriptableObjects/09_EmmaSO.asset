@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hid: 1
   icon: {fileID: 21300000, guid: 32de58f32e368e44fad3f66b27ace086, type: 3}
-  manacost: 0
-  cooldownDuration: 0
+  manacost: 2
+  cooldownDuration: 3
   heroPrefab: {fileID: 0}
   heroName: "\uC5E0\uB9C8"
   heroDescription: "\uC5E0\uB9C8\uB294 \uD654\uB824\uD55C \uB9C8\uC220 \uB3C4\uAD6C\uB85C

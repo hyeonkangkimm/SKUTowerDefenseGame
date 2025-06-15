@@ -216,7 +216,7 @@ public class CharacterSelectManager : MonoBehaviour
         if (confirmedOldSelection.Count != confirmedNewSelection.Count)
         {
             Debug.LogWarning("기존카드와 새카드 선택 개수가 맞지 않습니다.");
-            WarningPopupManager.Instance.ShowWarning("The number of selected old cards and new cards does not match!");
+            WarningPopupManager.Instance.ShowWarning("기존카드와 새카드 선택 개수가 맞지 않습니다.");
             return;
         }
 
