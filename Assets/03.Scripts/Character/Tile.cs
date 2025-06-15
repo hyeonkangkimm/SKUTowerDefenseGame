@@ -91,7 +91,7 @@ public class Tile : MonoBehaviour
         }
             Vector3 placePosition = this.transform.localPosition;
             Vector2Int gridPos = GridObstacleManager.Instance.WorldToGrid(placePosition);
-            if (gridPos.y == 0 || gridPos.y == 7)
+            if (gridPos.y == 0 || gridPos.y == 8)
             {
                 Debug.Log("좌측끝 우측끝 설치불가");
                 return false;

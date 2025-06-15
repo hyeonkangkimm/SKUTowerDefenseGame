@@ -1653,7 +1653,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1e7bfebeeebd7b144835d1d09410e57a, type: 2}
   - {fileID: 11400000, guid: 89aea742a3188534294a00fdcd43a6d5, type: 2}
   - {fileID: 11400000, guid: f8fd0f2a39bca114aa9e19c01a634853, type: 2}
-  - {fileID: 11400000, guid: a388ac6b2259b6b46b5edf2989c73548, type: 2}
+  - {fileID: 11400000, guid: 18b66a95c04822d4db6a43c447338a7d, type: 2}
 --- !u!1 &7542197944113787704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,7 +1744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5fb6c8f4aa3d394bbaad114301d0477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroData: {fileID: 11400000, guid: a388ac6b2259b6b46b5edf2989c73548, type: 2}
+  heroData: {fileID: 11400000, guid: 18b66a95c04822d4db6a43c447338a7d, type: 2}
   manaCostText: {fileID: 1246436705899235847}
   characterImage: {fileID: 8972260539125966849}
   manaUI: {fileID: 4590707217360170622}

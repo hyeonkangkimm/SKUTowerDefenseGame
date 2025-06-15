@@ -7,10 +7,10 @@ public class SceneChanger : MonoBehaviour
 {
     public Image fadePanel; // 검정 이미지
     public float fadeDuration = 1f;
-
+    public string SceneName = "KHKMAP_06_14_21H";
     public void StartFadeAndLoadScene(string sceneName)
     {
-        StartCoroutine(FadeAndLoad("KIMHYEONKANG"));
+        StartCoroutine(FadeAndLoad(SceneName));
     }
 
     IEnumerator FadeAndLoad(string sceneName)
@@ -28,7 +28,7 @@ public class SceneChanger : MonoBehaviour
         }
 
         // 씬 비동기 로드
-        AsyncOperation op = SceneManager.LoadSceneAsync("KIMHYEONKANG");
+        AsyncOperation op = SceneManager.LoadSceneAsync(sceneName);
         yield return op;
     }
 

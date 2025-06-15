@@ -14,7 +14,7 @@ public class CharacterSelectManager : MonoBehaviour
     public CardImageCollector cardImageCollector;
     private List<CharacterButton> selectedOldCards = new List<CharacterButton>();
     private List<CharacterButton> confirmedOldSelection = new List<CharacterButton>();
-    public int maxOldCardSelectCount = 2;
+    public int maxOldCardSelectCount = 5;
 
     [Header("새 카드 관련")]
     public GameObject newCardPrefab;
@@ -24,7 +24,7 @@ public class CharacterSelectManager : MonoBehaviour
     private List<CharacterButton> selectedNewCards = new List<CharacterButton>();
     private List<CharacterButton> confirmedNewSelection = new List<CharacterButton>();
 
-    public int maxNewCardSelectCount = 2;
+    public int maxNewCardSelectCount = 5;
 
     [Header("새 카드 전체 UI")]
     public GameObject newCardUIParent;

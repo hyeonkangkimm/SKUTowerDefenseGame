@@ -32,7 +32,7 @@ public class StageManager: Singleton<StageManager>
     public TextMeshProUGUI TimeText;
     public TextMeshProUGUI WaveText;
 
-    [NonSerialized]public TextMeshProUGUI SpawnLeftText;
+    public TextMeshProUGUI SpawnLeftText;
 
     private WaitForSeconds SpawnInterval;
     public float SpawnIntervalTime=2f;
@@ -168,12 +168,13 @@ public class StageManager: Singleton<StageManager>
     IEnumerator SpawnCorotine()
     {
         int totalMonster = CurrentStage * 10 + CurrentWave;
-        //SpawnLeftText.text = totalMonster.ToString();
+        SpawnLeftText.text = (totalMonster).ToString();
+       
         for (int i = 0; i < totalMonster; i++)
         {
-            //SpawnLeftText.text = (totalMonster - i).ToString();
             yield return SpawnInterval;
             SpawnWaveMonster();
+            SpawnLeftText.text = (totalMonster - i-1).ToString();
         }
 
         yield return new WaitForSeconds(0f);
