@@ -101,7 +101,6 @@ GameObject:
   - component: {fileID: 9089283374131102568}
   - component: {fileID: 2634834723967106156}
   - component: {fileID: 5896828248527199965}
-  - component: {fileID: 2636378371732663324}
   m_Layer: 6
   m_Name: npc0003
   m_TagString: Player
@@ -408,21 +407,6 @@ CapsuleCollider:
   m_Height: 2.7
   m_Direction: 1
   m_Center: {x: 0, y: 1.35, z: 0}
---- !u!114 &2636378371732663324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8797554616783382114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2ba96270d7de684a8e8444a44356e32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterController: {fileID: 0}
-  projectilePrefab: {fileID: 8579476460161706892, guid: 0e02ab8d187b5554697978c177977749, type: 3}
-  firePoint: {fileID: 6725348336050205525}
 --- !u!1001 &6064163416144665980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -652,5 +636,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 9058778024764824828}
-  projectilePrefab: {fileID: 8579476460161706892, guid: 0e02ab8d187b5554697978c177977749, type: 3}
+  prcCode: prcEnergy
   firePoint: {fileID: 6725348336050205525}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4811564421870450898}
   - component: {fileID: 6610150059430756241}
   m_Layer: 0
-  m_Name: EnergeProjectile
+  m_Name: prcEnergy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
