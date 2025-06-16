@@ -124,8 +124,8 @@ public class StageManager: Singleton<StageManager>
         if (CurrentWave == MaxWavesPerStage)
         {
             //漂荐各(脚痹各) 家券 角青
-            int random = UnityEngine.Random.Range(1, 5);
-            if (random < 2)
+            int random = UnityEngine.Random.Range(1, 3);
+            if (random == 2)
             {
                 EventScene.Instance.ActivateRandomEvent();
             }
