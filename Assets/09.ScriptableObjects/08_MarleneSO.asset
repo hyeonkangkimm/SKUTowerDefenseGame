@@ -43,7 +43,7 @@ MonoBehaviour:
     HealMultiplier: 0
   PassiveStat:
     StatChangeType: 0
-    Atk: 11
+    Atk: 4
     Health: 22
     Defense: 0
     AttackSpeed: 1

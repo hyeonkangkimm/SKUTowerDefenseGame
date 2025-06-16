@@ -107,7 +107,7 @@ MonoBehaviour:
   Health: 0
   BaseHp: 100
   Damage: 0
-  BaseDamage: 3
+  BaseDamage: 2
   Icon: {fileID: 0}
   DropItems: []
   Die: 1
@@ -118,7 +118,7 @@ MonoBehaviour:
   aiState: 0
   attackRate: 1.4
   attackDistance: 3
-  fieldOfView: 50
+  fieldOfView: 60
   TargetDistance: 0
   NearTarget: {fileID: 0}
 --- !u!195 &3495515594409215056

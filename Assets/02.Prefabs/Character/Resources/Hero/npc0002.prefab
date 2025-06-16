@@ -452,8 +452,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b6f81322a5e3ed469a7e2592702a506, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6838480377635786631}
   m_SourcePrefab: {fileID: 100100000, guid: 3b6f81322a5e3ed469a7e2592702a506, type: 3}
+--- !u!1 &76253356254712237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b6f81322a5e3ed469a7e2592702a506, type: 3}
+  m_PrefabInstance: {fileID: 995156806855781628}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6838480377635786631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76253356254712237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3bd6e2ecd9c2554da10ceeb7c4fc446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  characterController: {fileID: 0}
+  timeSinceLastAttack: 0
+  AttackReadyTime: 0
+  AttackAnimationLength: 0
+  CriticalChance: 0
 --- !u!4 &740060019232213783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3b6f81322a5e3ed469a7e2592702a506, type: 3}
