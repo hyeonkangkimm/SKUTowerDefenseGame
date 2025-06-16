@@ -31,7 +31,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         Application.targetFrameRate = 60;
-        cam = Camera.main;
+        cam = GameObject.FindGameObjectWithTag("MainCamera")?.GetComponent<Camera>();
     }
 
 
@@ -87,7 +87,7 @@ public class GameManager : Singleton<GameManager>
             }
         }
         GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
-        foreach (GameObject obj in heroes)
+        foreach (GameObject obj in tiles)
         {
             Tile tile = obj.GetComponent<Tile>();
             tile.CurrentPlacedObject = null;

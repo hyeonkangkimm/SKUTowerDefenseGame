@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2673222446970590258}
   - component: {fileID: 3056273926175842856}
   - component: {fileID: 362393194351646694}
-  - component: {fileID: 5246188633940451671}
   - component: {fileID: 6942935215606386497}
   m_Layer: 6
   m_Name: npc0007
@@ -182,27 +181,6 @@ MonoBehaviour:
   damageTextPos: {fileID: 0}
   CurrentYOffset: 0
   Enemy: 0
---- !u!114 &5246188633940451671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7076691750617241213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3bd6e2ecd9c2554da10ceeb7c4fc446, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 0
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  characterController: {fileID: 4720845316467427765}
-  timeSinceLastAttack: 0
-  AttackReadyTime: 0
-  AttackAnimationLength: 0
-  CriticalChance: 0
 --- !u!114 &6942935215606386497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3785,7 +3763,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  characterController: {fileID: 0}
+  characterController: {fileID: 4720845316467427765}
   timeSinceLastAttack: 0
   AttackReadyTime: 0
   AttackAnimationLength: 0

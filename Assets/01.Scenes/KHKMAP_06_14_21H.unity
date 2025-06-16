@@ -1952,6 +1952,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: -17
       objectReference: {fileID: 0}
+    - target: {fileID: 2027366443498914274, guid: b7850f239d5735e459f43738a5285ddc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2102890771333197893, guid: b7850f239d5735e459f43738a5285ddc, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -3096,6 +3100,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 6637904972492171079, guid: b7850f239d5735e459f43738a5285ddc, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6824769189234985119, guid: b7850f239d5735e459f43738a5285ddc, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -3853,10 +3861,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 706208710663404790, guid: 9e56ec8e1715b5e4a9fff71f3fbe644e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 943549681526424332, guid: 9e56ec8e1715b5e4a9fff71f3fbe644e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2005433550}
+    - target: {fileID: 2644633502642943758, guid: 9e56ec8e1715b5e4a9fff71f3fbe644e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3516107767849154014, guid: 9e56ec8e1715b5e4a9fff71f3fbe644e, type: 3}
       propertyPath: m_Name
       value: newcardSysyem
@@ -3945,6 +3961,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2005433550}
+    - target: {fileID: 7642607753092041282, guid: 9e56ec8e1715b5e4a9fff71f3fbe644e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8801186721335893864, guid: 9e56ec8e1715b5e4a9fff71f3fbe644e, type: 3}
       propertyPath: selectManager
       value: 
@@ -6691,7 +6711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentStage: 1
-  CurrentWave: 0
+  CurrentWave: 3
   MaxWavesPerStage: 3
   TimeBetweenWaves: 120
   GeneratingTime: 0
@@ -8559,6 +8579,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 731513319642402414, guid: 1913ec0ff3b43a74eaf0caff5b522a4b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1174324971581959268, guid: 1913ec0ff3b43a74eaf0caff5b522a4b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.212036
@@ -8602,6 +8626,22 @@ PrefabInstance:
     - target: {fileID: 1274094224884415164, guid: 1913ec0ff3b43a74eaf0caff5b522a4b, type: 3}
       propertyPath: m_Name
       value: 3DObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415423722511816666, guid: 1913ec0ff3b43a74eaf0caff5b522a4b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3833588378475806792, guid: 1913ec0ff3b43a74eaf0caff5b522a4b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5253227888688503786, guid: 1913ec0ff3b43a74eaf0caff5b522a4b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340290148433239384, guid: 1913ec0ff3b43a74eaf0caff5b522a4b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

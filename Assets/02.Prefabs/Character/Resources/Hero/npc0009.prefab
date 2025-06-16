@@ -1835,7 +1835,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  characterController: {fileID: 0}
+  characterController: {fileID: 3801821902593888924}
   timeSinceLastAttack: 0
   AttackReadyTime: 0
   AttackAnimationLength: 0
