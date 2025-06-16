@@ -42,9 +42,9 @@ MonoBehaviour:
     DamageMultiplier: 0
     HealMultiplier: 0
   PassiveStat:
-    StatChangeType: 0
-    Atk: 3
-    Health: 6
+    StatChangeType: 4
+    Atk: 2
+    Health: 5
     Defense: 0
     AttackSpeed: 1
     MoveSpeed: 0
@@ -62,8 +62,8 @@ MonoBehaviour:
   gradeStatModifier:
     StatChangeType: 0
     Atk: 1
-    Health: 10
-    Defense: 0
+    Health: 3
+    Defense: 1
     AttackSpeed: 0
     MoveSpeed: 0
     AttackRange: 0
