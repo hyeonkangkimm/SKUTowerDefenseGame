@@ -59,7 +59,7 @@ public class StoreCardSlot : MonoBehaviour, IPointerClickHandler
                 return;
             }
             
-            for(int i = 0; i <= level; i++)
+            for(int i = 0; i < level; i++)
             {
                 CardLevelManager.Instance.LevelUp(this.heroID);
             }
