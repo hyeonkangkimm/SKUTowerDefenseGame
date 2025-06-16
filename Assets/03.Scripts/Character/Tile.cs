@@ -75,8 +75,9 @@ public class Tile : MonoBehaviour
                         placeable.OnPlaced(this.transform.position);
 
                     CurrentPlacedObject = prefabToPlace;
+            AudioManager.Instance.PlaySFX("SPAWN");
 
-                      return true;  
+            return true;  
 
                 }
                 if (prefabToPlace == null)
@@ -94,19 +95,21 @@ public class Tile : MonoBehaviour
             if (gridPos.y == 0 || gridPos.y == 8)
             {
                 Debug.Log("좌측끝 우측끝 설치불가");
-                return false;
+            GameManager.Instance.ShowAlert("좌측끝 우측끝 설치불가!", 0);
+
+            return false;
             }
 
-            // 1. ��ֹ� ��ġ ���� �˻�
+            // 1. 설치여부검사
             bool canPlace = GridObstacleManager.Instance.TryPlaceObstacle(gridPos);
 
             if (!canPlace)
             {
-                Debug.Log("경로를 모두 막으면 설치불가");
+                GameManager.Instance.ShowAlert("경로는 최소 하나는 유지 되어야 합니다!", 0);
                 return false;
             }
 
-            // 2. ��ġ �����ϸ� Pool���� ������ ������
+            // 2.설치실행
             GameObject prefabToPlace = PoolManager.Instance.SpawnFromPool(rcode);
             prefabToPlace.transform.parent = this.transform;
             if (prefabToPlace != null)
@@ -118,11 +121,12 @@ public class Tile : MonoBehaviour
                     placeable.OnPlaced(placePosition);
 
                 CurrentPlacedObject = prefabToPlace;
+            AudioManager.Instance.PlaySFX("STONE");
                 return true;
             }
             else
             {
-                Debug.LogWarning("�� ������ �ε� ����");
+                Debug.LogWarning("로드실패");
                 return false;
             }
         

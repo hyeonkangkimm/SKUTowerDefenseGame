@@ -28,6 +28,36 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-3953161325342566775
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 23021d4c9e7a7c34486dd60913e41a18
+  m_EffectName: Chorus
+  m_MixLevel: 6104712d748254f4c8f6ae2ccd2da202
+  m_Parameters:
+  - m_ParameterName: Dry mix
+    m_GUID: f07aab27bc7d32a4ea48efb4b0ab24f0
+  - m_ParameterName: Wet mix tap 1
+    m_GUID: d274d11ee6b24e94fb0062ecafdc2523
+  - m_ParameterName: Wet mix tap 2
+    m_GUID: 21c3130d34cc6ee49a87836d861ca629
+  - m_ParameterName: Wet mix tap 3
+    m_GUID: c9b7e46a80d375f4985d696fa9b49c9a
+  - m_ParameterName: Delay
+    m_GUID: 5418aa4f23279b546be6b32b2d242953
+  - m_ParameterName: Rate
+    m_GUID: ab6cfbadd23537348bc878a0c85653c3
+  - m_ParameterName: Depth
+    m_GUID: 7a497ab4843408148a6a0caa5b0fc449
+  - m_ParameterName: Feedback
+    m_GUID: d1190e5088cd62149acef5622e82f2b9
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-1330338322725844708
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -62,7 +92,13 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 8740c83c5d19157469e4683b9f7880fd
+    name: BGM
+  - guid: 185bb214a97636747ab14b6024203299
+    name: Master
+  - guid: 3161b3de4a0bd8d44840187fd3fbd0e7
+    name: SFX
   m_AudioMixerGroupViews:
   - guids:
     - 3b7470340d88af146a7bfa7a706c67a0

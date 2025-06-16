@@ -185,7 +185,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
             Debug.Log("Reached");   
             reachedFinalDestination = true;
             SetState(AIState.Idle);
-            
+            AudioManager.Instance.PlaySFX("DOOR");
             //벽 체력깍기
             GameObject wall = GameObject.FindWithTag("Wall"); // 벽 오브젝트에 Wall 태그 붙여야 함
             if (wall != null)
@@ -262,6 +262,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
         {
             ResourceManager.Instance.GainResource(DropItems[i].type, DropItems[i].amount);
         }
+        AudioManager.Instance.PlaySFX("MONEY");
         OnDeath?.Invoke(this.gameObject);
         gameObject.SetActive(false);
     }

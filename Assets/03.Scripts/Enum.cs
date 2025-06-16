@@ -66,7 +66,7 @@ public enum ECombatConditionType
 
 public enum EAudioMixerType
 {
-    MASTER,
+    Master,
     BGM,
     SFX
 }
@@ -80,10 +80,9 @@ public enum ESkillType
 }
 public enum EAlertType
 {
-    LACK,
-    NOTIMPLEMENTED,
-    SUCCESS,
-    CHAPTER,
+    DENY,
+    WARNING,
+
 }
 
 public enum ESkillMotion

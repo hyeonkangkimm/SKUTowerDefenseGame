@@ -13,7 +13,7 @@ public class SettingsUIManager : MonoBehaviour
         bgmSlider.value = savedVolume;
 
         // 슬라이더 값 변경 시 연결
-        bgmSlider.onValueChanged.AddListener(OnBGMSliderChanged);
+        //bgmSlider.onValueChanged.AddListener(OnBGMSliderChanged);
     }
 
     public void ToggleSettingsPanel()

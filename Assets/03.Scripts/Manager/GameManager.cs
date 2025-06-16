@@ -4,13 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class GameManager : Singleton<GameManager>
 {
-   
+
+    public GameObject alertPanel;     // 알림 UI 오브젝트 (예: Panel)
+    public TextMeshProUGUI alertText;
+    private Coroutine currentAlertCoroutine;
 
     public int ReadyCount = 0;
     
@@ -19,7 +23,7 @@ public class GameManager : Singleton<GameManager>
     public ECombatConditionType CombatConditionType = ECombatConditionType.READY;
     public LayerMask layerMask;
     [SerializeField]Camera cam;
-    
+    GameObject AlertObj;
     RaycastHit hit;
 
     private WaitForSecondsRealtime waitRead;
@@ -85,12 +89,41 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void ShowAlert(string message,EAlertType type)
+    public void ShowAlert(string message, EAlertType type)
     {
-        //AlertObj.ShowAlert(message,type);
+        if (currentAlertCoroutine != null)
+        {
+            StopCoroutine(currentAlertCoroutine);
+        }
+
+        currentAlertCoroutine = StartCoroutine(ShowAlertCoroutine(message, type));
     }
-    public void ShowAlert()
+
+    private IEnumerator ShowAlertCoroutine(string message, EAlertType type)
     {
-        //AlertObj.ShowAlert("개발 예정입니다", EAlertType.NOTIMPLEMENTED);
+        // 메시지 설정
+        alertText.text = message;
+
+        // 사운드 재생
+        switch (type)
+        {
+            case EAlertType.DENY:
+                AudioManager.Instance.PlaySFX("LACK");
+                break;
+            case EAlertType.WARNING:
+                //AudioManager.Instance.PlaySFX("Warning");
+                break;
+        }
+
+        // 알림 표시
+        alertPanel.SetActive(true);
+
+        // 0.5 ~ 1초 유지
+        float duration = 0.8f;
+        yield return new WaitForSeconds(duration);
+
+        // 알림 숨김
+        alertPanel.SetActive(false);
+        currentAlertCoroutine = null;
     }
 }
