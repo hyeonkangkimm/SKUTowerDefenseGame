@@ -287,7 +287,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
     }
     public void HealthUpdate(float multiplier)
     {
-        Health =(int)(BaseHp*multiplier);
+        Health =(int)(BaseHp * multiplier);
     }
     public void DamageUpdate(float multiplier)
     {
