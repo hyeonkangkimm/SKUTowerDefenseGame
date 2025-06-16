@@ -234,11 +234,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   characterController: {fileID: 9058778024764824828}
-  MyAnimator: {fileID: 2315217230450429705}
   timeSinceLastAttack: 0
   AttackReadyTime: 0
   AttackAnimationLength: 0
-  clip: {fileID: -203655887218126122, guid: b583df027f7993f41994a689f82e08b9, type: 3}
   CriticalChance: 0
 --- !u!114 &9089283374131102568
 MonoBehaviour:
@@ -599,7 +597,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 1c358da173ffe634a82e5a83563fc995, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 537384faf4e8fe94d9185a6116047010, type: 2}
+      objectReference: {fileID: 22100000, guid: cadb50ba3cb349d4199debcc2992b57f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
