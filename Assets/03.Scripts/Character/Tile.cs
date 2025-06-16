@@ -75,7 +75,7 @@ public class Tile : MonoBehaviour
                         placeable.OnPlaced(this.transform.position);
 
                     CurrentPlacedObject = prefabToPlace;
-            AudioManager.Instance.PlaySFX("SPAWN");
+                    AudioManager.Instance.PlaySFX("SPAWN");
 
             return true;  
 

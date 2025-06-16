@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/01.Scenes/KIMHYEONKANG.unity
     guid: 7c58c7ee1bdd2d24aacdbca036e239f9
+  - enabled: 0
+    path: Assets/01.Scenes/KHKMAP_06_14_21H_1.unity
+    guid: a19520380335a1f4aa6df7d90c5943c6
   - enabled: 1
     path: Assets/01.Scenes/KHKMAP_06_14_21H.unity
-    guid: a19520380335a1f4aa6df7d90c5943c6
+    guid: 14a53355d0f580b40a840c98fe70ad92
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 130b8f673d8b91c41b8f40f918e937c3, type: 2}
   m_UseUCBPForAssetBundles: 0

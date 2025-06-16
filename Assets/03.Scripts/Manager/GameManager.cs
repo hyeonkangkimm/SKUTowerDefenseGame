@@ -77,10 +77,9 @@ public class GameManager : Singleton<GameManager>
     //기존에 있던 히어로 disable
     public void OnNextWaveStart()
     {
-        Hero[] heroes = FindObjectsByType<Hero>(FindObjectsSortMode.None);
-        foreach (Hero hero in heroes)
+        GameObject[] heroes = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject obj in heroes)
         {
-            GameObject obj = hero.gameObject;
             // 현재 계층에서 활성화되어 있다면 비활성화
             if (obj.activeInHierarchy)
             {

@@ -111,8 +111,9 @@ public class MonsterAI : MonoBehaviour, IDamageable
             return;
         }
         //NearTarget이 죽었을 때 타겟 해제, if문 안에서 앞 조건식 먼저 계산한후 false면 if문을 나가기 때문에 뒤에 NullReferenceException오류가 안난다
-        if (NearTarget != null &&(NearTarget.GetComponent<CharacterControllerH>().isDead))
-            NearTarget = null;
+        if (NearTarget != null )
+            if(NearTarget.GetComponent<CharacterControllerH>().isDead)
+                NearTarget = null;
         if(null!=NearTarget)
             TargetDistance = (NearTarget.transform.position-this.transform.position).magnitude;
         
