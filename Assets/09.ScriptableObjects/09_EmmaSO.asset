@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9add7d1dec7d146a72fcfde17d1b76, type: 3}
   m_Name: 09_EmmaSO
   m_EditorClassIdentifier: 
-  hid: 1
+  hid: 9
   icon: {fileID: 21300000, guid: 32de58f32e368e44fad3f66b27ace086, type: 3}
   manacost: 2
   cooldownDuration: 3

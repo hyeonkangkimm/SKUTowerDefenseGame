@@ -42,7 +42,7 @@ public class StageManager: Singleton<StageManager>
     public List<Transform> spawnPoints;
     private List<GameObject> spawnObjects;
     public Transform DestinationObject;
-    
+    private bool doubleSpawn;
     [SerializeField]public MonsetInfo[] MonsterList;
     //몬스터를 잡으면 처치보상이 있지만 스테이지를 클리어할때마다 보상이 주어져야함
     
@@ -53,6 +53,7 @@ public class StageManager: Singleton<StageManager>
         SpawnInterval=new WaitForSeconds(SpawnIntervalTime);
         StartNextWave();
         spawnObjects=new List<GameObject>();
+        doubleSpawn = false;
     }
 
     // Update is called once per frame
@@ -109,6 +110,18 @@ public class StageManager: Singleton<StageManager>
 
         ;
 
+    }
+    public void SkipReadyTime()
+    {
+        TimeBetweenWaves = 0f;
+    }
+    public void DoubleSpawn()
+    {
+        doubleSpawn = !doubleSpawn;
+        if (doubleSpawn)
+            SpawnInterval = new WaitForSeconds(1.5f);
+        else
+            SpawnInterval = new WaitForSeconds(3.5f);
     }
     void StartNextWave()
     {

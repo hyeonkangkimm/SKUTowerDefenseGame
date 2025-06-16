@@ -311,7 +311,8 @@ public class MonsterAI : MonoBehaviour, IDamageable
         {
         IDamageable character = NearTarget.GetComponent<IDamageable>();
         character.TakeDamage(Damage);
-        } 
+        }
+        AudioManager.Instance.PlaySFX("MOBATK");
     }
     IEnumerator InitDestination()
     {

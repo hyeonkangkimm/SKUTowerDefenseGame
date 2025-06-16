@@ -24,6 +24,12 @@ public class DOTweenProjectile : MonoBehaviour
         isLaunched = true;
         OnOrbitEffect.Play();
         OnHitEffect.Stop();
+        GameObject go = new GameObject();
+        var onOrbit = go.AddComponent<AudioTrigger>();
+        if (bulletClip != null)
+        {
+            onOrbit.onClip = bulletClip;
+        }
     }
 
     void Update()
@@ -58,7 +64,9 @@ public class DOTweenProjectile : MonoBehaviour
                 var onHitObj = Instantiate(OnHitEffect, transform.position, Quaternion.identity);
                 var onHit = onHitObj.gameObject.AddComponent<AudioTrigger>();
                 if (onHitClip != null)
+                {
                     onHit.onClip = onHitClip;
+                }
             }
 
             StartCoroutine(DeactivateProjectile());

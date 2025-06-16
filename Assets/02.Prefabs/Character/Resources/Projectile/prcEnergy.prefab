@@ -54,8 +54,8 @@ MonoBehaviour:
   damage: 10
   OnHitEffect: {fileID: 5379197343405763821}
   OnOrbitEffect: {fileID: 4832771000101314118}
-  bulletClip: {fileID: 0}
-  onHitClip: {fileID: 0}
+  bulletClip: {fileID: 8300000, guid: a1c4dc19a9cf8334b956fea4118d4c6a, type: 3}
+  onHitClip: {fileID: 8300000, guid: 50fe9d653856cbc4fae013892b76f070, type: 3}
 --- !u!65 &8332472659042149660
 BoxCollider:
   m_ObjectHideFlags: 0

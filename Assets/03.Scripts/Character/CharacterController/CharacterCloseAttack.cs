@@ -107,6 +107,7 @@ public class CharacterCloseAttack : MonoBehaviour
                 damagable?.TakeDamage(characterController.character.StatHandler.curStat.GetCurAtk());
                 Debug.Log("근접공격");
             }
+            AudioManager.Instance.PlaySFX("PUNCH");
         }
     }
     //private void SetAttackMotionSpeed(float attackSpeed=1f)

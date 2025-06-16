@@ -12,6 +12,8 @@ public class AudioTrigger : MonoBehaviour
         var audio = gameObject.AddComponent<AudioSource>();
         if (onClip != null)
         {
+            audio.volume = 0.3f;
+            audio.loop = false;
             audio.clip = onClip;
             audio.Play();
         }
@@ -26,6 +28,4 @@ public class AudioTrigger : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-
 }
