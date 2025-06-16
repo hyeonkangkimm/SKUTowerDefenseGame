@@ -40,7 +40,6 @@ public class HeroData
 [RequireComponent(typeof(StatHandler))]
 [RequireComponent(typeof(HealthSystem))]
 [RequireComponent(typeof(CharacterDamaged))]
-[RequireComponent(typeof(CharacterCloseAttack))]
 
 
 

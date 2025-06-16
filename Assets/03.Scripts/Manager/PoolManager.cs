@@ -130,12 +130,33 @@ public class PoolManager : Singleton<PoolManager>
                 poolObject = poolDictionary[rcode][i + 1];
             }
         }
-       if(active)
-        poolObject.gameObject.SetActive(true); // 활성화
+       
+        poolObject.gameObject.SetActive(active); // 활성화
 
         return poolObject;
     }
+    public void HeroUpdateeInPool(int hid,bool IsUpgrade)
+    {
 
+        string rcode = "npc000" + hid;
+        if (!poolDictionary.ContainsKey(rcode))
+        {
+            return;
+        }
+        GameObject poolObject = null;
+
+        for (int i = 0; i < poolDictionary[rcode].Count; i++)
+        {
+            poolObject = poolDictionary[rcode][i];
+            CharacterStat Gradedata = poolObject.GetComponent<Hero>().data.gradeStatModifier;
+            StatHandler statHandler = poolObject.GetComponent<StatHandler>();
+            if (IsUpgrade)
+                statHandler.AddStatModifier(Gradedata);
+            else
+                statHandler.RemoveStatModifier(Gradedata);
+
+        }
+    }
     // 이미 생성된 오브젝트 풀에서 프리팹을 가져옴
     public T SpawnFromPool<T>(string rcode) where T : MonoBehaviour
     {
@@ -166,4 +187,6 @@ public class PoolManager : Singleton<PoolManager>
 
         return poolObject.GetComponent<T>();
     }
+
+
 }

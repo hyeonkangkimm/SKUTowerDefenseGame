@@ -37,6 +37,7 @@ public class CardLevelManager : MonoBehaviour
         if (hid >= 0 && hid < 10)
         {
             cardLevels[hid]++;
+            PoolManager.Instance.HeroUpdateeInPool(hid,true);
         }
         else
         {
@@ -51,6 +52,8 @@ public class CardLevelManager : MonoBehaviour
             if (cardLevels[hid] > 0)
             {
                 cardLevels[hid]--;
+                PoolManager.Instance.HeroUpdateeInPool(hid, false);
+
             }
             else
             {

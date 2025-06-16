@@ -32,7 +32,6 @@ public class CharacterRangeAttack : MonoBehaviour
             if ((currentTarget.transform.position - transform.position).magnitude > AtkRange)
                 currentTarget = characterController.enemiesInRange.Count > 0 ? characterController.enemiesInRange[0] : null;
         }
-
     }
     public void OnDisable()
     {

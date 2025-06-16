@@ -16,7 +16,7 @@ public class Controller : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         isAttacking = false;
         hurtAnimLength = new WaitForSeconds(0.2f);
-        deadAnimLength = new WaitForSeconds(1);
+        deadAnimLength = new WaitForSeconds(1.5f);
         attackDelay = 0f;
     }
     protected virtual void Update() 

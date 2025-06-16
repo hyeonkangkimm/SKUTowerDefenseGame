@@ -111,7 +111,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
             return;
         }
         //NearTarget이 죽었을 때 타겟 해제, if문 안에서 앞 조건식 먼저 계산한후 false면 if문을 나가기 때문에 뒤에 NullReferenceException오류가 안난다
-        if (NearTarget != null &&(!NearTarget.activeInHierarchy||NearTarget.GetComponent<CharacterControllerH>().isDead))
+        if (NearTarget != null &&(NearTarget.GetComponent<CharacterControllerH>().isDead))
             NearTarget = null;
         if(null!=NearTarget)
             TargetDistance = (NearTarget.transform.position-this.transform.position).magnitude;
@@ -215,14 +215,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
 
         }
         else
-        {
-            //에러주석
-            //if (playerDistance < detectDistance)
-            //{
-            //    agent.isStopped = false;
-            //    agent.SetDestination(NearTarget.transform.position);
-            //}
-            //else
+        { 
             {
                 SetState(AIState.Wandering);
                 GoToDestination();
@@ -232,7 +225,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
 
     bool IsPlayerInFieldOfView()
     {
-        if (NearTarget == null)
+        if (NearTarget == null|| NearTarget.GetComponent<CharacterControllerH>().isDead)
             return false;
         Vector3 directionToPlayer = NearTarget.transform.position - transform.position;
         float angle = Vector3.Angle(transform.forward, directionToPlayer);

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1588685663460693967}
-  - component: {fileID: 512853953494718354}
+  - component: {fileID: 6437140212148966146}
   m_Layer: 0
   m_Name: DetectBox
   m_TagString: Untagged
@@ -32,8 +32,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2735300892435117001}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &512853953494718354
-BoxCollider:
+--- !u!135 &6437140212148966146
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1.36, z: 3}
-  m_Center: {x: 0, y: 0, z: 1.5}
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3577486869829984559
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,7 +68,6 @@ GameObject:
   - component: {fileID: 8568409981590035141}
   - component: {fileID: 5196221461597515447}
   - component: {fileID: 5101188697961572857}
-  - component: {fileID: 6913698235043777781}
   - component: {fileID: 455545577690005016}
   m_Layer: 6
   m_Name: npc0004
@@ -118,7 +117,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -235,29 +234,6 @@ MonoBehaviour:
   damageTextPos: {fileID: 0}
   CurrentYOffset: 0
   Enemy: 0
---- !u!114 &6913698235043777781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3577486869829984559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3bd6e2ecd9c2554da10ceeb7c4fc446, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 0
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  characterController: {fileID: 8788042232997610484}
-  MyAnimator: {fileID: 3570519226412116309}
-  timeSinceLastAttack: 0
-  AttackReadyTime: 0
-  AttackAnimationLength: 0
-  clip: {fileID: -203655887218126122, guid: b583df027f7993f41994a689f82e08b9, type: 3}
-  CriticalChance: 0
 --- !u!114 &455545577690005016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,11 +551,14 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 97159b2376e9387458da12c39008270b, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 537384faf4e8fe94d9185a6116047010, type: 2}
+      objectReference: {fileID: 22100000, guid: 4ef13495e7299874698028cea9b83737, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 97159b2376e9387458da12c39008270b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4379079240270139333}
   m_SourcePrefab: {fileID: 100100000, guid: 97159b2376e9387458da12c39008270b, type: 3}
 --- !u!95 &3570519226412116309 stripped
 Animator:
@@ -591,3 +570,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 97159b2376e9387458da12c39008270b, type: 3}
   m_PrefabInstance: {fileID: 6982723437118592196}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7793184665198832021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 97159b2376e9387458da12c39008270b, type: 3}
+  m_PrefabInstance: {fileID: 6982723437118592196}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4379079240270139333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793184665198832021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3bd6e2ecd9c2554da10ceeb7c4fc446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  characterController: {fileID: 0}
+  timeSinceLastAttack: 0
+  AttackReadyTime: 0
+  AttackAnimationLength: 0
+  CriticalChance: 0
