@@ -15,7 +15,7 @@ MonoBehaviour:
   hid: 6
   icon: {fileID: 21300000, guid: 3cf2e0ad2b696994893ebdff454c0a83, type: 3}
   manacost: 2
-  cooldownDuration: 7
+  cooldownDuration: 2
   heroPrefab: {fileID: 0}
   heroName: "\uB9C8\uC774"
   heroDescription: "\uB9C8\uC774\uB294 \uACF5\uC218 \uC804\uD658\uC774 \uB6F0\uC5B4\uB09C
@@ -42,8 +42,8 @@ MonoBehaviour:
     DamageMultiplier: 0
     HealMultiplier: 0
   PassiveStat:
-    StatChangeType: 0
-    Atk: 4
+    StatChangeType: 4
+    Atk: 3
     Health: 18
     Defense: 0
     AttackSpeed: 1
@@ -61,9 +61,9 @@ MonoBehaviour:
     HealMultiplier: 0
   gradeStatModifier:
     StatChangeType: 0
-    Atk: 0
-    Health: 0
-    Defense: 0
+    Atk: 1
+    Health: 3
+    Defense: 1
     AttackSpeed: 0
     MoveSpeed: 0
     AttackRange: 0

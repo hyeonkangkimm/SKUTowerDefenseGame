@@ -63,7 +63,7 @@ MonoBehaviour:
   gradeStatModifier:
     StatChangeType: 0
     Atk: 1
-    Health: 10
+    Health: 3
     Defense: 1
     AttackSpeed: 0
     MoveSpeed: 0
