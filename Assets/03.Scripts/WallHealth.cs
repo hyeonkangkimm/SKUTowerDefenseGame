@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;  // 씬 전환에 필요
 using System.Collections;
 
 public class WallHealth : MonoBehaviour, IDamageable
@@ -24,7 +25,6 @@ public class WallHealth : MonoBehaviour, IDamageable
 
         Debug.Log($"[벽] 데미지 {value} 받음. 현재 체력: {currentHP}");
 
-        // 체력바 애니메이션 시작
         if (hpBarCoroutine != null)
         {
             StopCoroutine(hpBarCoroutine);
@@ -34,6 +34,7 @@ public class WallHealth : MonoBehaviour, IDamageable
         if (currentHP <= 0)
         {
             Debug.Log("[벽] 파괴됨!");
+            LoadEndScene();
         }
     }
 
@@ -48,7 +49,6 @@ public class WallHealth : MonoBehaviour, IDamageable
         {
             float fill = (float)currentHP / maxHP;
             hpBarImage.fillAmount = fill;
-            Debug.Log("FillAmount: " + hpBarImage.fillAmount);
         }
     }
 
@@ -60,7 +60,7 @@ public class WallHealth : MonoBehaviour, IDamageable
         float targetFill = (float)currentHP / maxHP;
         float startFill = hpBarImage.fillAmount;
         float elapsed = 0f;
-        float duration = 0.5f; // 0.5초 동안 애니메이션 진행
+        float duration = 0.5f;
 
         while (elapsed < duration)
         {
@@ -70,5 +70,10 @@ public class WallHealth : MonoBehaviour, IDamageable
         }
 
         hpBarImage.fillAmount = targetFill;
+    }
+
+    private void LoadEndScene()
+    {
+        SceneManager.LoadScene("EndScence");  // "EndScene"은 빌드 세팅에 등록된 씬 이름
     }
 }

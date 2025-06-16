@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/KHKMAP_06_14_21H.unity
     guid: 14a53355d0f580b40a840c98fe70ad92
+  - enabled: 1
+    path: Assets/01.Scenes/EndScence.unity
+    guid: c50b132004cee1b47b9b08e57a76c967
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 130b8f673d8b91c41b8f40f918e937c3, type: 2}
   m_UseUCBPForAssetBundles: 0
