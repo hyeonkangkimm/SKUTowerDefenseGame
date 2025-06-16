@@ -187,6 +187,15 @@ public class MonsterAI : MonoBehaviour, IDamageable
             SetState(AIState.Idle);
             gameObject.SetActive(false);
             //벽 체력깍기
+            GameObject wall = GameObject.FindWithTag("Wall"); // 벽 오브젝트에 Wall 태그 붙여야 함
+            if (wall != null)
+            {
+                IDamageable wallHp = wall.GetComponent<IDamageable>();
+                if (wallHp != null)
+                {
+                    wallHp.TakeDamage(Damage); // Monster의 Damage 사용
+                }
+            }
         }
     }
 
