@@ -118,6 +118,7 @@ public class StageManager: Singleton<StageManager>
         {
             CurrentStage++;
             CurrentWave = 1;
+            AudioManager.Instance.PlayBGM("BGM000"+CurrentStage.ToString());
         }
         //소환실행
         myCoroutine = StartCoroutine("SpawnCorotine");
