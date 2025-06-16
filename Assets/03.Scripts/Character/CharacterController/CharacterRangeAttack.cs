@@ -41,7 +41,7 @@ public class CharacterRangeAttack : MonoBehaviour
     }
     public void OnEnable()
     {
-        
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
     /// <summary>
     /// 애니메이션 투사체 발사 시점에 출발

@@ -541,7 +541,7 @@ MonoBehaviour:
   aiState: 0
   attackRate: 1.35
   attackDistance: 5
-  fieldOfView: 30
+  fieldOfView: 60
   TargetDistance: 0
   NearTarget: {fileID: 0}
 --- !u!54 &7236100675538182931

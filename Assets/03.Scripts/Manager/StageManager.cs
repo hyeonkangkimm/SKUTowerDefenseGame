@@ -40,6 +40,7 @@ public class StageManager: Singleton<StageManager>
 
 
     public List<Transform> spawnPoints;
+    private List<GameObject> spawnObjects;
     public Transform DestinationObject;
     
     [SerializeField]public MonsetInfo[] MonsterList;
@@ -51,6 +52,7 @@ public class StageManager: Singleton<StageManager>
     {
         SpawnInterval=new WaitForSeconds(SpawnIntervalTime);
         StartNextWave();
+        spawnObjects=new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -58,20 +60,34 @@ public class StageManager: Singleton<StageManager>
     {
         if (GameManager.Instance.CombatConditionType == ECombatConditionType.START)
         {
-
+           
             //전투중
             GeneratingTime -= Time.deltaTime;
             if (GeneratingTime <= 0)
             {
-                ResourceManager.Instance.WaveOver();
-                GameManager.Instance.CombatConditionType = ECombatConditionType.READY;
+                GeneratingTime = 0;
+                bool allDead = true;
+                foreach(GameObject go in spawnObjects)
+                {
+                    if (go.activeSelf)
+                    {
+                        allDead = false;
+                        break;
+                    }
+                }
+                if (allDead)
+                {
+                    ResourceManager.Instance.WaveOver();
+                    GameManager.Instance.CombatConditionType = ECombatConditionType.READY;
+                    spawnObjects.Clear();
+                }
             }
 
                 int minutes = (int)(GeneratingTime / 60);
                 int seconds = (int)(GeneratingTime % 60);
 
                 TimeText.text = string.Format("{0:D2} {1:D2}", minutes, seconds);
-
+            
         }
         else if(GameManager.Instance.CombatConditionType == ECombatConditionType.READY)
         {
@@ -138,6 +154,7 @@ public class StageManager: Singleton<StageManager>
         monsterAI.targetDestination = DestinationObject;
         // Wave/Stage 기반 스탯 적용
         monster.SetActive(true);
+        spawnObjects.Add(monster);
     }
     string ChooseMob(int stage)
     {

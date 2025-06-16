@@ -61,12 +61,12 @@ public class CharacterControllerH : Controller
         yield return deadAnimLength;
         //if (character.EntityType == EEntityType.MONSTER) 
         gameObject.SetActive(false);
-        //animator.enabled = false;
+        animator.enabled = false;
     }
     public void OnEnable()
     {
-        //animator.enabled = true;
-        //isDead = false;
+        animator.enabled = true;
+        isDead = false;
         //isChanneling = false;
         //spriteRenderer.color = originalColor;
     }
@@ -85,13 +85,14 @@ public class CharacterControllerH : Controller
             }
         }
         enemiesInRange.Clear(); // 리스트 초기화
+
     }
     #endregion
     #region Action CallBack
     public void CallDeath()
     {
         OnDeath?.Invoke();
-        CharacterManager.Instance.Unregister(character);
+        isDead = true;
         StartCoroutine(PlayDeathAnimationAndIdleCoroutine());
     }
     public void CallOnDamage(int Damage,bool critic)

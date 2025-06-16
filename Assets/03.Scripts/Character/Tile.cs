@@ -36,7 +36,7 @@ public class Tile : MonoBehaviour
     }
     public void OnHovering() 
     {
-        if (CurrentPlacedObject == null || CurrentPlacedObject.activeSelf)
+        if (CurrentPlacedObject == null || !CurrentPlacedObject.activeSelf)
         {
             rend.material.color = Color.yellow;
 

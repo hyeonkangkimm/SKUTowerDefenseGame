@@ -93,6 +93,8 @@ public class MonsterAI : MonoBehaviour, IDamageable
         healthSystem.HealthChanged(Health);
         Die = false;
         StartCoroutine(InitDestination());
+        reachedFinalDestination = false;
+
 
 
     }
@@ -109,7 +111,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
             return;
         }
         //NearTarget이 죽었을 때 타겟 해제, if문 안에서 앞 조건식 먼저 계산한후 false면 if문을 나가기 때문에 뒤에 NullReferenceException오류가 안난다
-        if (NearTarget != null &&!NearTarget.activeInHierarchy)
+        if (NearTarget != null &&(!NearTarget.activeInHierarchy||NearTarget.GetComponent<CharacterControllerH>().isDead))
             NearTarget = null;
         if(null!=NearTarget)
             TargetDistance = (NearTarget.transform.position-this.transform.position).magnitude;
@@ -157,10 +159,10 @@ public class MonsterAI : MonoBehaviour, IDamageable
                 agent.isStopped = false;
                 break;
         }
-
+        
         animator.speed = agent.speed / walkSpeed;
     }
-
+    
     void GoToDestination()
     {
         if (targetDestination != null)
@@ -302,7 +304,6 @@ public class MonsterAI : MonoBehaviour, IDamageable
         IDamageable character = NearTarget.GetComponent<IDamageable>();
         character.TakeDamage(Damage);
         } 
-       
     }
     IEnumerator InitDestination()
     {
