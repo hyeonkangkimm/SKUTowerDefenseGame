@@ -6,6 +6,9 @@ using TMPro;
 
 public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    [Header("히어로 이름 텍스트")]
+    [SerializeField] private TMP_Text heroNameText;
+
     [Header("카드 데이터 연결")]
     public HeroSO heroData;
     public TMP_Text manaCostText;
@@ -220,7 +223,11 @@ public class CardDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             manaCostText.text = heroData.manacost.ToString();
         }
-    }
+        if (heroNameText != null) {
+        heroNameText.text = heroData.heroName;
+    }       // <-- 히어로 이름 표시
+    
+}
     private void SetGrayscale(bool isGray)
     {
         if (characterImage != null)
