@@ -85,7 +85,7 @@ public class SkillTreeSlot : MonoBehaviour
     {
         if (!isSkillPriceUp) return;
 
-        ShopManager.Instance.UpdatePriceRange();
+        SkillManager.Instance.PriceUp();
     }
 
     public void ResourseLevelUp()

@@ -7,6 +7,7 @@ using UnityEditor;
 [System.Serializable]
 public class HeroData
 {
+
     public int hid;
     public Sprite icon;
     public string heroName;
@@ -79,7 +80,12 @@ public class Hero : Character
         base.Start();
         
         InitStat();
+
+       
+
     }
+   
+
     protected override void OnEnable()
     {
         base.OnEnable();

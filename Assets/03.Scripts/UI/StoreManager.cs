@@ -16,9 +16,12 @@ public class ShopManager : MonoBehaviour
 
     [SerializeField] private GameObject[] storeUnlocks;
 
-    public int priceRange = 2;
+    public int priceRange = 3;
 
     [SerializeField]private List<HeroSO> availableCards = new List<HeroSO>();
+
+    private int[] isRolled = new int[10];
+    private bool firstRolled = false;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -42,18 +45,48 @@ public class ShopManager : MonoBehaviour
     }
     private void Update()
     {
-        maxAvailableCards = 4 + SkillManager.Instance.CheckStoreLevel();
+        maxAvailableCards = SkillManager.Instance.CheckStoreLevel() + 4;
+        priceRange = SkillManager.Instance.CheckStorePrice();
+        if (firstRolled)    CheckNotRolled();
+    }
+
+    private void CheckNotRolled()
+    {
+        for(int i = 0; i< maxAvailableCards; i++)
+        {
+            if (isRolled[i] != 1)
+            {
+                RollTarget(i);
+            }
+        }
+    }
+
+    private void RollTarget(int target)
+    {
+        var slot = cardSlots[target];
+        int random = Random.Range(1, 9);
+        int price = Random.Range(1, priceRange);
+        string name = availableCards[random].heroName;
+        string desc = availableCards[random].heroDescription;
+        Sprite heroImage = availableCards[random].icon;
+        int heroID = availableCards[random].hid;
+
+        slot.cardImage.enabled = true;
+        slot.SetCard(price, name, desc, heroImage, heroID, price);
+
+        isRolled[target] = 1;
     }
 
     public void RollCards()
     {
-        for (int i = 0; i < cardSlots.Length; i++)
+        for (int i = 0; i < maxAvailableCards; i++)
         {
+            firstRolled = true;
             var slot = cardSlots[i];
 
-            if (i < maxAvailableCards)
+            if (i < 10)
             {
-                int random = Random.Range(1, maxAvailableCards);
+                int random = Random.Range(1, 9);
                 int price = Random.Range(1, priceRange);
                 string name = availableCards[random].heroName;
                 string desc = availableCards[random].heroDescription;
@@ -62,6 +95,8 @@ public class ShopManager : MonoBehaviour
 
                 slot.cardImage.enabled = true;
                 slot.SetCard(price, name, desc, heroImage, heroID, price);
+
+                isRolled[i] = 1;
             }
         }
     }
@@ -73,13 +108,13 @@ public class ShopManager : MonoBehaviour
         {
             GetComponent<AudioSource>().Play();
         }
-        for (int i = 0; i < cardSlots.Length; i++)
+        for (int i = 0; i < maxAvailableCards; i++)
         {
             var slot = cardSlots[i];
 
-            if (i < maxAvailableCards)
+            if (i < 10)
             {
-                int random = Random.Range(1, maxAvailableCards);
+                int random = Random.Range(1, 9);
                 int price = Random.Range(1, priceRange);
                 string name = availableCards[random].heroName;
                 string desc = availableCards[random].heroDescription;
@@ -98,10 +133,5 @@ public class ShopManager : MonoBehaviour
         if (slot.isPurchased) return;
 
         slot.SetEmpty();
-    }
-
-    public void UpdatePriceRange()
-    {
-        priceRange++;
     }
 }

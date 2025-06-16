@@ -6,6 +6,7 @@ public class SkillManager : MonoBehaviour
 {
     public static SkillManager Instance { get; private set; }
     public int storeSlotLevel = 0;
+    public int storePrice = 3;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -32,8 +33,18 @@ public class SkillManager : MonoBehaviour
         storeSlotLevel++;
     }
 
+    public void PriceUp()
+    {
+        storePrice++;
+    }
+
     public int CheckStoreLevel()
     {
         return storeSlotLevel;
+    }
+
+    public int CheckStorePrice()
+    {
+        return storePrice;
     }
 }
