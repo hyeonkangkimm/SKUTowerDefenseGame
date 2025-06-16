@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: oldcard5
   m_EditorClassIdentifier: 
   hid: 10
-  icon: {fileID: 871980822, guid: bdeaeacf91e805f449e7fa66d480d644, type: 3}
+  icon: {fileID: -1628513395, guid: bdeaeacf91e805f449e7fa66d480d644, type: 3}
   manacost: 2
   cooldownDuration: 1
   heroPrefab: {fileID: 0}
-  heroName: "\uB3CC"
+  heroName: "\uBC14\uC704"
   heroDescription: 
   RCode: npcrock
   multipleStat:

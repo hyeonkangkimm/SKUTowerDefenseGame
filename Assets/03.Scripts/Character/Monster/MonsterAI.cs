@@ -185,6 +185,8 @@ public class MonsterAI : MonoBehaviour, IDamageable
             SetState(AIState.Idle);
             gameObject.SetActive(false);
             //º® Ã¼·Â±ï±â
+
+
         }
     }
 
