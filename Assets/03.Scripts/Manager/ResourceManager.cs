@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum resourseType {
@@ -21,6 +22,8 @@ public class ResourceManager : Singleton<ResourceManager>
     public int stone;
     public int iron;
 
+    private float modifyer = 1.0f;
+    private int turns = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -113,27 +116,45 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         if(resourceSkillLevel == 1)
         {
-            AddResource(0, 10, 0, 0);
+            AddResource(0, (int)(10 * modifyer), 0, 0);
         }
         if (resourceSkillLevel == 2)
         {
-            AddResource(0, 10, 5, 0);
+            AddResource(0, (int)(10 * modifyer), (int)(5 * modifyer), 0);
         }
         if (resourceSkillLevel == 3)
         {
-            AddResource(0, 25, 5, 0);
+            AddResource(0, (int)(25 * modifyer), (int)(5 * modifyer), 0);
         }
         if (resourceSkillLevel == 4)
         {
-            AddResource(0, 25, 15, 0);
+            AddResource(0, (int)(25 + modifyer), (int)(15 * modifyer), 0);
         }
         if (resourceSkillLevel == 5)
         {
-            AddResource(0, 25, 15, 5);
+            AddResource(0, (int)(25 * modifyer), (int)(15 * modifyer), (int)(5 * modifyer));
         }
         if (resourceSkillLevel >= 6)
         {
-            AddResource(0, 25, 15, 10);
+            AddResource(0, (int)(25 * modifyer), (int)(15 * modifyer), (int)(10 * modifyer));
         }
+
+        turns++;
+
+        if (turns >= 3) modifyer = 1.0f;
+    }
+
+    public void MinusMofier()
+    {
+        turns = 0;
+
+        modifyer = 0.5f;
+    }
+
+    public void PlusModier()
+    {
+        turns = 0;
+
+        modifyer = 1.5f;
     }
 }

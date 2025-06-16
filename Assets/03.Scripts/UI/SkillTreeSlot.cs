@@ -43,8 +43,7 @@ public class SkillTreeSlot : MonoBehaviour
     public void UnLockSkillSlot()
     {
         if (unlocked) return;
-        if (resource.HaveEnoughResource( requireWoodAmount, requirestoneAmount, requireironAmount) == false)
-            return;
+        
 
         for (int i = 0; i < shouldBeUnlocked.Length; i++)
         {
@@ -63,6 +62,9 @@ public class SkillTreeSlot : MonoBehaviour
                 return;
             }
         }
+
+        if (resource.HaveEnoughResource(requireWoodAmount, requirestoneAmount, requireironAmount) == false)
+            return;
 
         unlocked = true;
         if (GetComponent<AudioSource>() != null)
