@@ -24,16 +24,16 @@ public class Tile : MonoBehaviour
         originalColor = rend.material.color;
     }
 
-    void OnMouseEnter()
-    {
-        rend.material.color = Color.yellow;
-        GameManager.Instance.CurrentTile = this;
-    }
+    //void OnMouseEnter()
+    //{
+    //    rend.material.color = Color.yellow;
+    //    GameManager.Instance.CurrentTile = this;
+    //}
 
-    void OnMouseExit()
-    {
-        rend.material.color = originalColor;
-    }
+    //void OnMouseExit()
+    //{
+    //    rend.material.color = originalColor;
+    //}
     public void OnHovering() 
     {
         if (CurrentPlacedObject == null || !CurrentPlacedObject.activeSelf)

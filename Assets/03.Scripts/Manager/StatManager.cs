@@ -39,7 +39,7 @@ public class StatManager : Singleton<StatManager>
         StatModifierUpdate();
         CostCalc();
     }
-
+    //Add*multiplier finalvalue 
     private void StatInitialize()
     {
         Stats.Add(new Stat(EStatType.ATK           , 1, 100, 100, 1, 1, "공격력 증가", 50));
