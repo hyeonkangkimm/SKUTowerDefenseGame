@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7374492427060416427}
-  - component: {fileID: 2715136674588298744}
+  - component: {fileID: 3849743967274306357}
   m_Layer: 0
   m_Name: DetectBox
   m_TagString: Untagged
@@ -32,8 +32,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8931502715105309671}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2715136674588298744
-BoxCollider:
+--- !u!135 &3849743967274306357
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1.36, z: 3}
-  m_Center: {x: 0, y: 0, z: 1.5}
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &427502674586650623
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,7 +66,6 @@ GameObject:
   - component: {fileID: 2681407283083828285}
   - component: {fileID: 7435838063962685565}
   - component: {fileID: 2188739580652550735}
-  - component: {fileID: 3946857233786549235}
   - component: {fileID: 5044400475569890956}
   - component: {fileID: 1552302247982711618}
   - component: {fileID: 5169544021445457240}
@@ -185,29 +184,6 @@ MonoBehaviour:
   damageTextPos: {fileID: 0}
   CurrentYOffset: 0
   Enemy: 0
---- !u!114 &3946857233786549235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427502674586650623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3bd6e2ecd9c2554da10ceeb7c4fc446, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 0
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  characterController: {fileID: 508840373917124414}
-  MyAnimator: {fileID: 9065718049473936326}
-  timeSinceLastAttack: 0
-  AttackReadyTime: 0
-  AttackAnimationLength: 0
-  clip: {fileID: -203655887218126122, guid: 67fa7bffb10de1c458493001a728d41a, type: 3}
-  CriticalChance: 0
 --- !u!114 &5044400475569890956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,7 +324,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -454,8 +430,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1382f33b9afc4534fae32252516ea511, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6951875707487585613}
   m_SourcePrefab: {fileID: 100100000, guid: 1382f33b9afc4534fae32252516ea511, type: 3}
+--- !u!1 &2334020128123927302 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1382f33b9afc4534fae32252516ea511, type: 3}
+  m_PrefabInstance: {fileID: 3217104095999231575}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6951875707487585613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2334020128123927302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3bd6e2ecd9c2554da10ceeb7c4fc446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  characterController: {fileID: 508840373917124414}
+  timeSinceLastAttack: 0
+  AttackReadyTime: 0
+  AttackAnimationLength: 0
+  CriticalChance: 0
 --- !u!4 &3111928364588360124 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1382f33b9afc4534fae32252516ea511, type: 3}

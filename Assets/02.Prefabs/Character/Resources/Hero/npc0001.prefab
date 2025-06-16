@@ -3868,9 +3868,6 @@ PrefabInstance:
       addedObject: {fileID: 6800974652578152547}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9dca336021d6a164b9dc630ecc4263b4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3525088634298071288}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9dca336021d6a164b9dc630ecc4263b4, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 4436160131826258072}
     - targetCorrespondingSourceObject: {fileID: 3507920342887693529, guid: 9dca336021d6a164b9dc630ecc4263b4, type: 3}
       insertIndex: -1
@@ -8280,25 +8277,6 @@ MonoBehaviour:
   editorViewMorphBits: 15
   editorViewRigidBodies: 0
   editorViewMorphNameType: 0
---- !u!320 &3525088634298071288
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116216409961820025}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: fb831b3bdff6a544abaa6d200bd07ba0, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: -252738323286210243, guid: fb831b3bdff6a544abaa6d200bd07ba0, type: 2}
-    value: {fileID: 6644813093804568505}
-  m_ExposedReferences:
-    m_References: []
 --- !u!114 &4436160131826258072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8314,7 +8292,7 @@ MonoBehaviour:
   detectionRange: 0
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   characterController: {fileID: 0}
   timeSinceLastAttack: 0
   AttackReadyTime: 0

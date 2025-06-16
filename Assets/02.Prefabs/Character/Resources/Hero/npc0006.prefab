@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1852865378231358453}
-  - component: {fileID: 5047093255730497816}
+  - component: {fileID: 6092395780217062524}
   m_Layer: 0
   m_Name: DetectBox
   m_TagString: Untagged
@@ -26,14 +26,14 @@ Transform:
   m_GameObject: {fileID: 7104247602796032817}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.7321165, y: -3.9960938, z: -4.073825}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4319637949294403420}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5047093255730497816
-BoxCollider:
+--- !u!135 &6092395780217062524
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1.36, z: 3}
-  m_Center: {x: 0, y: 0, z: 1.5}
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7394970959904733832
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,7 +68,6 @@ GameObject:
   - component: {fileID: 5388432989914743978}
   - component: {fileID: 8973992678408855953}
   - component: {fileID: 238433390277097776}
-  - component: {fileID: 1593725492647833375}
   - component: {fileID: 4132592028499530735}
   m_Layer: 6
   m_Name: npc0006
@@ -118,7 +117,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -235,29 +234,6 @@ MonoBehaviour:
   damageTextPos: {fileID: 0}
   CurrentYOffset: 0
   Enemy: 0
---- !u!114 &1593725492647833375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7394970959904733832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3bd6e2ecd9c2554da10ceeb7c4fc446, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 0
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  characterController: {fileID: 4683146210053988212}
-  MyAnimator: {fileID: 3314643614872727722}
-  timeSinceLastAttack: 0
-  AttackReadyTime: 0
-  AttackAnimationLength: 0
-  clip: {fileID: -203655887218126122, guid: 67fa7bffb10de1c458493001a728d41a, type: 3}
-  CriticalChance: 0
 --- !u!114 &4132592028499530735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,6 +555,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a85d172b5bf95dc409489a522a396221, type: 3}
       insertIndex: -1
       addedObject: {fileID: 139457041443018532}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a85d172b5bf95dc409489a522a396221, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2160821812232033507}
     - targetCorrespondingSourceObject: {fileID: 3114174680331652346, guid: a85d172b5bf95dc409489a522a396221, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4992428254691722457}
@@ -10041,6 +10020,27 @@ MonoBehaviour:
   editorViewMorphBits: 15
   editorViewRigidBodies: 0
   editorViewMorphNameType: 0
+--- !u!114 &2160821812232033507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8094101810291994730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3bd6e2ecd9c2554da10ceeb7c4fc446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  characterController: {fileID: 0}
+  timeSinceLastAttack: 0
+  AttackReadyTime: 0
+  AttackAnimationLength: 0
+  CriticalChance: 0
 --- !u!1 &8124010288915465096 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 876837670438637235, guid: a85d172b5bf95dc409489a522a396221, type: 3}

@@ -44,7 +44,7 @@ MonoBehaviour:
   PassiveStat:
     StatChangeType: 0
     Atk: 4
-    Health: 13
+    Health: 18
     Defense: 0
     AttackSpeed: 1
     MoveSpeed: 0

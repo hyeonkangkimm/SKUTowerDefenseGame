@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6923597927878087565}
   - component: {fileID: 5794585691315835935}
   - component: {fileID: 8887288543430842507}
-  - component: {fileID: 7165519360673396857}
   - component: {fileID: 608229389230653613}
   m_Layer: 6
   m_Name: npc0009
@@ -65,7 +64,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
@@ -182,29 +181,6 @@ MonoBehaviour:
   damageTextPos: {fileID: 0}
   CurrentYOffset: 0
   Enemy: 0
---- !u!114 &7165519360673396857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808959316652988666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3bd6e2ecd9c2554da10ceeb7c4fc446, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 0
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  characterController: {fileID: 3801821902593888924}
-  MyAnimator: {fileID: 4110137937878874172}
-  timeSinceLastAttack: 0
-  AttackReadyTime: 0
-  AttackAnimationLength: 0
-  clip: {fileID: -203655887218126122, guid: 67fa7bffb10de1c458493001a728d41a, type: 3}
-  CriticalChance: 0
 --- !u!114 &608229389230653613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,7 +307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3320276316775881648}
-  - component: {fileID: 5228406889050281612}
+  - component: {fileID: 82528351568876187}
   m_Layer: 0
   m_Name: DetectBox
   m_TagString: Untagged
@@ -354,8 +330,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3798891065250684509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5228406889050281612
-BoxCollider:
+--- !u!135 &82528351568876187
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -369,12 +345,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1.36, z: 3}
-  m_Center: {x: 0, y: 0, z: 1.5}
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6125882651125176113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1823,7 +1799,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -1207455109004126083, guid: 8ac91bdc24a2f7344894dbe90d2ecb9b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5947347102403539162}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ac91bdc24a2f7344894dbe90d2ecb9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2834576822562503907}
   m_SourcePrefab: {fileID: 100100000, guid: 8ac91bdc24a2f7344894dbe90d2ecb9b, type: 3}
 --- !u!4 &531126778303143376 stripped
 Transform:
@@ -1835,6 +1814,32 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 8ac91bdc24a2f7344894dbe90d2ecb9b, type: 3}
   m_PrefabInstance: {fileID: 7521206010306938285}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7251315286713694460 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ac91bdc24a2f7344894dbe90d2ecb9b, type: 3}
+  m_PrefabInstance: {fileID: 7521206010306938285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2834576822562503907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251315286713694460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3bd6e2ecd9c2554da10ceeb7c4fc446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  characterController: {fileID: 0}
+  timeSinceLastAttack: 0
+  AttackReadyTime: 0
+  AttackAnimationLength: 0
+  CriticalChance: 0
 --- !u!4 &8064267398818931270 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8ac91bdc24a2f7344894dbe90d2ecb9b, type: 3}

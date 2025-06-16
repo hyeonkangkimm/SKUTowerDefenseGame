@@ -86,6 +86,15 @@ public class GameManager : Singleton<GameManager>
                 obj.SetActive(false);
             }
         }
+        GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
+        foreach (GameObject obj in heroes)
+        {
+            Tile tile = obj.GetComponent<Tile>();
+            tile.CurrentPlacedObject = null;
+        }
+
+
+
     }
 
     public void ShowAlert(string message, EAlertType type)

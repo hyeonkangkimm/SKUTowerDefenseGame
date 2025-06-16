@@ -114,6 +114,8 @@ public class MonsterAI : MonoBehaviour, IDamageable
         if (NearTarget != null )
             if(NearTarget.GetComponent<CharacterControllerH>().isDead)
                 NearTarget = null;
+        if (NearTarget != null&&!NearTarget.activeInHierarchy)
+            NearTarget = null;
         if(null!=NearTarget)
             TargetDistance = (NearTarget.transform.position-this.transform.position).magnitude;
         
@@ -187,6 +189,7 @@ public class MonsterAI : MonoBehaviour, IDamageable
             reachedFinalDestination = true;
             SetState(AIState.Idle);
             AudioManager.Instance.PlaySFX("DOOR");
+            OnDeath?.Invoke(this.gameObject);
             //벽 체력깍기
             GameObject wall = GameObject.FindWithTag("Wall"); // 벽 오브젝트에 Wall 태그 붙여야 함
             if (wall != null)
